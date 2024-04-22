@@ -16,7 +16,7 @@
     </div>
 </head>
 <body>
-    @yield('content')<!--←この中に,他ファイルに書いてある(アットマーク)sencion~(アットマーク)endsectionまでの部分が入る-->
+    @yield('content')<!--←この中に,他ファイルに書いてある(アット)sencion~(アット)endsectionまでの部分が入る-->
 
     <footer>
     </footer>

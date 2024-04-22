@@ -18,7 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
-    ];
+    ];//↑アイコン追加する？
 
     /**
      * The attributes that should be hidden for arrays.

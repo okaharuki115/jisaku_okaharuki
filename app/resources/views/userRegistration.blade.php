@@ -1,7 +1,7 @@
 @extends('beforeHeaderFooter')
 @section('content')
     <div>
-        <form><!--actionとpost追加する-->
+        <form action="{{ route('newRegistration')}}" method="post">
             @csrf
             <div>
                 <div>ユーザー名</div>
