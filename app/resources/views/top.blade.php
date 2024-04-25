@@ -1,4 +1,4 @@
-@extends('beforeHeaderFooter')
+@extends('headerFooter')
 @section('content')
         <div>全ユーザーの投稿一覧</div>
         <div>

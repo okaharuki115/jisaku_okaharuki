@@ -10,11 +10,11 @@ class RegistrationController extends Controller
 {
     //3.新規ユーザー登録画面へ
     public function userRegistration(){
-        return view('userRegistration',[
+        return view('register/userRegistration',[
         ]);
     }
 
-    //新規ユーザー登録
+        //新規ユーザー登録
         public function userRegistrationForm(Request $request){
 
             $User = new User;

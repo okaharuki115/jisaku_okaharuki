@@ -1,4 +1,5 @@
-@extends('beforeHeaderFooter')
+<!--このファイルはのちに消す-->
+@extends('headerFooter')
 @section('content')
     <div>
         <form action="{{ route('newRegistration')}}" method="post">

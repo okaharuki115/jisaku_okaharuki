@@ -1,7 +1,7 @@
-@extends('beforeHeaderFooter')
+@extends('headerFooter')
 @section('content')
     <div>
-        <form><!--actionとpost追加する-->
+        <form action="{{ route('login') }}" method="post"><!--actionとpost追加する-->
             @csrf
             <div>
                 <div>メールアドレス</div>

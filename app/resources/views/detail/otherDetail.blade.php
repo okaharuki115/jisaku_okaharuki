@@ -1,4 +1,4 @@
-@extends('beforeHeaderFooter')
+@extends('headerFooter')
 
 @section('content')
     <div></div><!--画像入れる-->

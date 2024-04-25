@@ -33,15 +33,9 @@ class DisplayController extends Controller
         ]);
     }
 
-    //3.新規ユーザー登録画面へ
-    public function userRegistration(){
-        return view('userRegistration',[
-        ]);
-    }
-
     //4.パスワード再設定画面へ
     public function rePassword(){
-        return view('resettingPW',[
+        return view('register/resettingPW',[
         ]);
     }
     
@@ -59,10 +53,15 @@ class DisplayController extends Controller
         $Post_with_User = $Post->with('user')->find($otherId)->toArray();
 
 
-        return view('otherDetail',[
+        return view('detail/otherDetail',[
             'Post_with_User' => $Post_with_User,
             'otherId_detail' => $otherId,
         ]);
+    }
+
+    //マイページへ
+    public function mypage(){
+        return view('mypage/myPage');
     }
 
     
