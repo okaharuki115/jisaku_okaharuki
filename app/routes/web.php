@@ -34,3 +34,16 @@ Route::get('/mypage',[DisplayController::class,'mypage']);
 
 //10.新規投稿画面へ
 Route::get('/newPost',[RegistrationController::class,'newPost'])->name('newPost');
+
+//11.（新規投稿画面の）確認画面へ　【post】
+Route::post('/confirmPost',[RegistrationController::class,'confirmPost'])->name('confirm.post');
+
+//(at 10.新規投稿画面)「投稿」ボタンを押したとき【post】
+Route::post('/completePost',[RegistrationController::class,'completePost'])->name('complete.post');
+
+//12.(マイページの)編集画面へ
+//            ↓id入れる?
+Route::get('/editMypage',[RegistrationController::class,'editMypage'])->name('editMypage');
+
+//13.退会画面へ
+Route::get('/withdraw',[RegistrationController::class,'withdraw'])->name('withdraw');

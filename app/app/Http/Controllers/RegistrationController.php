@@ -4,25 +4,63 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User;//use宣言
+use App\Post;//use宣言
+use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
+
 
 class RegistrationController extends Controller
 {
-        //新規投稿画面に飛ぶ
+        //footer→10.新規投稿画面に飛ぶ
         public function newPost(){
 
             return view('fromFooter/newPost',[
             ]);
         }
 
-        //public function newPost(Request $request){
-        //     $User = new User;
-        //     $User->name =$request->name;
-        //     $User->email =$request->email;
-        //     //ここにアイコン登録の記述書く
-        //     $User->password =$request->password;
-        //     $User->save();//インスタンスを保存することでDBへの登録を完了
+        //10.新規投稿画面→11.確認画面に飛ぶ
+        public function confirmPost(Request $request){
 
-        //     return redirect('/');//INSERT処理が完了したらリダイレクトを返す
-        //}
+            //$Post = new Post;
+            //渡すデータの記述（Postテーブルから特定のIDのレコードを取得）
+            //$newPostData = $Post ->find($newPostId) ->toArray();
+
+            $confirmData = $request;
+            //dd($confirmData);
+
+            return view('fromFooter/confirmPost',[
+                'newData' => $confirmData,
+            ]);
+        }
+
+        //(at 10.新規投稿画面)「投稿」ボタンを押したときの処理
+        public function completePost(Request $request){
+
+            $Post = new Post;
+            $Post->title =$request->title;
+            $Post->amount =$request->amount;
+            $Post->content =$request->content;
+            //ここに画像登録の記述書く
+            Auth::user()->post()->save($Post);
+
+            return redirect('/');//INSERT処理が完了したらリダイレクトを返す
+        }
+
+        //6.マイページ→12.編集画面に飛ぶ(マイページの「編集」を押したときのget処理)　
+        public function editMypage(int $editId){
+            $user = new User;
+
+            $editData = $user->find($editId);//特定のユーザーが登録したレコードを取得
+            dd($editData);
+
+            return view('mypage/editMypage',[
+
+            ]);
+        }
+
+        //6.マイページ→13.退会画面に飛ぶ　　
+        public function withdraw(){
+            return view('mypage/withdraw',[
+            ]);
+        }
+
 }

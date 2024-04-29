@@ -20,7 +20,7 @@
                         </div>
                         <!--↑6-5P8の記述　バリエーション-->
                         
-                        <form><!--action,method追加未-->
+                        <form action="{{ route('confirm.post')}}" method="post"><!--action,method追加済-->
                             @csrf
                             <div>
                                 <label for='title'>タイトル</label>
@@ -34,11 +34,11 @@
 
                             <div>
                                 <label for='content' class='mt-2'>内容</label>
-                                <input type='amount' class='form-control' name='amount' id='amount' value="{{ old('amount')}}"/>
+                                <input type='content' class='form-control' name='content' id='content' value="{{ old('content')}}"/>
                             </div>
 
                             <div>
-                                <label for='content' class='mt-2'>画像</label>
+                                <label for='image' class='mt-2'>画像</label>
                                 <!--ここに画像を挿入する欄を表示させるための記述を書く-->
                             </div>
 
@@ -48,7 +48,7 @@
                         </form>
 
                         <div>
-                            <a>マイページへ</a><!--リンク先追加-->
+                            <a href="{{ route('login') }}">マイページへ</a>
                         </div>
                     </div>
                 </div>

@@ -33,8 +33,8 @@
 
                 <!--ログイン中でない場合-->
                 @else
-                    <a  href="{{ route('login') }}">ログイン</a><!--Auth内の「login」というルートを通す-->
-                    <a  href="{{ route('register') }}">新規登録</a><!--Auth内の「register」というルートを通す-->
+                    <a href="{{ route('login') }}">ログイン</a><!--Auth内の「login」というルートを通す-->
+                    <a href="{{ route('register') }}">新規登録</a><!--Auth内の「register」というルートを通す-->
                 @endif
             </div>
 
