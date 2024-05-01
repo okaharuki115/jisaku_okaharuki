@@ -42,8 +42,9 @@ Route::post('/confirmPost',[RegistrationController::class,'confirmPost'])->name(
 Route::post('/completePost',[RegistrationController::class,'completePost'])->name('complete.post');
 
 //12.(マイページの)編集画面へ
-//            ↓id入れる?
 Route::get('/editMypage',[RegistrationController::class,'editMypage'])->name('editMypage');
+//（at 12.マイページ編集画面）「変更」ボタンを押したとき
+Route::post('/editMypage',[RegistrationController::class,'editFinish']);
 
 //13.退会画面へ
 Route::get('/withdraw',[RegistrationController::class,'withdraw'])->name('withdraw');

@@ -7,17 +7,17 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                    <form action="{{ route('edit.mypage')}}" method="post">
-                            @csrf
+                    <form action="{{ route('editMypage')}}" method="post">
+                        @csrf
                         <div>                            
                             <div>
                                 <label for='name' class='mt-2'>ユーザー名</label>
-                                <input type='text' class='form-control' name='name' id='name' value="{{ old('amount')}}"/><!--value編集未-->
+                                <input type='text' class='form-control' name='name' id='name' value="{{ $editData['name']}}"/><!--value編集未-->
                             </div>
                             
                             <div>
                                 <label for='amount' class='mt-2'>メールアドレス</label>
-                                <input type='text' class='form-control' name='email' id='email' value="{{ old('amount')}}"/><!--value編集未-->
+                                <input type='text' class='form-control' name='email' id='email' value="{{ $editData['email']}}"/><!--value編集未-->
                             </div>
 
                             <div>

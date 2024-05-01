@@ -45,16 +45,32 @@ class RegistrationController extends Controller
             return redirect('/');//INSERT処理が完了したらリダイレクトを返す
         }
 
-        //6.マイページ→12.編集画面に飛ぶ(マイページの「編集」を押したときのget処理)　
-        public function editMypage(int $editId){
-            $user = new User;
+        //6.マイページ→12.編集画面に飛ぶ(6.マイページで「編集」を押したときのget処理)　
+        public function editMypage(){
 
-            $editData = $user->find($editId);//特定のユーザーが登録したレコードを取得
-            dd($editData);
+            $editData = Auth::user();//特定のユーザーのレコードを取得して$editDataとする
 
             return view('mypage/editMypage',[
-
+                'editData' => $editData,
             ]);
+        }
+
+        //（at 12.マイページ編集画面）「変更」を押したときのget処理
+        // public function editFinish(){
+            
+        //     return view('mypage/Mypage',[
+        //     ]);
+        // }
+
+        //（at 12.マイページ編集画面）「変更」を押したときのpost処理
+        public function editFinish(Request $request){
+            $editData = Auth::user();//ログイン中の、userテーブルのレコードを取得
+            $editData->name = $request->name;
+            $editData->email = $request->email;
+            //ここにアイコン版記述
+            $editData->save();
+
+            return redirect('/mypage');//マイページに戻りたい → マイページを表示させるためのURLを記述する
         }
 
         //6.マイページ→13.退会画面に飛ぶ　　
