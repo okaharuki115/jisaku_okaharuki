@@ -30,6 +30,7 @@
             <div>{{ $Post_with_User['amount'] }}</div><!--金額表示-->
         </div>
     </div>
+    
 
     <div>
         <div class='row justify-content-center'>
