@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                    <form action="{{ route('editMypost.complete')}}" method="post">
+                    <form action="{{ route('editMypost.complete', ['id' => $editMypostId])}}" method="post">
                         @csrf
                         <div>                         
                             <div>

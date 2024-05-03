@@ -80,28 +80,54 @@ class RegistrationController extends Controller
         }
 
         //14.（自分の）投稿詳細画面→15.（自分の投稿の）編集画面に飛ぶ(14.（自分の投稿の）詳細画面で「編集」を押したときのpost処理)　
-        public function editMyPost(Request $request){
+        public function editMyPost(int $editMypostId){
 
-            //$editData = Auth::user();//特定のユーザーのレコードを取得して$editDataとする
-            $editData = $request;
+            $post = new Post;
+            $editData = $post->find($editMypostId);
             //dd($editData);
 
             return view('detail/editMypost',[
                 'editData' => $editData,
+                'editMypostId' => $editMypostId,
             ]);
         }
 
         //(at 15.自分の投稿の編集画面)「編集」ボタンを押したときのpost処理
-        public function completeEditMypost(Request $request){
+        public function completeEditMypost(int $completeEditMypostId, Request $request){
 
             $Post = new Post;
-            $Post->title =$request->title;
-            $Post->amount =$request->amount;
-            $Post->content =$request->content;
+            $record = $Post->find($completeEditMypostId);
+
+            $record->title =$request->title;
+            $record->amount =$request->amount;
+            $record->content =$request->content;
             //ここに画像登録の記述書く
-            Auth::user()->post()->save($Post);
+            Auth::user()->post()->save($record);
 
             return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
+        }
+
+        //(at 14.(自分の)投稿詳細画面)「削除」ボタンを押して→16.削除画面に飛ぶ  
+        public function postDelete(int $postDeleteId){
+
+            $post = new Post;
+            $deletePost = $post->find($postDeleteId);
+
+            return view('detail/delete',[
+                'deletePost' => $deletePost,
+                'postDeleteId' => $postDeleteId,
+            ]);
+        }
+
+        //(at 16.削除画面)「削除」ボタン押したときの記述
+        public function deleteComplete(int $deleteCompleteId){
+
+            $post = new Post;
+            $deletePost = $post->find($deleteCompleteId);
+            
+            $deletePost->delete();
+
+            return redirect('/mypage');
         }
         
 }

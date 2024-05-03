@@ -54,7 +54,13 @@ Route::get('/withdraw',[RegistrationController::class,'withdraw'])->name('withdr
 Route::get('/my/{id}/detail',[DisplayController::class,'myDetail'])->name('myDetail');
 
 //14.（自分の）投稿詳細画面→15.（自分の投稿の）編集画面へ   
-Route::post('/editMyPost',[RegistrationController::class,'editMyPost'])->name('editMyPost');
+Route::get('/edit/{id}/MyPost',[RegistrationController::class,'editMyPost'])->name('editMyPost');
 
 //(at 15.（自分の投稿の）編集画面)「編集」ボタンを押したとき    
-Route::post('/completeEditMypost',[RegistrationController::class,'completeEditMypost'])->name('editMypost.complete');
+Route::post('/completeEdit/{id}/Mypost',[RegistrationController::class,'completeEditMypost'])->name('editMypost.complete');
+
+//14.(自分の)投稿詳細画面→16.削除画面に飛ぶ　（１回目の「削除」ボタンを押したとき）        
+Route::get('/delete/{id}/post',[RegistrationController::class,'postDelete'])->name('post.delete');
+
+//(at 16.削除画面)「削除」ボタンを押したとき
+Route::get('/delete/{id}/complete',[RegistrationController::class,'deleteComplete'])->name('delete.complete');

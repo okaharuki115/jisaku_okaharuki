@@ -85,7 +85,7 @@ class DisplayController extends Controller
 
         return view('detail/myDetail',[
             'Post_with_User' => $Post_with_User,
-            'myId_detail' => $myId,
+            'myId' => $myId,
         ]);
     }
 
