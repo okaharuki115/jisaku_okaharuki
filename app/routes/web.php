@@ -35,12 +35,13 @@ Route::get('/mypage',[DisplayController::class,'mypage']);
 //10.新規投稿画面へ
 Route::get('/newPost',[RegistrationController::class,'newPost'])->name('newPost');
 
-//11.（新規投稿画面の）確認画面へ　【post】
+//10.新規投稿画面→11.（新規投稿画面の）確認画面へ　【post】
 Route::post('/confirmPost',[RegistrationController::class,'confirmPost'])->name('confirm.post');
 
-//(at 10.新規投稿画面)「投稿」ボタンを押したとき【post】
+//(at 11.新規投稿確認画面)「投稿」ボタンを押したとき【post】
 Route::post('/completePost',[RegistrationController::class,'completePost'])->name('complete.post');
 
+//▼下２つ：ルートの名前は同じだが、ルーティングが機能するタイミング・処理内容は全く違う
 //12.(マイページの)編集画面へ
 Route::get('/editMypage',[RegistrationController::class,'editMypage'])->name('editMypage');
 //（at 12.マイページ編集画面）「変更」ボタンを押したとき
@@ -48,3 +49,12 @@ Route::post('/editMypage',[RegistrationController::class,'editFinish']);
 
 //13.退会画面へ
 Route::get('/withdraw',[RegistrationController::class,'withdraw'])->name('withdraw');
+
+//6.マイページ→14.（自分の）投稿詳細画面へ　
+Route::get('/my/{id}/detail',[DisplayController::class,'myDetail'])->name('myDetail');
+
+//14.（自分の）投稿詳細画面→15.（自分の投稿の）編集画面へ   
+Route::post('/editMyPost',[RegistrationController::class,'editMyPost'])->name('editMyPost');
+
+//(at 15.（自分の投稿の）編集画面)「編集」ボタンを押したとき    
+Route::post('/completeEditMypost',[RegistrationController::class,'completeEditMypost'])->name('editMypost.complete');

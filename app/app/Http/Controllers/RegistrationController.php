@@ -32,7 +32,7 @@ class RegistrationController extends Controller
             ]);
         }
 
-        //(at 10.新規投稿画面)「投稿」ボタンを押したときの処理
+        //(at 11.新規投稿確認画面)「投稿」ボタンを押したときの処理
         public function completePost(Request $request){
 
             $Post = new Post;
@@ -42,7 +42,7 @@ class RegistrationController extends Controller
             //ここに画像登録の記述書く
             Auth::user()->post()->save($Post);
 
-            return redirect('/');//INSERT処理が完了したらリダイレクトを返す
+            return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
         }
 
         //6.マイページ→12.編集画面に飛ぶ(6.マイページで「編集」を押したときのget処理)　
@@ -79,4 +79,29 @@ class RegistrationController extends Controller
             ]);
         }
 
+        //14.（自分の）投稿詳細画面→15.（自分の投稿の）編集画面に飛ぶ(14.（自分の投稿の）詳細画面で「編集」を押したときのpost処理)　
+        public function editMyPost(Request $request){
+
+            //$editData = Auth::user();//特定のユーザーのレコードを取得して$editDataとする
+            $editData = $request;
+            //dd($editData);
+
+            return view('detail/editMypost',[
+                'editData' => $editData,
+            ]);
+        }
+
+        //(at 15.自分の投稿の編集画面)「編集」ボタンを押したときのpost処理
+        public function completeEditMypost(Request $request){
+
+            $Post = new Post;
+            $Post->title =$request->title;
+            $Post->amount =$request->amount;
+            $Post->content =$request->content;
+            //ここに画像登録の記述書く
+            Auth::user()->post()->save($Post);
+
+            return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
+        }
+        
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Post;//use宣言
 use App\User;
+use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
 
 class DisplayController extends Controller
 {
@@ -38,8 +39,22 @@ class DisplayController extends Controller
         return view('register/resettingPW',[
         ]);
     }
+
+    //マイページへ
+    public function mypage(){
+
+        //ログイン中のユーザーが登録した、Postテーブルのデータを取得して配列化したものを$loginPostDataとする
+        $loginPostData = Auth::user()->post()->get()->toArray();
+        //dd($loginPostData);
+
+        return view('mypage/myPage',[
+            'loginPostData' => $loginPostData,
+            
+        ]);
+    }
+
     
-    //7.(他ユーザーの)詳細画面へ     //↓ルートモデルバインディング適用する？「int $otherId」じゃなくて「Post $post」？
+    //7.(他ユーザーの)投稿詳細画面へ     //↓ルートモデルバインディング適用する？「int $otherId」じゃなくて「Post $post」？
     public function otherDetail(int $otherId){
         
         $Post = new Post;
@@ -59,10 +74,22 @@ class DisplayController extends Controller
         ]);
     }
 
-    //マイページへ
-    public function mypage(){
-        return view('mypage/myPage');
+    //14.(自分の)投稿詳細画面へ     //↓ルートモデルバインディング適用する？「int $myId」じゃなくて「Post $post」？
+    public function myDetail(int $myId){
+        
+        $Post = new Post;
+        $User = new User;
+
+        //$Postにusersテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
+        $Post_with_User = $Post->with('user')->find($myId)->toArray();
+
+        return view('detail/myDetail',[
+            'Post_with_User' => $Post_with_User,
+            'myId_detail' => $myId,
+        ]);
     }
+
+    
 
     
     

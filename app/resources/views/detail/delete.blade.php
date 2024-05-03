@@ -1,3 +1,4 @@
+<!--一旦bladeファイルつくっただけ　編集未-->
 @extends('headerFooter')
 
 @section('content')
@@ -7,14 +8,20 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                    <form action="{{ route('complete.post')}}" method="post">
+                    <form action="{{ route('editMypost.complete')}}" method="post">
                             @csrf
                             <input type='hidden' class='form-control' name='title' value="{{ $newData['title']}}"/>
                             <input type='hidden' class='form-control' name='amount' id='amount' value="{{ $newData['amount']}}"/>
                             <input type='hidden' class='form-control' name='content' id='content' value="{{ $newData['content']}}"/>
                             <!--↑の画像版記述-->
 
-                            <div>                            
+                            <div>    
+                                
+                            <div>
+                                <label for='content' class='mt-2'>画像</label>
+                                <div><!--画像のデータ引っ張ってきて記述--></div>
+                            </div>
+                            
                             <div>
                                 <label for='title'>タイトル</label>
                                 <div>{{ $newData['title']}}</div><!--タイトルデータ引っ張ってきて記述-->
@@ -30,13 +37,9 @@
                                 <div>{{ $newData['content']}}</div>
                             </div>
 
-                            <div>
-                                <label for='content' class='mt-2'>画像</label>
-                                <div><!--画像のデータ引っ張ってきて記述--></div>
-                            </div>
 
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>投稿</button>
+                                <button type='submit' class='btn btn-primary w-25 mt-3'>編集</button>
                             </div> 
                         </div>
 
