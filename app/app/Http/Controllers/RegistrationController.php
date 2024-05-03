@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Post;//use宣言
+use App\Application;
 use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
 
 
@@ -128,6 +129,29 @@ class RegistrationController extends Controller
             $deletePost->delete();
 
             return redirect('/mypage');
+        }
+
+        //7.（他ユーザーの）投稿詳細→20.依頼登録画面に飛ぶ
+        public function irai(int $iraiId){
+
+            return view('requestViolation/requestRegistration',[
+               'iraiId' => $iraiId,
+            ]);
+        }
+
+        //(at 20.依頼登録画面)「登録」ボタンを押したときのpost処理     
+        public function iraiRegistration(Request $request,int $iraiRegistrationId){
+
+            $application = new Application;
+            $application->content =$request->content;
+            $application->tel =$request->tel;
+            $application->email =$request->email;
+            $application->limit =$request->limit;
+            $application->post_id =$iraiRegistrationId;
+
+            Auth::user()->application()->save($application);
+
+            return redirect('/');
         }
         
 }

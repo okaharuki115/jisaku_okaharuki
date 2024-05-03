@@ -22,9 +22,18 @@
     </div>
 
     <div>
-        <a>依頼</a><!--リンク先追加-->
+        <!--↓この記述を編集したところまではやった-->
+        <a href="{{ route('irai', ['id' => $otherId])}}" class="ml-5">
+            <button class='btn btn-primary w-25 mt-3'>依頼</button><!--buttonの後ろの「type='submit'」削除した-->
+        <a>
+        <!--↑この記述を編集したところまではやった-->
+
+        
         <a>違反報告</a><!--リンク先追加-->
-        <a>戻る</a><!--リンク先追加-->
+        
+        <div>
+            <button type="button" onClick="history.back()">戻る</button>
+        </div>
     </div>
 
 

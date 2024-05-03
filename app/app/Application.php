@@ -15,4 +15,7 @@ class Application extends Model
     public function post(){
         return $this->belongsTo('App\Post','post_id','id');
     }
+
+    //データ書きかえを許可するための記述(6-2P10参照)
+    protected $fillable = ['content', 'tel', 'email','limit'];
 }

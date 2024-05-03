@@ -64,3 +64,9 @@ Route::get('/delete/{id}/post',[RegistrationController::class,'postDelete'])->na
 
 //(at 16.削除画面)「削除」ボタンを押したとき
 Route::get('/delete/{id}/complete',[RegistrationController::class,'deleteComplete'])->name('delete.complete');
+
+//7.（他ユーザーの）投稿詳細→20.依頼登録画面に飛ぶ
+Route::get('/irai/{id}',[RegistrationController::class,'irai'])->name('irai');
+//(at 20.依頼登録画面)「登録」ボタンを押したときのpost処理
+Route::post('/irai/{id}',[RegistrationController::class,'iraiRegistration']);
+

@@ -70,7 +70,7 @@ class DisplayController extends Controller
 
         return view('detail/otherDetail',[
             'Post_with_User' => $Post_with_User,
-            'otherId_detail' => $otherId,
+            'otherId' => $otherId,
         ]);
     }
 
