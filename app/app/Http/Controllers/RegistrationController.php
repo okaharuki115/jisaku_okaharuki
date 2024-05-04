@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Post;//use宣言
 use App\Application;
+use App\User;
+use App\Violation;
 use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
 
 
@@ -153,5 +155,54 @@ class RegistrationController extends Controller
 
             return redirect('/');
         }
-        
+
+        //7.（他ユーザーの）投稿詳細→21.違反登録画面に飛ぶ
+        public function ihan(int $ihanId){
+
+            $Post = new Post;
+            $User = new User;
+
+            //$Postにusersテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
+            $Post_with_User = $Post->with('user')->find($ihanId)->toArray();
+            //dd($Post_with_User);
+            
+            return view('requestViolation/violationRegistration',[
+               'ihanId' => $ihanId,
+               'Post_with_User' => $Post_with_User,
+            ]);
+        }
+
+        //(at 21.違反登録画面)「報告」ボタンを押したときのpost処理  
+        public function ihanRegistration(Request $request,int $ihanRegistrationId){
+
+            $violation = new Violation;
+            $violation->comment =$request->comment;
+            $violation->post_id =$ihanRegistrationId;
+
+            Auth::user()->violation()->save($violation);
+
+            return redirect('/');
+        }
+
+        //6.マイページ→17.依頼（した）詳細画面へ（（at 6.マイページ）依頼した履歴の「詳細」を押したとき）
+        public function makeRequestDetail(int $makeRequestId){
+
+            $post = new Post;
+            $application = new Application;
+
+            //$applicationにpostテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
+            $makeRequestData = $application->with('post')->find($makeRequestId)->toArray();
+
+            //ログイン中のユーザーが登録したapplicationテーブルとpostテーブルの情報を結合(postテーブルの中のtitleをmypageで表示させるため)
+            //$application_with_post = Auth::user()->application()->with('post')->get();
+            //↑を配列化
+            //$makeRequestData = $application_with_post ->toArray();
+            //dd($makeRequestData);
+            
+            return view('requestViolation/makeRequest',[
+               'makeRequestId' => $makeRequestId,
+               'makeRequestData' => $makeRequestData,
+            ]);
+        }
+
 }

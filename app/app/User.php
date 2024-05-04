@@ -50,4 +50,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Application');
     }
 
+    //モデルとの関連性を記述(Userモデルと各データの紐づけを行う）(6-4P10参照)
+    public function violation(){
+        return $this->hasMany('App\Violation');
+    }
+
 }

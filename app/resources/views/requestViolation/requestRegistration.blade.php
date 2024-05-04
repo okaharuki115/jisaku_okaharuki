@@ -22,7 +22,7 @@
                             
                             <div>
                                 <label for='email' class='mt-2'>メールアドレス</label>
-                                <input type='text' class='form-control' name='email' id='emial'/>
+                                <input type='text' class='form-control' name='email' id='email'/>
                             </div>
 
                             <div>

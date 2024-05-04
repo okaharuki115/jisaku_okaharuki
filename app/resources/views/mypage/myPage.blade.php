@@ -17,63 +17,65 @@
     </div>
 
     <div><!--下半分-->
-        <table>
-            <thead>
-                <tr>
-                    <th scope='col'>（自分の）投稿履歴</th><!--col は、そのth要素が列方向に対する見出しであることを示す-->
-                    <th scope='col'>お気に入り投稿履歴</th>
-                    <th scope='col'>依頼（した）履歴</th>
-                    <th scope='col'>依頼（された）履歴</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><!--自分の投稿履歴-->
-                        @foreach($loginPostData as $loginPost)
-                        <tr>
-                            <td>{{ $loginPost['title'] }}</td><!--タイトルを表示-->
-                            <td>
-                                <a href="{{ route('myDetail',['id'=>$loginPost['id']])}}">詳細</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </td>
+        <div>
+            <div>（自分の）投稿履歴</div>
+            <div>お気に入り投稿履歴</div>
+            <div>依頼（した）履歴</div>
+            <div>依頼（された）履歴</div>
+        </div>
 
-                    <td><!--お気に入り投稿履歴-->
-                        <!--アットforeach書く-->
-                        <tr>
-                            <td>タイトル（仮）(お気に入り投稿)</td><!--タイトルを表示-->
-                            <td>
-                                <a>詳細</a><!--リンク先追加-->
-                            </td>
-                        </tr>
-                        <!--アットendforeach書く-->
-                    </td>
+        <div>
+            <div>↓（自分の投稿履歴）</div><!--後で消す-->
+            <div><!--自分の投稿履歴-->
+                @foreach($loginPostData as $loginPost)
+                <div>
+                    <div>{{ $loginPost['title'] }}</div><!--タイトルを表示-->
+                    <div>
+                        <a href="{{ route('myDetail',['id'=>$loginPost['id']])}}">詳細</a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
 
-                    <td><!--依頼（した）履歴-->
-                        <!--アットforeach書く-->
-                        <tr>
-                            <td>タイトル（仮）(依頼した)</td><!--タイトルを表示-->
-                            <td>
-                                <a>詳細</a><!--リンク先追加-->
-                            </td>
-                        </tr>
-                        <!--アットendforeach書く-->
-                    </td>
+            <div>↓（お気に入り投稿履歴）</div><!--後で消す-->
+            <div><!--お気に入り投稿履歴-->
+            <div>
+                @foreach($makeRequestData as $makeRequest)
+                <div>
+                    <div>{{ $makeRequest['post']['title'] }}</div><!--タイトルを表示-->
+                    <div>
+                        <a href="{{ route('makeRequestDetail',['id'=>$makeRequest['id']])}}">詳細</a><!--リンク先追加-->
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            
+            <div>↓（依頼した履歴）</div><!--後で消す-->
+            <div><!--依頼（した）履歴-->
+                <!--アットforeach記述-->
+                <div>
+                    <div></div><!--タイトルを表示-->
+                    <div>
+                        <a>詳細</a><!--リンク先追加-->
+                    </div>
+                </div>
+                <!--エンドforeach記述-->
+            </div>
 
-                    <td><!--依頼（された）履歴-->
-                        <!--アットforeach書く-->
-                        <tr>
-                            <td>タイトル（仮）(依頼された)</td><!--タイトルを表示-->
-                            <td>
-                                <a>詳細</a><!--リンク先追加-->
-                            </td>
-                        </tr>
-                        <!--アットendforeach書く-->
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <div>↓（依頼された履歴）</div><!--後で消す-->
+            <div><!--依頼（された）履歴-->
+                <!--アットforeach記述-->
+                <div>
+                    <div></div><!--タイトルを表示-->
+                    <div>
+                        <a>詳細</a><!--リンク先追加-->
+                    </div>
+                </div>
+                <!--エンドforeach記述-->
+            </div>
+
+            
+        </div>
     </div>   
         
 

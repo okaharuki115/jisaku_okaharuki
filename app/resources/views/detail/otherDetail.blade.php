@@ -22,14 +22,13 @@
     </div>
 
     <div>
-        <!--↓この記述を編集したところまではやった-->
         <a href="{{ route('irai', ['id' => $otherId])}}" class="ml-5">
             <button class='btn btn-primary w-25 mt-3'>依頼</button><!--buttonの後ろの「type='submit'」削除した-->
         <a>
-        <!--↑この記述を編集したところまではやった-->
 
-        
-        <a>違反報告</a><!--リンク先追加-->
+        <a href="{{ route('ihan', ['id' => $otherId])}}" class="ml-5">
+            <button class='btn btn-primary w-25 mt-3'>違反報告</button><!--buttonの後ろの「type='submit'」削除した-->
+        <a>
         
         <div>
             <button type="button" onClick="history.back()">戻る</button>

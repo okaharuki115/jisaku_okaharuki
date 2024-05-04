@@ -70,3 +70,10 @@ Route::get('/irai/{id}',[RegistrationController::class,'irai'])->name('irai');
 //(at 20.依頼登録画面)「登録」ボタンを押したときのpost処理
 Route::post('/irai/{id}',[RegistrationController::class,'iraiRegistration']);
 
+//7.（他ユーザーの）投稿詳細→21.違反登録画面に飛ぶ
+Route::get('/ihan/{id}',[RegistrationController::class,'ihan'])->name('ihan');
+//(at 21.違反登録画面)「報告」ボタンを押したときのpost処理
+Route::post('/ihan/{id}',[RegistrationController::class,'ihanRegistration']);
+
+//6.マイページ→17.依頼（した）詳細画面へ（（at 6.マイページ）依頼した履歴の「詳細」を押したとき） 
+Route::get('/makeRequest/{id}/detail',[RegistrationController::class,'makeRequestDetail'])->name('makeRequestDetail');

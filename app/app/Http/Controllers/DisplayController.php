@@ -45,11 +45,16 @@ class DisplayController extends Controller
 
         //ログイン中のユーザーが登録した、Postテーブルのデータを取得して配列化したものを$loginPostDataとする
         $loginPostData = Auth::user()->post()->get()->toArray();
-        //dd($loginPostData);
+
+        //ログイン中のユーザーが登録したapplicationテーブルとpostテーブルの情報を結合(postテーブルの中のtitleをmypageで表示させるため)
+        $application_with_post = Auth::user()->application()->with('post')->get();
+        //↑を配列化
+        $makeRequestData = $application_with_post ->toArray();
+        //dd($makeRequestData);
 
         return view('mypage/myPage',[
             'loginPostData' => $loginPostData,
-            
+            'makeRequestData' => $makeRequestData,
         ]);
     }
 
