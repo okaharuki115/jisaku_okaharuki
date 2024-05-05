@@ -77,3 +77,8 @@ Route::post('/ihan/{id}',[RegistrationController::class,'ihanRegistration']);
 
 //6.マイページ→17.依頼（した）詳細画面へ（（at 6.マイページ）依頼した履歴の「詳細」を押したとき） 
 Route::get('/makeRequest/{id}/detail',[RegistrationController::class,'makeRequestDetail'])->name('makeRequestDetail');
+
+//17.依頼（した）詳細→18.依頼修正画面に飛ぶ     
+Route::get('/iraiModification/{id}',[RegistrationController::class,'iraiModification'])->name('iraiModification');
+//(at 18.依頼修正画面)「登録」ボタンを押したときのpost処理
+Route::post('/iraiModification/{id}',[RegistrationController::class,'iraiModificationComplete']);

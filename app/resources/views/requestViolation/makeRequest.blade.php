@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <a  class="ml-5"><!--リンク先追加-->
+    <a href="{{ route('iraiModification', ['id' => $makeRequestId])}}" class="ml-5">
         <button class='btn btn-primary w-25 mt-3'>修正</button><!--buttonの後ろの「type='submit'」削除した-->
     <a>
 

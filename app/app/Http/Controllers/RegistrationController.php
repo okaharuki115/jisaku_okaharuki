@@ -205,4 +205,34 @@ class RegistrationController extends Controller
             ]);
         }
 
+        //17.依頼（した）詳細→18.依頼修正画面に飛ぶ                
+        public function iraiModification(int $iraiModificationId){
+
+            $application = new Application;
+            $iraiModificationData = $application ->find($iraiModificationId)->toArray();
+            //dd($iraiModificationData);
+            
+            return view('requestViolation/requestModification',[
+               'iraiModificationId' => $iraiModificationId,
+               'iraiModificationData' => $iraiModificationData,
+               
+            ]);
+        }
+
+        //(at 18.依頼修正画面)「登録」ボタンを押したときのpost処理  
+        public function iraiModificationComplete(int $iraiModificationCompleteId, Request $request){
+
+            $application = new Application;
+            $iraiModificationRecord = $application->find($iraiModificationCompleteId);
+
+            $iraiModificationRecord->content =$request->content;
+            $iraiModificationRecord->tel =$request->tel;
+            $iraiModificationRecord->email =$request->email;
+            $iraiModificationRecord->limit =$request->limit;
+            
+            Auth::user()->application()->save($iraiModificationRecord);
+
+            return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
+        }
+
 }

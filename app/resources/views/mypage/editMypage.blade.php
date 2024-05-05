@@ -12,12 +12,12 @@
                         <div>                            
                             <div>
                                 <label for='name' class='mt-2'>ユーザー名</label>
-                                <input type='text' class='form-control' name='name' id='name' value="{{ $editData['name']}}"/><!--value編集未-->
+                                <input type='text' class='form-control' name='name' id='name' value="{{ $editData['name']}}"/>
                             </div>
                             
                             <div>
                                 <label for='amount' class='mt-2'>メールアドレス</label>
-                                <input type='text' class='form-control' name='email' id='email' value="{{ $editData['email']}}"/><!--value編集未-->
+                                <input type='text' class='form-control' name='email' id='email' value="{{ $editData['email']}}"/>
                             </div>
 
                             <div>
