@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div></div><!--画像入れる-->
+    <div><img src="{{ asset('img/' . $myId . '/' . $Post_with_User['image']) }}"></div><!--画像入れる-->
+
     <div>
         <div>
             <div></div><!--アイコン表示　未-->

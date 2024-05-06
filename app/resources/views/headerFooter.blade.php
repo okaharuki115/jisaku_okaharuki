@@ -54,7 +54,7 @@
     <footer>
         <!--ログイン中の場合（ログイン中でない場合はfooter表示しないので、elseは記述しない？）-->
         @if(Auth::check())
-            <a>投稿検索</a><!--リンク先追加する-->
+            <a href="{{ route('searchPost') }}">投稿検索</a>
             <a href="{{ route('newPost') }}">新規投稿</a>
         @endif
     </footer>

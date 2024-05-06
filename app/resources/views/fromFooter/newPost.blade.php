@@ -20,7 +20,7 @@
                         </div>
                         <!--↑6-5P8の記述　バリエーション-->
                         
-                        <form action="{{ route('confirm.post')}}" method="post"><!--action,method追加済-->
+                        <form action="{{ route('confirm.post')}}" method="post" enctype="multipart/form-data"><!--ファイルをアップロードする場合は、フォームがマルチパート形式である必要があるのでenctypeを記述-->
                             @csrf
                             <div>
                                 <label for='title'>タイトル</label>
@@ -39,7 +39,7 @@
 
                             <div>
                                 <label for='image' class='mt-2'>画像</label>
-                                <!--ここに画像を挿入する欄を表示させるための記述を書く-->
+                                <input type="file" name="image"id='image'><!--←【画像選択欄】-->
                             </div>
 
                             <div class='row justify-content-center'>

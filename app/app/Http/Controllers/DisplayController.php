@@ -87,6 +87,7 @@ class DisplayController extends Controller
 
         //$Postにusersテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
         $Post_with_User = $Post->with('user')->find($myId)->toArray();
+        //dd($Post_with_User);
 
         return view('detail/myDetail',[
             'Post_with_User' => $Post_with_User,

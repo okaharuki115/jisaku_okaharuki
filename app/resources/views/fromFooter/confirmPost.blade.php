@@ -12,7 +12,7 @@
                             <input type='hidden' class='form-control' name='title' value="{{ $newData['title']}}"/>
                             <input type='hidden' class='form-control' name='amount' id='amount' value="{{ $newData['amount']}}"/>
                             <input type='hidden' class='form-control' name='content' id='content' value="{{ $newData['content']}}"/>
-                            <!--↑の画像版記述-->
+                            <input type="hidden" class='form-control' name="image" value="{{ $newImageName }}"><!--←【画像版記述】-->
 
                             <div>                            
                             <div>
@@ -32,7 +32,7 @@
 
                             <div>
                                 <label for='content' class='mt-2'>画像</label>
-                                <div><!--画像のデータ引っ張ってきて記述--></div>
+                                <div><img src="{{ $image }}" alt=""></div><!--【画像表示】-->
                             </div>
 
                             <div class='row justify-content-center'>

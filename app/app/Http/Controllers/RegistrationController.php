@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
 
 class RegistrationController extends Controller
 {
+        //footer→8.投稿検索画面に飛ぶ
+        public function searchPost(){
+
+            return view('fromFooter/postSearch',[
+            ]);
+        }
+
         //footer→10.新規投稿画面に飛ぶ
         public function newPost(){
-
+            
             return view('fromFooter/newPost',[
             ]);
         }
@@ -23,15 +30,26 @@ class RegistrationController extends Controller
         //10.新規投稿画面→11.確認画面に飛ぶ
         public function confirmPost(Request $request){
 
-            //$Post = new Post;
-            //渡すデータの記述（Postテーブルから特定のIDのレコードを取得）
-            //$newPostData = $Post ->find($newPostId) ->toArray();
-
             $confirmData = $request;
-            //dd($confirmData);
 
+            //【画像を登録するための記述】
+            // 拡張子つきでファイル名を取得
+            $imageName = $request->file('image')->getClientOriginalName();
+
+            // 拡張子のみ
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // 新しいファイル名を生成（形式：元のファイル名_ランダムの英数字.拡張子）
+            $newImageName = pathinfo($imageName, PATHINFO_FILENAME) . "_" . uniqid() . "." . $extension;
+
+            //tmpフォルダに上記の画像ファイルを移動する
+            $request->file('image')->move(public_path() . "/img/tmp", $newImageName);
+            $image = "/img/tmp/" . $newImageName;
+           
             return view('fromFooter/confirmPost',[
                 'newData' => $confirmData,
+                'image'        => $image,
+                'newImageName' => $newImageName,
             ]);
         }
 
@@ -42,8 +60,25 @@ class RegistrationController extends Controller
             $Post->title =$request->title;
             $Post->amount =$request->amount;
             $Post->content =$request->content;
-            //ここに画像登録の記述書く
+            $Post->image = $request->image;//【画像登録の記述】
             Auth::user()->post()->save($Post);
+
+            //▼【画像登録の記述】
+            // レコードを挿入したときのIDを取得
+            $lastInsertedId = $Post->id;
+
+            // ディレクトリを作成（public/imgの配下に名前のidと同じフォルダを生成）
+            if (!file_exists(public_path() . "/img/" . $lastInsertedId)) {
+                mkdir(public_path() . "/img/" . $lastInsertedId, 0777);
+            }
+
+            // 一時保存から本番の格納場所へ移動（tmpフォルダから上記のフォルダへ移動）
+            rename(public_path() . "/img/tmp/" . $request->image, public_path() . "/img/" . $lastInsertedId . "/" . $request->image);
+
+            // 一時保存の画像を削除（tmpフォルダを空にする）
+            \File::cleanDirectory(public_path() . "/img/tmp");
+
+            //▲【画像登録の記述】
 
             return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
         }
