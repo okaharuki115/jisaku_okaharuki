@@ -1,9 +1,10 @@
 @extends('headerFooter')
 
 @section('content')
-
+    @if($Post_with_User['image'])
     <div><img src="{{ asset('img/' . $myId . '/' . $Post_with_User['image']) }}"></div><!--画像入れる-->
-
+    @else
+    @endif
     <div>
         <div>
             <div></div><!--アイコン表示　未-->

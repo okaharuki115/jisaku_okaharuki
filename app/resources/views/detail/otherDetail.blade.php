@@ -1,7 +1,7 @@
 @extends('headerFooter')
 
 @section('content')
-    <div></div><!--画像入れる-->
+    <div><img src="{{ asset('img/' . $otherId . '/' . $Post_with_User['image']) }}"></div><!--【画像表示】-->
     <div>
         <div>
             <div></div><!--アイコン表示-->

@@ -19,7 +19,8 @@ class DisplayController extends Controller
         $allPost = $Post->all()->toArray();//Postモデルから全レコードを取得、配列化
         $pre_allPost_allUser = $Post -> with('user')->get();//$Postにusersテーブルのデータを結合させて$pre_allPost_allUserとする
         $allPost_allUser = $pre_allPost_allUser ->toArray();
-        
+        //dd($allPost_allUser);
+
         //top.blade.phpに情報を渡す
         return view('top',[
             'posts' => $allPost,
@@ -71,6 +72,7 @@ class DisplayController extends Controller
 
         //$Postにusersテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
         $Post_with_User = $Post->with('user')->find($otherId)->toArray();
+        //dd($Post_with_User);
 
 
         return view('detail/otherDetail',[

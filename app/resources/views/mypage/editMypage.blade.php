@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                    <form action="{{ route('editMypage')}}" method="post">
+                    <form action="{{ route('editMypage')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div>                            
                             <div>
@@ -21,8 +21,8 @@
                             </div>
 
                             <div>
-                                <label for='content' class='mt-2'>アイコン</label>
-                                <!--アイコンのデータ引っ張ってきて記述-->
+                                <label for="icon">アイコン</label>
+                                <input type="file" name="icon" id='icon'><!--←【アイコン画像選択欄】-->
                             </div>
 
                             <div class='row justify-content-center'>

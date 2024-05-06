@@ -106,6 +106,38 @@ class RegistrationController extends Controller
             $editData->name = $request->name;
             $editData->email = $request->email;
             //ここにアイコン版記述
+            
+            if($request->file('icon')){
+                //▼【画像登録の記述】
+                // レコードを挿入したときのIDを取得
+                $lastInsertedId = Auth::id();
+
+                // 拡張子つきでファイル名を取得
+                $imageName = $request->file('icon')->getClientOriginalName();
+
+                // 拡張子のみ
+                $extension = $request->file('icon')->getClientOriginalExtension();
+
+                // 新しいファイル名を生成（形式：元のファイル名_ランダムの英数字.拡張子）
+                $newImageName = pathinfo($imageName, PATHINFO_FILENAME) . "_" . uniqid() . "." . $extension;
+
+                // ディレクトリを作成（public/imgの配下に名前のidと同じフォルダを生成）
+                if (!file_exists(public_path() . "/img/mypage/" . $lastInsertedId)) {
+                    mkdir(public_path() . "/img/mypage/" . $lastInsertedId, 0777);
+                }
+
+                //フォルダに上記の画像ファイルを移動する
+                $request->file('icon')->move(public_path() . "/img/mypage/" . $lastInsertedId, $newImageName);
+
+                //▲【画像登録の記述】
+
+                $editData->icon =$newImageName;//【画像登録】
+
+            }else {
+                $editData->icon ='';//【画像削除】
+            }
+
+
             $editData->save();
 
             return redirect('/mypage');//マイページに戻りたい → マイページを表示させるためのURLを記述する
@@ -139,7 +171,33 @@ class RegistrationController extends Controller
             $record->title =$request->title;
             $record->amount =$request->amount;
             $record->content =$request->content;
-            //ここに画像登録の記述書く
+
+            if($request->file('image')){
+                //▼【画像登録の記述】
+                // レコードを挿入したときのIDを取得
+                $lastInsertedId = $completeEditMypostId;
+
+                // 拡張子つきでファイル名を取得
+                $imageName = $request->file('image')->getClientOriginalName();
+
+                // 拡張子のみ
+                $extension = $request->file('image')->getClientOriginalExtension();
+
+                // 新しいファイル名を生成（形式：元のファイル名_ランダムの英数字.拡張子）
+                $newImageName = pathinfo($imageName, PATHINFO_FILENAME) . "_" . uniqid() . "." . $extension;
+
+                //フォルダに上記の画像ファイルを移動する
+                $request->file('image')->move(public_path() . "/img/" . $lastInsertedId, $newImageName);
+                // $image = "/img/". $lastInsertedId ."/" . $newImageName;
+
+                //▲【画像登録の記述】
+
+                $record->image =$newImageName;//【画像登録】
+
+            }else {
+                $record->image ='';//【画像削除】
+            }
+            
             Auth::user()->post()->save($record);
 
             return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
@@ -150,6 +208,7 @@ class RegistrationController extends Controller
 
             $post = new Post;
             $deletePost = $post->find($postDeleteId);
+            //dd($deletePost);
 
             return view('detail/delete',[
                 'deletePost' => $deletePost,

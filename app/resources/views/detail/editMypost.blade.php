@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                    <form action="{{ route('editMypost.complete', ['id' => $editMypostId])}}" method="post">
+                    <form action="{{ route('editMypost.complete', ['id' => $editMypostId])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div>                         
                             <div>
@@ -27,7 +27,7 @@
 
                             <div>
                                 <label for='image' class='mt-2'>画像</label>
-                                <!--画像のデータ引っ張ってきてここに記述-->
+                                <input type="file" name="image"id='image'><!--←【画像選択欄】-->
                             </div>
 
                             <div class='row justify-content-center'>

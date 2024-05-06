@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function(){
     //▼下２つ：ルートの名前は同じだが、ルーティングが機能するタイミング・処理内容は全く違う
     //12.(マイページの)編集画面へ
     Route::get('/editMypage',[RegistrationController::class,'editMypage'])->name('editMypage');
+    
     //（at 12.マイページ編集画面）「変更」ボタンを押したとき
     Route::post('/editMypage',[RegistrationController::class,'editFinish']);
 

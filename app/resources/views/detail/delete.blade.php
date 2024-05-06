@@ -10,7 +10,7 @@
                         <div> 
                             <div>
                                 <label for='content' class='mt-2'>画像</label>
-                                <div><!--画像のデータ引っ張ってきて記述--></div>
+                                <div><img src="{{ asset('img/' . $postDeleteId . '/' . $deletePost['image']) }}"></div><!--【画像表示】-->
                             </div>
                             
                             <div>
