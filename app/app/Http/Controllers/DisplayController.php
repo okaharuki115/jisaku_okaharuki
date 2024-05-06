@@ -79,6 +79,7 @@ class DisplayController extends Controller
         ]);
     }
 
+    
     //14.(自分の)投稿詳細画面へ     //↓ルートモデルバインディング適用する？「int $myId」じゃなくて「Post $post」？
     public function myDetail(int $myId){
         
