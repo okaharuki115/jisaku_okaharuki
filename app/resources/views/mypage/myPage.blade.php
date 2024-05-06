@@ -14,6 +14,7 @@
                 <div>{{ Auth::user()->email }}</div><!--メールアドレス表示-->
             </div>
         </div>
+        
         <div>
             <a href="{{ route('editMypage')}}">編集</a><!--,['id' => $mypageId] を書いてたけど消した-->
             <a href="{{ route('withdraw')}}">退会</a><!--リンク先追加-->
