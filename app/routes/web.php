@@ -26,7 +26,10 @@ Auth::routes();
 
 
 //↓トップページに来た際に使用するControllerとメソッドの宣言→1.トップ画面表示
-Route::get('/',[DisplayController::class,'index']);
+//(//localhostと打った時だけでなくlogoクリック時にもtop.phpを表示させたいので、move.topというルート名を追加してルーティングできるようにした)
+Route::get('/',[DisplayController::class,'index'])->name('move.top');
+
+
 //7.(他ユーザーの)詳細画面へ
 Route::get('/other/{id}/detail',[DisplayController::class,'otherDetail'])->name('other.detail');
 
@@ -39,6 +42,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     //8.投稿検索画面へ　
     Route::get('/searchPost',[RegistrationController::class,'searchPost'])->name('searchPost');
+
+    //8.投稿検索画面→9.検索結果表示画面へ（(at 8.投稿検索画面)「検索」を押したとき）
+    Route::get('/searchPostResult', [RegistrationController::class, 'postSearch'])->name('postSearch');
 
     //10.新規投稿画面へ
     Route::get('/newPost',[RegistrationController::class,'newPost'])->name('newPost');
@@ -74,6 +80,14 @@ Route::group(['middleware' => 'auth'], function(){
     //(at 16.削除画面)「削除」ボタンを押したとき
     Route::get('/delete/{id}/complete',[RegistrationController::class,'deleteComplete'])->name('delete.complete');
 
+    //6.マイページ→17.依頼（した）詳細画面へ（（at 6.マイページ）依頼した履歴の「詳細」を押したとき） 
+    Route::get('/makeRequest/{id}/detail',[RegistrationController::class,'makeRequestDetail'])->name('makeRequestDetail');
+
+    //17.依頼（した）詳細→18.依頼修正画面に飛ぶ     
+    Route::get('/iraiModification/{id}',[RegistrationController::class,'iraiModification'])->name('iraiModification');
+    //(at 18.依頼修正画面)「登録」ボタンを押したときのpost処理
+    Route::post('/iraiModification/{id}',[RegistrationController::class,'iraiModificationComplete']);
+
     //7.（他ユーザーの）投稿詳細→20.依頼登録画面に飛ぶ
     Route::get('/irai/{id}',[RegistrationController::class,'irai'])->name('irai');
     //(at 20.依頼登録画面)「登録」ボタンを押したときのpost処理
@@ -83,13 +97,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/ihan/{id}',[RegistrationController::class,'ihan'])->name('ihan');
     //(at 21.違反登録画面)「報告」ボタンを押したときのpost処理
     Route::post('/ihan/{id}',[RegistrationController::class,'ihanRegistration']);
-
-    //6.マイページ→17.依頼（した）詳細画面へ（（at 6.マイページ）依頼した履歴の「詳細」を押したとき） 
-    Route::get('/makeRequest/{id}/detail',[RegistrationController::class,'makeRequestDetail'])->name('makeRequestDetail');
-
-    //17.依頼（した）詳細→18.依頼修正画面に飛ぶ     
-    Route::get('/iraiModification/{id}',[RegistrationController::class,'iraiModification'])->name('iraiModification');
-    //(at 18.依頼修正画面)「登録」ボタンを押したときのpost処理
-    Route::post('/iraiModification/{id}',[RegistrationController::class,'iraiModificationComplete']);
 
 });

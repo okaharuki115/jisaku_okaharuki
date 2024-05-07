@@ -20,6 +20,48 @@ class RegistrationController extends Controller
             ]);
         }
 
+        //▼編集途中
+        // 8.投稿検索画面→9.検索結果表示画面へ（(at 8.投稿検索画面)「検索」を押したとき）
+        public function postSearch(Request $request){
+
+            //検索フォームに入力された値を受け取る
+            $title = $request->input('$title');
+            $amount1 = $request->input('$amount1');
+            $amount2 = $request->input('$amount2');
+            $content = $request->input('$content');
+
+            $query = Post::query();
+            //dd($query);
+
+            //$keywordで何かしらの値を受け取った場合は、if文の中で取得するデータを絞りこむ
+            if(!empty($title)) {
+                //whereメソッドでLIKE検索を指定し、$titleの両側に%をつけることで、部分一致検索を行う
+                $query->where('title', 'LIKE', "%{$title}%");
+            }
+
+            if(!empty($amount1)) {
+                $query->where('amount1', 'LIKE', $amount1);
+            }
+
+            if(!empty($amount2)) {
+                $query->where('amount2', 'LIKE', $amount2);
+            }
+
+            if(!empty($content)) {
+                $query->where('content', 'LIKE', "%{$content}%");
+            }
+
+            $posts = $query->get();
+            //dd($posts);
+
+            //9.検索結果表示画面へ
+            return view('fromFooter/searchResult',[
+                'posts' => $posts,
+            ]);
+        }
+        //▲編集途中
+        
+
         //footer→10.新規投稿画面に飛ぶ
         public function newPost(){
             
@@ -93,22 +135,15 @@ class RegistrationController extends Controller
             ]);
         }
 
-        //（at 12.マイページ編集画面）「変更」を押したときのget処理
-        // public function editFinish(){
-            
-        //     return view('mypage/Mypage',[
-        //     ]);
-        // }
 
         //（at 12.マイページ編集画面）「変更」を押したときのpost処理
         public function editFinish(Request $request){
             $editData = Auth::user();//ログイン中の、userテーブルのレコードを取得
             $editData->name = $request->name;
             $editData->email = $request->email;
-            //ここにアイコン版記述
             
+            //▼【アイコン登録の記述】
             if($request->file('icon')){
-                //▼【画像登録の記述】
                 // レコードを挿入したときのIDを取得
                 $lastInsertedId = Auth::id();
 
@@ -129,14 +164,12 @@ class RegistrationController extends Controller
                 //フォルダに上記の画像ファイルを移動する
                 $request->file('icon')->move(public_path() . "/img/mypage/" . $lastInsertedId, $newImageName);
 
-                //▲【画像登録の記述】
-
-                $editData->icon =$newImageName;//【画像登録】
+                $editData->icon =$newImageName;//【アイコン登録】
 
             }else {
-                $editData->icon ='';//【画像削除】
+                $editData->icon ='';//【アイコン削除】
             }
-
+            //▲【アイコン登録の記述】
 
             $editData->save();
 
@@ -227,6 +260,57 @@ class RegistrationController extends Controller
             return redirect('/mypage');
         }
 
+        //6.マイページ→17.依頼（した）詳細画面へ（（at 6.マイページ）依頼した履歴の「詳細」を押したとき）
+        public function makeRequestDetail(int $makeRequestId){
+
+            $post = new Post;
+            $application = new Application;
+
+            //$applicationにpostテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
+            $makeRequestData = $application->with('post')->find($makeRequestId)->toArray();
+
+            //ログイン中のユーザーが登録したapplicationテーブルとpostテーブルの情報を結合(postテーブルの中のtitleをmypageで表示させるため)
+            //$application_with_post = Auth::user()->application()->with('post')->get();
+            //↑を配列化
+            //$makeRequestData = $application_with_post ->toArray();
+            //dd($makeRequestData);
+            
+            return view('requestViolation/makeRequest',[
+               'makeRequestId' => $makeRequestId,
+               'makeRequestData' => $makeRequestData,
+            ]);
+        }
+
+        //17.依頼（した）詳細→18.依頼修正画面に飛ぶ                
+        public function iraiModification(int $iraiModificationId){
+
+            $application = new Application;
+            $iraiModificationData = $application ->find($iraiModificationId)->toArray();
+            //dd($iraiModificationData);
+            
+            return view('requestViolation/requestModification',[
+               'iraiModificationId' => $iraiModificationId,
+               'iraiModificationData' => $iraiModificationData,
+               
+            ]);
+        }
+
+        //(at 18.依頼修正画面)「登録」ボタンを押したときのpost処理  
+        public function iraiModificationComplete(int $iraiModificationCompleteId, Request $request){
+
+            $application = new Application;
+            $iraiModificationRecord = $application->find($iraiModificationCompleteId);
+
+            $iraiModificationRecord->content =$request->content;
+            $iraiModificationRecord->tel =$request->tel;
+            $iraiModificationRecord->email =$request->email;
+            $iraiModificationRecord->limit =$request->limit;
+            
+            Auth::user()->application()->save($iraiModificationRecord);
+
+            return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
+        }
+
         //7.（他ユーザーの）投稿詳細→20.依頼登録画面に飛ぶ
         public function irai(int $iraiId){
 
@@ -278,55 +362,6 @@ class RegistrationController extends Controller
             return redirect('/');
         }
 
-        //6.マイページ→17.依頼（した）詳細画面へ（（at 6.マイページ）依頼した履歴の「詳細」を押したとき）
-        public function makeRequestDetail(int $makeRequestId){
-
-            $post = new Post;
-            $application = new Application;
-
-            //$applicationにpostテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
-            $makeRequestData = $application->with('post')->find($makeRequestId)->toArray();
-
-            //ログイン中のユーザーが登録したapplicationテーブルとpostテーブルの情報を結合(postテーブルの中のtitleをmypageで表示させるため)
-            //$application_with_post = Auth::user()->application()->with('post')->get();
-            //↑を配列化
-            //$makeRequestData = $application_with_post ->toArray();
-            //dd($makeRequestData);
-            
-            return view('requestViolation/makeRequest',[
-               'makeRequestId' => $makeRequestId,
-               'makeRequestData' => $makeRequestData,
-            ]);
-        }
-
-        //17.依頼（した）詳細→18.依頼修正画面に飛ぶ                
-        public function iraiModification(int $iraiModificationId){
-
-            $application = new Application;
-            $iraiModificationData = $application ->find($iraiModificationId)->toArray();
-            //dd($iraiModificationData);
-            
-            return view('requestViolation/requestModification',[
-               'iraiModificationId' => $iraiModificationId,
-               'iraiModificationData' => $iraiModificationData,
-               
-            ]);
-        }
-
-        //(at 18.依頼修正画面)「登録」ボタンを押したときのpost処理  
-        public function iraiModificationComplete(int $iraiModificationCompleteId, Request $request){
-
-            $application = new Application;
-            $iraiModificationRecord = $application->find($iraiModificationCompleteId);
-
-            $iraiModificationRecord->content =$request->content;
-            $iraiModificationRecord->tel =$request->tel;
-            $iraiModificationRecord->email =$request->email;
-            $iraiModificationRecord->limit =$request->limit;
-            
-            Auth::user()->application()->save($iraiModificationRecord);
-
-            return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
-        }
+        
 
 }

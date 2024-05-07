@@ -8,38 +8,49 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                    <form action="{{ route('iraiModification',['id' => $iraiModificationId])}}" method="post">
+                    <form action="{{ route('postSearch') }}" method="GET"><!--action,post追加未-->
                         @csrf
-                        <div>  
+                        <div> 
+                            <!--タイトル-->
+                            <div>
+                                <label for='title' class='mt-2'>タイトル</label>
+                                <input type='text' class='form-control' name='title' id='title'/><!--value追加未-->
+                            </div> 
+
+                            <!--金額（プルダウン形式）-->
+                            <div>
+                                <label for='amount' class='mt-2'>金額</label>
+                                <select name='amount1' class='form-control'>
+                                    <option value="">選択してください</option>
+                                    <option value="10000">10000</option>
+                                    <option value="1000">1000</option>
+                                    <option value="100">100</option>
+                                    <option value="0">0</option>
+                                </select>
+                            </div>
+
+                            <div>~</div>
+
+                            <div>
+                                <select name='amount2' class='form-control'>
+                                    <option value="">選択してください</option>
+                                    <option value="10000">10000</option>
+                                    <option value="1000">1000</option>
+                                    <option value="100">100</option>
+                                    <option value="0">0</option>
+                                </select>
+                            </div>
+                                
+                            <!--内容-->
                             <div>
                                 <label for='content' class='mt-2'>内容</label>
-                                <input type='text' class='form-control' name='content' id='content' value="{{ $iraiModificationData['content']}}"/>
+                                <input type='text' class='form-control' name='content' id='content'/><!--value追加未-->
                             </div> 
                                                   
-                            <div>
-                                <label for='tel' class='mt-2'>電話番号</label>
-                                <input type='text' class='form-control' name='tel' id='tel' value="{{ $iraiModificationData['tel']}}"/>
-                            </div> 
-                            
-                            <div>
-                                <label for='email' class='mt-2'>メールアドレス</label>
-                                <input type='text' class='form-control' name='email' id='email' value="{{ $iraiModificationData['email']}}"/>
-                            </div> 
-  
-
-                            <div>
-                                <label for='limit' class='mt-2'>期日</label>
-                                <input type='date' class='form-control' name='limit' id='limit'value="{{ $iraiModificationData['limit']}}"/>
-                            </div>
-
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
+                                <button type='submit' class='btn btn-primary w-25 mt-3'>検索</button>
                             </div>
 
-                        </div>
-
-                        <div>
-                            <button type="button" onClick="history.back()">戻る</button>
                         </div>
 
                     </form>

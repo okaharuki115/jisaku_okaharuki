@@ -3,12 +3,15 @@
 @section('content')
     <div><!--上半分-->
         <div>
+            <!--↓【アイコン表示】（「もしアイコン画像の情報があれば表示させる」とするのでifで囲む）-->
             @if(Auth::user()->icon)
             <div>
                 <img src="{{ asset('img/mypage/' . Auth::user()->id . '/' . Auth::user()->icon) }}">
-            </div><!--画像入れる-->
+            </div>
             @else
             @endif
+            <!--↑【アイコン表示】-->
+
             <div>
                 <div>{{ Auth::user()->name }}</div><!--ユーザー名表示-->
                 <div>{{ Auth::user()->email }}</div><!--メールアドレス表示-->

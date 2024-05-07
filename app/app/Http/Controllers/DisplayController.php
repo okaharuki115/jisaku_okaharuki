@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
 
 class DisplayController extends Controller
 {
-    //DBのデータを抽出してviewに返す
+    //1.トップ画面へ
     public function index(){
 
         $Post = new Post;//Postを使えるようにする
@@ -28,6 +28,7 @@ class DisplayController extends Controller
             'posts_users' =>$allPost_allUser,
         ]);
     }
+    
 
     //2.ログイン画面へ
     public function loginDisplay(){
@@ -41,7 +42,7 @@ class DisplayController extends Controller
         ]);
     }
 
-    //マイページへ
+    //6.マイページへ
     public function mypage(){
 
         //ログイン中のユーザーが登録した、Postテーブルのデータを取得して配列化したものを$loginPostDataとする
@@ -66,14 +67,9 @@ class DisplayController extends Controller
         $Post = new Post;
         $User = new User;
 
-        //$allPost = $Post->all()->toArray();//Postモデルから全レコードを取得、配列化
-        // $pre_allPost_allUser = $Post -> with('user')->get();
-        // $allPost_allUser = $pre_allPost_allUser ->toArray();
-
         //$Postにusersテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
         $Post_with_User = $Post->with('user')->find($otherId)->toArray();
         //dd($Post_with_User);
-
 
         return view('detail/otherDetail',[
             'Post_with_User' => $Post_with_User,

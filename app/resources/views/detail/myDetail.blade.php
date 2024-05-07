@@ -1,13 +1,23 @@
 @extends('headerFooter')
 
 @section('content')
+    <div>【自分の投稿詳細画面】</div>
+
     @if($Post_with_User['image'])
     <div><img src="{{ asset('img/' . $myId . '/' . $Post_with_User['image']) }}"></div><!--画像入れる-->
     @else
     @endif
     <div>
         <div>
-            <div></div><!--アイコン表示　未-->
+            <!--↓【アイコン表示】（「もしアイコン画像の情報があれば表示させる」とするのでifで囲む）-->
+            @if(Auth::user()->icon)
+            <div>
+                <img src="{{ asset('img/mypage/' . Auth::user()->id . '/' . Auth::user()->icon) }}">
+            </div>
+            @else
+            @endif
+            <!--↑【アイコン表示】-->
+
             <div>{{ $Post_with_User['user']['name'] }}</div><!--ユーザー名表示-->
         </div>
         <div>

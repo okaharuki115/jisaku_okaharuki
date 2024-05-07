@@ -18,7 +18,14 @@
                     <th>
                         <a href="{{ route('other.detail',['id'=>$post_user['id']])}}">詳細</a>
                     </th>
-                    <th></th><!--←(未)アイコン入れる-->
+                    <th><!--↓【アイコン表示】-->
+                        @if($post_user['user']['icon'])
+                        <div>
+                            <img src="{{ asset('img/mypage/' . $post_user['user']['id'] . '/' . $post_user['user']['icon']) }}">
+                        </div>
+                        @else
+                        @endif
+                    </th><!--↑【アイコン表示】-->
                     <th scope='col'>{{ $post_user['user']['name'] }}</th>
                     <th scope='col'>{{ $post_user['title'] }}</th><!--blade上で変数を表示させるときは波カッコの形で記述する-->
                     <th scope='col'>{{ $post_user['amount'] }}</th>

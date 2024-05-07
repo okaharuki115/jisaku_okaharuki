@@ -4,7 +4,14 @@
     <div><img src="{{ asset('img/' . $otherId . '/' . $Post_with_User['image']) }}"></div><!--【画像表示】-->
     <div>
         <div>
-            <div></div><!--アイコン表示-->
+            <!--↓【アイコン表示】-->
+            @if($Post_with_User['user']['icon'])
+            <div>
+                <img src="{{ asset('img/mypage/' . $Post_with_User['user']['id'] . '/' . $Post_with_User['user']['icon']) }}">
+            </div>
+            @else
+            @endif
+            <!--↑【アイコン表示】-->
             <div>{{ $Post_with_User['user']['name'] }}</div><!--ユーザー名表示-->
         </div>
         <div>

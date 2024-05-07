@@ -9,8 +9,8 @@
 <body>
     <div>
         <nav>
-            <div>
-                <a><!--ここにロゴ入れる--></a><!--リンク先追加-->
+            <div><!--ロゴ(クリックしたらtop.phpに飛ぶ)-->
+                <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" alt=""></a>
             </div>
             
             <div>
@@ -18,7 +18,7 @@
                 @if(Auth::check())
                     <span>{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
                     
-                    <!--↓編集（未）-->
+                    <!--ログアウト機能-->
                     <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: note;">
                          @csrf
@@ -29,7 +29,7 @@
                         document.getElementById('logout-form').submit();
                         });
                     </script>
-                    <!--↑編集（未）-->
+                    <!--ログアウト機能-->
 
                 <!--ログイン中でない場合-->
                 @else
