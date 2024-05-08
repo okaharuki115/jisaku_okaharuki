@@ -25,7 +25,7 @@
                 <input type="password" id="password" name="password" />
               </div>
               <div class="text-right">
-                <button type="submit">ログイン</button>
+                <button type="submit" class='btn btn-primary w-25 mt-3'>ログイン</button>
               </div>
             </form>
           </div>

@@ -29,8 +29,13 @@ class RegistrationController extends Controller
             $amount2 = $request->input('amount2');
             $content = $request->input('content');
 
-            //postデータを呼び出す
-            $query = new Post;
+            //$query = new Post;
+            //postデータとuserデータ(username表示させるため)を呼び出す
+            $post = new Post;
+            $user = new User;
+
+            //$postにuserテーブルの情報を結合させて、$queryとする
+            $query = $post->with('user');
 
             //$keywordで何かしらの値を受け取った場合は、if文の中で取得するデータを絞りこむ
             if(!empty($title)) {
@@ -51,7 +56,7 @@ class RegistrationController extends Controller
             }
 
             $posts = $query->get();//getの記述は１回だけしか書けない
-            dd($posts);
+            //dd($posts);
 
             //9.検索結果表示画面へ
             return view('fromFooter/searchResult',[

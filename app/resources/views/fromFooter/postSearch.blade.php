@@ -1,4 +1,3 @@
-<!--blade全体編集未-->
 @extends('headerFooter')
 
 @section('content')

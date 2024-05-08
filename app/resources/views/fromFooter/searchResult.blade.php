@@ -13,31 +13,31 @@
                     </tr>
                 </thead>
             <tbody>
-                <!-- アットforeach書く -->
+                @foreach($posts as $post) 
                 <tr>
                     <th>
-                        <a>詳細</a><!--リンク先追加-->
+                        <a href="{{ route('other.detail',['id'=>$post['id']])}}">詳細</a>
                     </th>
                     <th><!--↓【アイコン表示】-->
-                        <!-- アットif書く -->
-                        <div>
-                            <!--img記述-->
-                        </div>
-                        <!-- アットelse書く -->
-                        <!-- アットendif書く -->
+                        @if($post['user']['icon'])
+                            <div>
+                                <img src="{{ asset('img/mypage/' . $post['user']['id'] . '/' . $post['user']['icon']) }}">
+                            </div>
+                        @else
+                        @endif
                     </th><!--↑【アイコン表示】-->
 
-                    <th scope='col'><!--ユーザー名のデータ引っ張って記述--></th>
-                    <th scope='col'><!--タイトルのデータ引っ張って記述--></th>
-                    <th scope='col'><!--金額のデータ引っ張って記述--></th>
+                    <th scope='col'>{{ $post['user']['name'] }}</th>
+                    <th scope='col'>{{ $post['title'] }}</th>
+                    <th scope='col'>{{ $post['amount'] }}</th>
                 </tr>
-                <!-- アットendforeach書く -->
+                @endforeach
             </tbody>
             </table>
         </div>  
         
         <div>
-            <button type="button" onClick="history.back()">戻る</button>
+            <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3'>戻る</button>
         </div>
 @endsection
 

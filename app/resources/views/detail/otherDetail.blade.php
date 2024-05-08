@@ -30,15 +30,15 @@
 
     <div>
         <a href="{{ route('irai', ['id' => $otherId])}}" class="ml-5">
-            <button class='btn btn-primary w-25 mt-3'>依頼</button><!--buttonの後ろの「type='submit'」削除した-->
+            <button class='btn btn-primary w-10 mt-3'>依頼</button><!--buttonの後ろの「type='submit'」削除した-->
         <a>
 
         <a href="{{ route('ihan', ['id' => $otherId])}}" class="ml-5">
-            <button class='btn btn-primary w-25 mt-3'>違反報告</button><!--buttonの後ろの「type='submit'」削除した-->
+            <button class='btn btn-primary w-10 mt-3'>違反報告</button><!--buttonの後ろの「type='submit'」削除した-->
         <a>
         
         <div>
-            <button type="button" onClick="history.back()">戻る</button>
+            <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3'>戻る</button>
         </div>
     </div>
 
