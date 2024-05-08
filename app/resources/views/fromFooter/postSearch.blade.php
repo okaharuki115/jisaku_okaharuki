@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                    <form action="{{ route('postSearch') }}" method="GET"><!--action,post追加未-->
+                    <form action="{{ route('postSearch') }}" method="POST"><!--action,post追加未-->
                         @csrf
                         <div> 
                             <!--タイトル-->

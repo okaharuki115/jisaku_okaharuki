@@ -20,46 +20,45 @@ class RegistrationController extends Controller
             ]);
         }
 
-        //▼編集途中
         // 8.投稿検索画面→9.検索結果表示画面へ（(at 8.投稿検索画面)「検索」を押したとき）
         public function postSearch(Request $request){
 
             //検索フォームに入力された値を受け取る
-            $title = $request->input('$title');
-            $amount1 = $request->input('$amount1');
-            $amount2 = $request->input('$amount2');
-            $content = $request->input('$content');
+            $title = $request->input('title');
+            $amount1 = $request->input('amount1');
+            $amount2 = $request->input('amount2');
+            $content = $request->input('content');
 
-            $query = Post::query();
-            //dd($query);
+            //postデータを呼び出す
+            $query = new Post;
 
             //$keywordで何かしらの値を受け取った場合は、if文の中で取得するデータを絞りこむ
             if(!empty($title)) {
                 //whereメソッドでLIKE検索を指定し、$titleの両側に%をつけることで、部分一致検索を行う
-                $query->where('title', 'LIKE', "%{$title}%");
-            }
-
-            if(!empty($amount1)) {
-                $query->where('amount1', 'LIKE', $amount1);
-            }
-
-            if(!empty($amount2)) {
-                $query->where('amount2', 'LIKE', $amount2);
+                $query = $query->where("title", "LIKE", "%${title}%");
             }
 
             if(!empty($content)) {
-                $query->where('content', 'LIKE', "%{$content}%");
+                $query = $query->where("content", "LIKE", "%${content}%");
             }
 
-            $posts = $query->get();
-            //dd($posts);
+            if(!empty($amount1)) { 
+                $query = $query->where("amount", ">", $amount1);
+            }
+
+            if(!empty($amount2)) {
+                $query = $query->where("amount", "<", $amount2);
+            }
+
+            $posts = $query->get();//getの記述は１回だけしか書けない
+            dd($posts);
 
             //9.検索結果表示画面へ
             return view('fromFooter/searchResult',[
                 'posts' => $posts,
             ]);
         }
-        //▲編集途中
+        
         
 
         //footer→10.新規投稿画面に飛ぶ

@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/searchPost',[RegistrationController::class,'searchPost'])->name('searchPost');
 
     //8.投稿検索画面→9.検索結果表示画面へ（(at 8.投稿検索画面)「検索」を押したとき）
-    Route::get('/searchPostResult', [RegistrationController::class, 'postSearch'])->name('postSearch');
+    Route::post('/searchPostResult', [RegistrationController::class, 'postSearch'])->name('postSearch');
 
     //10.新規投稿画面へ
     Route::get('/newPost',[RegistrationController::class,'newPost'])->name('newPost');

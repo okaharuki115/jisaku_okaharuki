@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title><!--たぶんなんか入れる-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('stylesheet')
 </head>
 
 <body>
     <div>
+    <button type="button" class="btn btn-primary">Primary</button>
         <nav>
             <div><!--ロゴ(クリックしたらtop.phpに飛ぶ)-->
                 <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" alt=""></a>
