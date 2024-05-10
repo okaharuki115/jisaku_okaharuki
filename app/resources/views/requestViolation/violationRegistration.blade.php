@@ -7,8 +7,6 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                        
-
                         <div>
                             <div>タイトル</div>
                             <div>{{ $Post_with_User['title'] }}</div><!--タイトル表示-->
@@ -18,6 +16,20 @@
                             <div>内容</div>
                             <div>{{ $Post_with_User['content'] }}</div><!--内容表示-->
                         </div>
+
+                        <!--↓バリデーション(6-5P8参照)-->
+                        <div class ='panel-body'>
+                            @if($errors->any())
+                            <div class='alert alert-danger'>
+                                <ul>
+                                    @foreach($errors->all() as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                        </div>
+                        <!--↑バリデーション(6-5P8参照)-->
 
                         <form action="{{ route('ihan', ['id' => $ihanId])}}" method="post">
                         @csrf

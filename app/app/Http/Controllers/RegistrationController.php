@@ -10,6 +10,12 @@ use App\User;
 use App\Violation;
 use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
 
+//バリエーションの為のクラス(CreatePostなど)を使用するための記述
+use App\Http\Requests\CreatePost;
+use App\Http\Requests\CreateEditMypage;
+use App\Http\Requests\CreateRequest;
+use App\Http\Requests\CreateViolation;
+
 
 class RegistrationController extends Controller
 {
@@ -74,23 +80,29 @@ class RegistrationController extends Controller
         }
 
         //10.新規投稿画面→11.確認画面に飛ぶ
-        public function confirmPost(Request $request){
+        public function confirmPost(CreatePost $request){//Request $request→CreatePost $request変更済
 
             $confirmData = $request;
+            //画像はnullでもOKなので、箱を作っておいて、何も選択されなかったときはviewに空の変数が送られるようにする
+            $image = '';
+            $newImageName = '';
 
-            //【画像を登録するための記述】
-            // 拡張子つきでファイル名を取得
-            $imageName = $request->file('image')->getClientOriginalName();
+            if($request->file('image')){
 
-            // 拡張子のみ
-            $extension = $request->file('image')->getClientOriginalExtension();
+                //【画像を登録するための記述】
+                // 拡張子つきでファイル名を取得
+                $imageName = $request->file('image')->getClientOriginalName();
 
-            // 新しいファイル名を生成（形式：元のファイル名_ランダムの英数字.拡張子）
-            $newImageName = pathinfo($imageName, PATHINFO_FILENAME) . "_" . uniqid() . "." . $extension;
+                // 拡張子のみ
+                $extension = $request->file('image')->getClientOriginalExtension();
 
-            //tmpフォルダに上記の画像ファイルを移動する
-            $request->file('image')->move(public_path() . "/img/tmp", $newImageName);
-            $image = "/img/tmp/" . $newImageName;
+                // 新しいファイル名を生成（形式：元のファイル名_ランダムの英数字.拡張子）
+                $newImageName = pathinfo($imageName, PATHINFO_FILENAME) . "_" . uniqid() . "." . $extension;
+
+                //tmpフォルダに上記の画像ファイルを移動する
+                $request->file('image')->move(public_path() . "/img/tmp", $newImageName);
+                $image = "/img/tmp/" . $newImageName;
+            }
            
             return view('fromFooter/confirmPost',[
                 'newData' => $confirmData,
@@ -100,7 +112,7 @@ class RegistrationController extends Controller
         }
 
         //(at 11.新規投稿確認画面)「投稿」ボタンを押したときの処理
-        public function completePost(Request $request){
+        public function completePost(Request $request){//Request $request→CreatePost $requestに変えた
 
             $Post = new Post;
             $Post->title =$request->title;
@@ -141,7 +153,7 @@ class RegistrationController extends Controller
 
 
         //（at 12.マイページ編集画面）「変更」を押したときのpost処理
-        public function editFinish(Request $request){
+        public function editFinish(CreateEditMypage $request){//Request $request→CreateEditMypage $requestに変更済
             $editData = Auth::user();//ログイン中の、userテーブルのレコードを取得
             $editData->name = $request->name;
             $editData->email = $request->email;
@@ -200,7 +212,7 @@ class RegistrationController extends Controller
         }
 
         //(at 15.自分の投稿の編集画面)「編集」ボタンを押したときのpost処理
-        public function completeEditMypost(int $completeEditMypostId, Request $request){
+        public function completeEditMypost(int $completeEditMypostId, CreatePost $request){//Request $request→CreatePost $request変更済
 
             $Post = new Post;
             $record = $Post->find($completeEditMypostId);
@@ -300,7 +312,7 @@ class RegistrationController extends Controller
         }
 
         //(at 18.依頼修正画面)「登録」ボタンを押したときのpost処理  
-        public function iraiModificationComplete(int $iraiModificationCompleteId, Request $request){
+        public function iraiModificationComplete(int $iraiModificationCompleteId, CreateRequest $request){//Request $request→CreateRequest $request変更済
 
             $application = new Application;
             $iraiModificationRecord = $application->find($iraiModificationCompleteId);
@@ -324,7 +336,7 @@ class RegistrationController extends Controller
         }
 
         //(at 20.依頼登録画面)「登録」ボタンを押したときのpost処理     
-        public function iraiRegistration(Request $request,int $iraiRegistrationId){
+        public function iraiRegistration(CreateRequest $request,int $iraiRegistrationId){//Request $request→CreateRequest $request変更済
 
             $application = new Application;
             $application->content =$request->content;
@@ -355,7 +367,7 @@ class RegistrationController extends Controller
         }
 
         //(at 21.違反登録画面)「報告」ボタンを押したときのpost処理  
-        public function ihanRegistration(Request $request,int $ihanRegistrationId){
+        public function ihanRegistration(CreateViolation $request,int $ihanRegistrationId){//Request $request→
 
             $violation = new Violation;
             $violation->comment =$request->comment;
@@ -365,7 +377,14 @@ class RegistrationController extends Controller
 
             return redirect('/');
         }
-
         
+        //6.マイページ→22.管理者画面へ飛ぶ 
+        public function administer(){
+
+            return view('administer/administer',[
+            ]);
+        }
+
+
 
 }

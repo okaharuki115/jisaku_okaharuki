@@ -35,11 +35,11 @@
     </div>
 
     <a href="{{ route('editMyPost', ['id' => $myId] )}}" class="ml-5">
-        <button class='btn btn-primary w-25 mt-3'>編集</button><!--buttonの後ろの「type='submit'」削除した-->
+        <button class='btn btn-primary w-10 mt-3'>編集</button><!--buttonの後ろの「type='submit'」削除した-->
     <a>
 
     <a href="{{ route('post.delete', ['id' => $myId] )}}" class="ml-5">
-        <button class='btn btn-primary w-25 mt-3'>削除</button><!--buttonの後ろの「type='submit'」削除した-->
+        <button class='btn btn-primary w-10 mt-3'>削除</button><!--buttonの後ろの「type='submit'」削除した-->
     <a>
 
 @endsection

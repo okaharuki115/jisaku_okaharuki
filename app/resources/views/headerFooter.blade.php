@@ -21,10 +21,9 @@
 
 <body>
     <div>
-    <button type="button" class="btn btn-primary">Primary</button>
         <nav>
             <div><!--ロゴ(クリックしたらtop.phpに飛ぶ)-->
-                <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" alt=""></a>
+                <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" class="img-fluid" alt=""></a>
             </div>
             
             <div>

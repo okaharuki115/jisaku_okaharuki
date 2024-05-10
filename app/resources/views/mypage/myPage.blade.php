@@ -6,7 +6,7 @@
             <!--↓【アイコン表示】（「もしアイコン画像の情報があれば表示させる」とするのでifで囲む）-->
             @if(Auth::user()->icon)
             <div>
-                <img src="{{ asset('img/mypage/' . Auth::user()->id . '/' . Auth::user()->icon) }}">
+                <img src="{{ asset('img/mypage/' . Auth::user()->id . '/' . Auth::user()->icon) }}" >
             </div>
             @else
             @endif
@@ -20,8 +20,8 @@
         
         <div>
             <a href="{{ route('editMypage')}}">編集</a><!--,['id' => $mypageId] を書いてたけど消した-->
-            <a href="{{ route('withdraw')}}">退会</a><!--リンク先追加-->
-            <a>管理者画面</a><!--リンク先追加-->
+            <a href="{{ route('withdraw')}}">退会</a>
+            <a href="{{ route('administer')}}">管理者画面</a>
         </div>
     </div>
 

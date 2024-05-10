@@ -7,6 +7,20 @@
                 <div class="card-body">
                     <div class="card-body">
 
+                    <!--↓バリデーション(6-5P8参照)-->
+                    <div class ='panel-body'>
+                        @if($errors->any())
+                        <div class='alert alert-danger'>
+                            <ul>
+                                @foreach($errors->all() as $message)
+                                <li>{{ $message }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
+                    <!--↑バリデーション(6-5P8参照)-->
+
                     <form action="{{ route('irai', ['id' => $iraiId])}}" method="post">
                         @csrf
                         <div>          

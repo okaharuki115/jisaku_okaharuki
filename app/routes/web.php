@@ -98,4 +98,6 @@ Route::group(['middleware' => 'auth'], function(){
     //(at 21.違反登録画面)「報告」ボタンを押したときのpost処理
     Route::post('/ihan/{id}',[RegistrationController::class,'ihanRegistration']);
 
+    //6.マイページ→22.管理者画面へ飛ぶ 
+    Route::get('/administer',[RegistrationController::class,'administer'])->name('administer');
 });

@@ -7,6 +7,20 @@
                 <div class="card-body">
                     <div class="card-body">
 
+                    <!--↓バリデーション(6-5P8参照)-->
+                    <div class ='panel-body'>
+                        @if($errors->any())
+                        <div class='alert alert-danger'>
+                            <ul>
+                                @foreach($errors->all() as $message)
+                                <li>{{ $message }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
+                    <!--↑バリデーション(6-5P8参照)-->
+
                     <form action="{{ route('editMypage')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div>                            
@@ -16,7 +30,7 @@
                             </div>
                             
                             <div>
-                                <label for='amount' class='mt-2'>メールアドレス</label>
+                                <label for='email' class='mt-2'>メールアドレス</label>
                                 <input type='text' class='form-control' name='email' id='email' value="{{ $editData['email']}}"/>
                             </div>
 

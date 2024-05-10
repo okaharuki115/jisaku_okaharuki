@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-body">
-                        <!--↓6-5P8の記述 バリデーション-->
+                        <!--↓バリデーション(6-5P8参照)-->
                         <div class ='panel-body'>
                             @if($errors->any())
                             <div class='alert alert-danger'>
@@ -18,7 +18,7 @@
                             </div>
                             @endif
                         </div>
-                        <!--↑6-5P8の記述　バリエーション-->
+                        <!--↑バリデーション(6-5P8参照)-->
                         
                         <form action="{{ route('confirm.post')}}" method="post" enctype="multipart/form-data"><!--ファイルをアップロードする場合は、フォームがマルチパート形式である必要があるのでenctypeを記述-->
                             @csrf
