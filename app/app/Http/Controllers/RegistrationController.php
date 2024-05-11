@@ -364,6 +364,17 @@ class RegistrationController extends Controller
             ]);
         }
 
+        //(at 19.依頼（された）詳細画面)「完了」ボタンを押したときの処理(get)
+        public function requestComplete(int $receiveCompleteId){
+
+                //▼Postテーブルのstatusを2(完了)にする
+                $post = new Post;
+                $statusChangePost = $post ->find($receiveCompleteId);//statusを変える投稿を抽出
+                $statusChangePost->status = 2;//statusを2にする
+                $statusChangePost->save();
+
+                return redirect('/mypage');//get処理でもこの記述書いてOK
+            }
 
         //7.（他ユーザーの）投稿詳細→20.依頼登録画面に飛ぶ
         public function irai(int $iraiId){

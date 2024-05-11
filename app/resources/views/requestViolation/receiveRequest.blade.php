@@ -25,11 +25,11 @@
         </div>
         <div>
             <div>ステータス</div>
-            <div>{{ $status }}</div><!--ステータス表示　未-->
+            <div>{{ $status }}</div>
         </div>
     </div>
 
-    <a class="ml-5"><!--リンクされた、渡すid記述未-->
+    <a href="{{ route('requestComplete', ['id' => $receiveRequestId])}}" class="ml-5">
         <button class='btn btn-primary w-10 mt-3'>完了</button><!--「完了」ボタン押したらその投稿のステータスが２(完了)になる-->
     <a>
 

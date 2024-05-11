@@ -91,6 +91,9 @@ Route::group(['middleware' => 'auth'], function(){
     //6.マイページ→19.依頼（された）詳細画面へ（（at 6.マイページ）依頼された履歴の「詳細」を押したとき） 
     Route::get('/receiveRequest/{id}/detail',[RegistrationController::class,'receiveRequestDetail'])->name('receiveRequestDetail');
 
+    //(at 19.依頼（された）詳細画面)「完了」ボタンを押したときの処理(get)
+    Route::get('/requestComplete/{id}',[RegistrationController::class,'requestComplete'])->name('requestComplete');
+
     //7.（他ユーザーの）投稿詳細→20.依頼登録画面に飛ぶ
     Route::get('/irai/{id}',[RegistrationController::class,'irai'])->name('irai');
     //(at 20.依頼登録画面)「登録」ボタンを押したときのpost処理
