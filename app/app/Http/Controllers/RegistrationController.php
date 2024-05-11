@@ -289,11 +289,19 @@ class RegistrationController extends Controller
             //$application_with_post = Auth::user()->application()->with('post')->get();
             //↑を配列化
             //$makeRequestData = $application_with_post ->toArray();
-            //dd($makeRequestData);
+            //dd($makeRequestData['post']['status']);
+            if($makeRequestData['post']['status'] == 0){
+                $status = '投稿中';
+            }elseif($makeRequestData['post']['status'] == 1){
+                $status = '依頼中';
+            }elseif($makeRequestData['post']['status'] == 2){
+                $status = '完了';
+            }
             
             return view('requestViolation/makeRequest',[
                'makeRequestId' => $makeRequestId,
                'makeRequestData' => $makeRequestData,
+               'status' => $status,
             ]);
         }
 
@@ -340,10 +348,19 @@ class RegistrationController extends Controller
             //$applicationにpostテーブルの情報を結合させて、特定のIDのレコードを取得、配列化(「$postにapplicationテーブルの情報を結合」みたいに逆にしたらエラー出るみたい)
             $receiveRequestData = $application->with('post')->find($receiveRequestId)->toArray();
             //dd($receiveRequestData);
+
+            if($receiveRequestData['post']['status'] == 0){
+                $status = '投稿中';
+            }elseif($receiveRequestData['post']['status'] == 1){
+                $status = '依頼中';
+            }elseif($receiveRequestData['post']['status'] == 2){
+                $status = '完了';
+            }
             
             return view('requestViolation/receiveRequest',[
                'receiveRequestId' => $receiveRequestId,
                'receiveRequestData' => $receiveRequestData,
+               'status' => $status,
             ]);
         }
 

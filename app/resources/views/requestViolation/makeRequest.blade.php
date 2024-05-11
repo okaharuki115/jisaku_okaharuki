@@ -26,7 +26,7 @@
         </div>
         <div>
             <div>ステータス</div>
-            <div></div><!--ステータス表示　未-->
+            <div>{{ $status }}</div><!--ステータス表示　未-->
         </div>
     </div>
 
