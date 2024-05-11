@@ -26,7 +26,7 @@ class CreateRequest extends FormRequest
         return [
             //ここにルールを記述
             'content' => 'required',
-            'email' => 'required|integer',
+            'email' => 'required',
         ];
     }
 }

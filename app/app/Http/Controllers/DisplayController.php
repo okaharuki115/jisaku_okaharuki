@@ -45,18 +45,25 @@ class DisplayController extends Controller
     //6.マイページへ
     public function mypage(){
 
+        //▼自分の投稿履歴を表示させるための記述
         //ログイン中のユーザーが登録した、Postテーブルのデータを取得して配列化したものを$loginPostDataとする
         $loginPostData = Auth::user()->post()->get()->toArray();
 
+        //▼依頼した履歴一覧を表示させるための記述
         //ログイン中のユーザーが登録したapplicationテーブルとpostテーブルの情報を結合(postテーブルの中のtitleをmypageで表示させるため)
         $application_with_post = Auth::user()->application()->with('post')->get();
         //↑を配列化
         $makeRequestData = $application_with_post ->toArray();
-        //dd($makeRequestData);
+
+        //▼依頼された履歴一覧を表示させるための記述
+        //ログイン中のユーザーによる投稿の中で、statusが１(依頼中)のものを取得、配列化
+        $receiveRequestData = Auth::user()->post()->where('status', '=', 1)->get()->toArray();
+        //dd($receiveRequestData);
 
         return view('mypage/myPage',[
             'loginPostData' => $loginPostData,
             'makeRequestData' => $makeRequestData,
+            'receiveRequestData' => $receiveRequestData,
         ]);
     }
 

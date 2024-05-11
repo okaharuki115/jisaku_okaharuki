@@ -65,7 +65,7 @@
                 <div>
                     <div>{{ $makeRequest['post']['title'] }}</div><!--タイトルを表示-->
                     <div>
-                        <a href="{{ route('makeRequestDetail',['id'=>$makeRequest['id']])}}">詳細</a><!--リンク先追加-->
+                        <a href="{{ route('makeRequestDetail',['id'=>$makeRequest['id']])}}">詳細</a>
                     </div>
                 </div>
                 @endforeach
@@ -75,14 +75,14 @@
 
             <div>↓（依頼された履歴）</div><!--後で消す-->
             <div><!--依頼（された）履歴-->
-                <!--アットforeach記述-->
+                @foreach($receiveRequestData as $receiveRequest)
                 <div>
-                    <div></div><!--タイトルを表示-->
+                    <div>{{ $receiveRequest['title'] }}</div><!--タイトルを表示-->
                     <div>
-                        <a>詳細</a><!--リンク先追加-->
+                        <a href="{{ route('receiveRequestDetail',['id'=>$receiveRequest['id']])}}">詳細</a>
                     </div>
                 </div>
-                <!--エンドforeach記述-->
+                @endforeach
             </div>
 
             

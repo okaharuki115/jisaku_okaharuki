@@ -327,6 +327,27 @@ class RegistrationController extends Controller
             return redirect('/mypage');//INSERT処理が完了したらマイページ画面に飛ぶ
         }
 
+        //6.マイページ→19.依頼（された）詳細画面へ（（at 6.マイページ）依頼された履歴の「詳細」を押したとき） 
+        public function receiveRequestDetail(int $receiveRequestId){
+
+            $post = new Post;
+            $application = new Application;
+
+            //$postにapplicationテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
+            // $receiveRequestData = $post->with('application')->find($receiveRequestId)->toArray();
+            // dd($receiveRequestData);
+
+            //$applicationにpostテーブルの情報を結合させて、特定のIDのレコードを取得、配列化(「$postにapplicationテーブルの情報を結合」みたいに逆にしたらエラー出るみたい)
+            $receiveRequestData = $application->with('post')->find($receiveRequestId)->toArray();
+            //dd($receiveRequestData);
+            
+            return view('requestViolation/receiveRequest',[
+               'receiveRequestId' => $receiveRequestId,
+               'receiveRequestData' => $receiveRequestData,
+            ]);
+        }
+
+
         //7.（他ユーザーの）投稿詳細→20.依頼登録画面に飛ぶ
         public function irai(int $iraiId){
 
@@ -346,6 +367,12 @@ class RegistrationController extends Controller
             $application->post_id =$iraiRegistrationId;
 
             Auth::user()->application()->save($application);
+
+            //▼Postテーブルのstatusを１(依頼中)にする
+            $post = new Post;
+            $statusChangePost = $post ->find($iraiRegistrationId);//statusを変える投稿を抽出
+            $statusChangePost->status = 1;//statusを1にする
+            $statusChangePost->save();
 
             return redirect('/');
         }

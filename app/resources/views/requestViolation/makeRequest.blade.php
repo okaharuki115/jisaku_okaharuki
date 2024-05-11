@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div></div><!--画像入れる-->
+    
     <div>
         <div>
             <div>タイトル</div>
@@ -31,7 +31,7 @@
     </div>
 
     <a href="{{ route('iraiModification', ['id' => $makeRequestId])}}" class="ml-5">
-        <button class='btn btn-primary w-25 mt-3'>修正</button><!--buttonの後ろの「type='submit'」削除した-->
+        <button class='btn btn-primary w-10 mt-3'>修正</button><!--buttonの後ろの「type='submit'」削除した-->
     <a>
 
     <div>
