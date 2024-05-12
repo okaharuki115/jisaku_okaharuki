@@ -65,6 +65,11 @@ Route::group(['middleware' => 'auth'], function(){
     //13.退会画面へ
     Route::get('/withdraw',[RegistrationController::class,'withdraw'])->name('withdraw');
 
+    //(at 13.退会画面)退会しますかで「はい」を押したとき【退会処理】
+    // 退会ページ（退会処理）                              ↓TestControllerをRegistrationControllerに変更済
+    Route::delete('/userDelete', [RegistrationController::class,'destroyUserDelete'])->name('destroyUserDelete')->middleware('verified');//middleware('verified')はメール認証していないとアクセス不可という意味
+    //Route::delete('/userDelete', 'App\Http\Controllers\RegistrationController@destroyUserDelete')->name('destroyUserDelete')->middleware('verified');//middleware('verified')はメール認証していないとアクセス不可という意味
+
     //6.マイページ→14.（自分の）投稿詳細画面へ　
     Route::get('/my/{id}/detail',[DisplayController::class,'myDetail'])->name('myDetail');
 

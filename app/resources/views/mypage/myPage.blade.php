@@ -62,12 +62,14 @@
             <div><!--依頼した履歴-->
             <div>
                 @foreach($makeRequestData as $makeRequest)
+                @if(!empty($makeRequest['post']))
                 <div>
                     <div>{{ $makeRequest['post']['title'] }}</div><!--タイトルを表示-->
                     <div>
                         <a href="{{ route('makeRequestDetail',['id'=>$makeRequest['id']])}}">詳細</a>
                     </div>
                 </div>
+                @endif
                 @endforeach
             </div>
             

@@ -198,6 +198,35 @@ class RegistrationController extends Controller
             ]);
         }
 
+        //(at 13.退会画面)退会しますかで「はい」を押したとき【退会処理】
+        public function destroyUserDelete(){
+            
+            $user = Auth::user();// 現在ログインしているユーザーを取得
+            $user_id = $user->id;
+            $posts = Post::where('user_id', '=', $user_id)->get();
+            $applications = Application::where('user_id', '=', $user_id)->get();
+            //dd($applications);
+
+            // 論理削除
+            $user->delete();
+            foreach($posts as $post){//postは複数あって、それをまとめて削除はできないのでforeachでばらしてから1個１個削除する
+                $post->delete();
+            }
+
+            foreach($applications as $application){
+                $post_a = Post::find($application->post_id);
+                $post_a->status = 0;
+                $post_a->save();
+                $application->delete();
+            }
+
+            
+
+            return redirect('/');//(at 13.退会画面)で「はい」を押したら(退会したら)top.phpに戻る
+
+            //return redirect()->route('userDeleteComplete');// 退会完了ページへリダイレクト
+        }
+
         //14.（自分の）投稿詳細画面→15.（自分の投稿の）編集画面に飛ぶ(14.（自分の投稿の）詳細画面で「編集」を押したときのpost処理)　
         public function editMyPost(int $editMypostId){
 

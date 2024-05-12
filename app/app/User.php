@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;// 追記【退会処理】
 
 class User extends Authenticatable
 { 
@@ -54,5 +55,9 @@ class User extends Authenticatable
     public function violation(){
         return $this->hasMany('App\Violation');
     }
+
+    //【退会処理】
+    use SoftDeletes;// 論理削除を使う
+    protected $dates = ['deleted_at'];// 日付型として扱う(deleted_atカラムに日付が入ってたらそのレコード(User)は表示しない)
 
 }

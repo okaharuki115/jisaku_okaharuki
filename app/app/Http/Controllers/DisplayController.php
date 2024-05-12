@@ -54,6 +54,7 @@ class DisplayController extends Controller
         $application_with_post = Auth::user()->application()->with('post')->get();
         //↑を配列化
         $makeRequestData = $application_with_post ->toArray();
+        //dd($makeRequestData);
 
         //▼依頼された履歴一覧を表示させるための記述
         //ログイン中のユーザーによる投稿の中で、statusが１(依頼中)のものを取得、配列化

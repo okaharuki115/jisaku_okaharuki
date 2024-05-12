@@ -9,15 +9,15 @@
 
                         <div>退会されますか</div>
 
-                            <div>
-                            <div>
-                                <a>はい</a><!--リンク先追加-->
-                            </div>
+                        <form method="post" action="{{ route('destroyUserDelete') }}">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="はい">
+                        </form>
 
-                            <div>
-                                <a href="{{ route('login') }}">いいえ</a>
-                            </div>
-                            </div>
+                        <a href="{{ route('login') }}">
+                            <button type='submit' class='btn btn-primary w-10 mt-3'>いいえ</button>
+                        </a>
 
                     </div>
 
