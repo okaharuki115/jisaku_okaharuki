@@ -101,7 +101,6 @@ class DisplayController extends Controller
             'myId' => $myId,
         ]);
     }
-
     
 
     

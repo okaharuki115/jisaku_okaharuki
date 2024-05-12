@@ -1,3 +1,4 @@
+<!--管理者画面はabmin.blade.phpで表示させるので、このファイルはのちに消す-->
 @extends('headerFooter')
 @section('content')
         <div>【管理者画面】</div>

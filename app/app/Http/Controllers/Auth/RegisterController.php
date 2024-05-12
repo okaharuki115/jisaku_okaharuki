@@ -101,4 +101,5 @@ class RegisterController extends Controller
         return redirect()->intended('login/admin');
     }
     //上記までを追記する
+
 }

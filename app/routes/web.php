@@ -3,6 +3,8 @@
 //Controllerのuse宣言
 use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +36,15 @@ Route::get('/',[DisplayController::class,'index'])->name('move.top');
 Route::get('/other/{id}/detail',[DisplayController::class,'otherDetail'])->name('other.detail');
 
 //【管理者画面】
-//下記を追記する
+//下記を追記
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
 Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
 Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 Route::view('/home', 'home')->middleware('auth');//homeのままでいい？
-Route::view('/admin', 'admin');//★←これにControllerの記述を追加する（いつもかいてるみたいな感じで）
-//上記までを追記する
+//↓元々「Route::view('/admin', 'admin');」やけどこのままではadmin.blade.phpというviewを表示して終わりになるので、controllerの情報を追加して、get処理を行うルーティングに変更した
+Route::get('/admin', [AdminController::class,'admin']);
+//上記までを追記
 
 //→ログイン中ならページを表示、そうでなければログイン画面を表示(←Authの中身が)
 Route::group(['middleware' => 'auth'], function(){
