@@ -46,6 +46,13 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        //下記を追記
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        //上記までを追記
+
     ],
 
     /*
@@ -70,6 +77,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        //下記を追記する
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+        //上記までを追記する
 
         // 'users' => [
         //     'driver' => 'database',

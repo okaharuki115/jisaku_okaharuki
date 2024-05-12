@@ -33,6 +33,15 @@ Route::get('/',[DisplayController::class,'index'])->name('move.top');
 //7.(他ユーザーの)詳細画面へ
 Route::get('/other/{id}/detail',[DisplayController::class,'otherDetail'])->name('other.detail');
 
+//【管理者画面】
+//下記を追記する
+Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
+Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
+Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
+Route::view('/home', 'home')->middleware('auth');//homeのままでいい？
+Route::view('/admin', 'admin');//★←これにControllerの記述を追加する（いつもかいてるみたいな感じで）
+//上記までを追記する
 
 //→ログイン中ならページを表示、そうでなければログイン画面を表示(←Authの中身が)
 Route::group(['middleware' => 'auth'], function(){
@@ -111,4 +120,5 @@ Route::group(['middleware' => 'auth'], function(){
 
     //6.マイページ→22.管理者画面へ飛ぶ 
     Route::get('/administer',[RegistrationController::class,'administer'])->name('administer');
+
 });

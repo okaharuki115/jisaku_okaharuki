@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+//下記を追記する
+use App\Admin;
+use Illuminate\Http\Request;
+//上記までを追記する
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -39,6 +43,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        //下記を追記する
+        $this->middleware('guest:admin');
     }
 
     /**
@@ -70,4 +76,29 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    //下記を追記する
+    protected function validatorAdmin(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    public function showAdminRegisterForm()
+    {
+        return view('auth.register', ['url' => 'admin']);
+    }
+
+    protected function createAdmin(Request $request)
+    {
+        $this->validatorAdmin($request->all())->validate();
+        $admin = Admin::create([
+            'name' => $request['name'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->intended('login/admin');
+    }
+    //上記までを追記する
 }
