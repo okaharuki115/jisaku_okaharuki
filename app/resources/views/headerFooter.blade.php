@@ -71,6 +71,8 @@
             <a href="{{ route('newPost') }}">新規投稿</a>
             <a href="{{ route('login') }}">マイページへ</a>
         @endif
+
+        
     </footer>
 
 </body>

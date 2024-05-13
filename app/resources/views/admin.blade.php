@@ -1,4 +1,5 @@
 <!--アットextends('headerFooter')-->
+<!--アットextends('layouts.auth')-->
 @extends('layouts.auth')
 
 @section('content')
