@@ -16,12 +16,13 @@
                         <thead>
                         </thead>
                     <tbody>
-                        <!--アットforeach-->
+                        @foreach($userlists as $userlist) 
                         <tr>
-                            <th scope='col'>名前（仮）</th><!--ここにユーザー名のデータ引っ張って記述-->
-                            <th scope='col'><a>再開</a></th><!--リンク先追加-->
+                            <th scope='col'>{{ $userlist['name'] }}</th><!--ここにユーザー名のデータ引っ張って記述-->
+                            <th scope='col'>{{ $userlist['post_count'] }}件</th><!--ここにユーザー名のデータ引っ張って記述-->
+                            <th scope='col'><a href="{{ route('userStop',['id'=>$userlist['id']])}}">停止</a></th><!--ユーザー停止-->
                         </tr>
-                        <!--アットendforeach-->
+                        @endforeach
                     </tbody>
                     </table>
                 </div> 
@@ -32,14 +33,18 @@
                         <thead>
                         </thead>
                     <tbody>
-                        <!--アットforeach-->
+                        @foreach($postlists as $postlist) 
                         <tr>
-                            <th scope='col'>タイトル（仮）</th><!--ここにタイトルのデータ引っ張って記述-->
-                            <th scope='col'>〇〇件（仮）</th><!--ここに件数のデータ引っ張って記述-->
-                            <th scope='col'>名前（仮）</th><!--ここにユーザー名のデータ引っ張って記述-->
-                            <th scope='col'><a>停止</a></th><!--リンク先追加-->
+                            <th scope='col'>{{ $postlist['title'] }}</th><!--ここにタイトルのデータ引っ張って記述-->
+                            <th scope='col'>{{ $postlist['violation_count'] }}件</th><!--ここに件数のデータ引っ張って記述-->
+                            <th scope='col'>{{ $postlist['user']['name'] }}</th><!--ここにユーザー名のデータ引っ張って記述-->
+                            @if($postlist['status']==3)
+                            <th scope='col'>停止済</th>
+                            @else
+                            <th scope='col'><a href="{{ route('postStop',['id'=>$postlist['id']])}}">停止</a></th><!--投稿停止-->
+                            @endif
                         </tr>
-                        <!--アットendforeach-->
+                        @endforeach
                     </tbody>
                     </table>
                 </div> 

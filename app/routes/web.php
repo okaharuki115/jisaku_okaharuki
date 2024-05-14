@@ -46,6 +46,17 @@ Route::view('/home', 'home')->middleware('auth');//homeのままでいい？
 Route::get('/admin', [AdminController::class,'admin']);
 //上記までを追記
 
+//22.管理者画面→23.投稿表示停止画面へ　(at 22.管理者画面)投稿一覧の「停止」を押したとき
+Route::get('/postStop/{id}',[AdminController::class,'postStop'])->name('postStop');
+
+//22.管理者画面→24.ユーザー停止停止画面へ　(at 22.管理者画面)ユーザー一覧の「停止」を押したとき
+Route::get('/userStop/{id}',[AdminController::class,'userStop'])->name('userStop');
+
+//(at 23.投稿表示停止画面)この投稿を停止させますかで「はい」を押したときの処理
+Route::get('/postStopComplete/{id}',[AdminController::class,'postStopComplete'])->name('postStopComplete');
+
+
+
 //→ログイン中ならページを表示、そうでなければログイン画面を表示(←Authの中身が)
 Route::group(['middleware' => 'auth'], function(){
 

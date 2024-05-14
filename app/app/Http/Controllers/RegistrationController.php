@@ -207,15 +207,18 @@ class RegistrationController extends Controller
             $applications = Application::where('user_id', '=', $user_id)->get();
             //dd($applications);
 
-            // 論理削除
+            //ユーザー情報の論理削除
             $user->delete();
+
+            //Post情報の論理削除
             foreach($posts as $post){//postは複数あって、それをまとめて削除はできないのでforeachでばらしてから1個１個削除する
                 $post->delete();
             }
 
+            //依頼情報の論理削除
             foreach($applications as $application){
-                $post_a = Post::find($application->post_id);
-                $post_a->status = 0;
+                $post_a = Post::find($application->post_id);//退会するユーザーによる投稿のpost_idに当てはまるPostを取得、$post_aとする
+                $post_a->status = 0;//post_idのステータスを０(投稿中)にする(これによって、依頼した側のユーザーのmypageの依頼した投稿にも表示されない)
                 $post_a->save();
                 $application->delete();
             }

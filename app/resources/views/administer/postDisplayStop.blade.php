@@ -9,14 +9,14 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                            <div>名前</div>
-                            <div><!--ユーザー名のデータ引っ張ってきて記述--></div>
+                            <div>タイトル</div>
+                            <div><!--タイトルのデータ引っ張ってきて記述--></div>
 
-                            <div>このユーザーを停止させますか</div>
+                            <div>この投稿を停止させますか</div>
 
                             <div>
                                 <div>
-                                    <a>はい</a><!--リンク先追加-->
+                                    <a href="{{ route('postStopComplete',['id'=>$postStopId])}}">はい</a><!--リンク先追加-->
                                 </div>
     
                                 <div>
