@@ -20,6 +20,11 @@ class Post extends Model
         return $this->hasMany('App\Violation');
     }
 
+    //モデルとの関連性を記述(Postモデルと各データの紐づけを行う）(6-4P10参照)
+    public function application(){
+        return $this->hasMany('App\Application');
+    }
+
     //【退会処理】
     use SoftDeletes;// 論理削除を使う
     protected $dates = ['deleted_at'];// 日付型として扱う(deleted_atカラムに日付が入ってたらそのレコード(User)は表示しない)

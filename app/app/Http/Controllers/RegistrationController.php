@@ -223,8 +223,6 @@ class RegistrationController extends Controller
                 $application->delete();
             }
 
-            
-
             return redirect('/');//(at 13.退会画面)で「はい」を押したら(退会したら)top.phpに戻る
 
             //return redirect()->route('userDeleteComplete');// 退会完了ページへリダイレクト
@@ -328,6 +326,8 @@ class RegistrationController extends Controller
                 $status = '依頼中';
             }elseif($makeRequestData['post']['status'] == 2){
                 $status = '完了';
+            }elseif($makeRequestData['post']['status'] == 3){
+                $status = '停止中';
             }
             
             return view('requestViolation/makeRequest',[
@@ -379,7 +379,7 @@ class RegistrationController extends Controller
 
             //$applicationにpostテーブルの情報を結合させて、特定のIDのレコードを取得、配列化(「$postにapplicationテーブルの情報を結合」みたいに逆にしたらエラー出るみたい)
             $receiveRequestData = $application->with('post')->find($receiveRequestId)->toArray();
-            //dd($receiveRequestData);
+            dd($receiveRequestData);
 
             if($receiveRequestData['post']['status'] == 0){
                 $status = '投稿中';
@@ -387,6 +387,8 @@ class RegistrationController extends Controller
                 $status = '依頼中';
             }elseif($receiveRequestData['post']['status'] == 2){
                 $status = '完了';
+            }elseif($receiveRequestData['post']['status'] == 3){
+                $status = '停止中';
             }
             
             return view('requestViolation/receiveRequest',[

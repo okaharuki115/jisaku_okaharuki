@@ -55,6 +55,8 @@ Route::get('/userStop/{id}',[AdminController::class,'userStop'])->name('userStop
 //(at 23.投稿表示停止画面)この投稿を停止させますかで「はい」を押したときの処理
 Route::get('/postStopComplete/{id}',[AdminController::class,'postStopComplete'])->name('postStopComplete');
 
+//(at 24.ユーザー停止画面)このユーザーを停止させますかで「はい」を押したとき【ユーザー停止処理】                        
+Route::delete('/userStopComplete/{id}', [AdminController::class,'userStopComplete'])->name('userStopComplete');//->middleware('verified')削除済（メール認証していないとアクセス不可という意味
 
 
 //→ログイン中ならページを表示、そうでなければログイン画面を表示(←Authの中身が)

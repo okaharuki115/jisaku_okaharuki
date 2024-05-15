@@ -15,9 +15,11 @@
                             <div>このユーザーを停止させますか</div>
 
                             <div>
-                                <div>
-                                    <a>はい</a><!--リンク先追加-->
-                                </div>
+                                <form method="post" action="{{ route('userStopComplete',['id'=>$userStopId]) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="はい">
+                                </form>
     
                                 <div>
                                     <div onClick="history.back()"class='btn btn-primary w-10 mt-3'>いいえ</div>

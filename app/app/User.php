@@ -57,7 +57,8 @@ class User extends Authenticatable
     }
 
     //【退会処理】
-    use SoftDeletes;// 論理削除を使う
+    //モデルが論理削除フラグを使えるようにする
+    use SoftDeletes;
     protected $dates = ['deleted_at'];// 日付型として扱う(deleted_atカラムに日付が入ってたらそのレコード(User)は表示しない)
 
 }

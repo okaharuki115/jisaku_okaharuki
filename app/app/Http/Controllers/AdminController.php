@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;//use宣言
 use App\Violation;
 use App\User;
+use App\Application;
 
 class AdminController extends Controller
 {
@@ -72,6 +73,35 @@ class AdminController extends Controller
             return view('administer/userStop',[
                 'userStopId' => $userStopId,
             ]);
+    }
+
+    //(at 24.ユーザー停止画面)このユーザーを停止させますかで「はい」を押したとき【ユーザー停止処理】 
+    public function userStopComplete(int $userStopCompleteId){
+            
+        $user_id = $userStopCompleteId;
+
+        $user = User::find($user_id);//「特定のユーザーの」で１つに絞るときはfindを使う(whereを使うと複数データを取得することになる)
+
+        $posts = Post::where('user_id', '=', $user_id)->get();
+        $applications = Application::where('user_id', '=', $user_id)->get();
+
+        //ユーザー情報の論理削除
+        $user->delete();
+
+        //Post情報の論理削除
+        foreach($posts as $post){//postは複数あって、それをまとめて削除はできないのでforeachでばらしてから1個１個削除する
+            $post->delete();
+        }
+
+        //依頼情報の論理削除
+        foreach($applications as $application){
+            $post_a = Post::find($application->post_id);//退会するユーザーによる投稿のpost_idに当てはまるPostを取得、$post_aとする
+            $post_a->status = 0;//post_idのステータスを０(投稿中)にする(これによって、依頼した側のユーザーのmypageの依頼した投稿にも表示されない)
+            $post_a->save();
+            $application->delete();
+        }
+
+        return redirect('/admin');//(at 24.ユーザー停止画面)で「はい」を押したら(ユーザー停止したら)管理者画面に戻る
     }
     
 

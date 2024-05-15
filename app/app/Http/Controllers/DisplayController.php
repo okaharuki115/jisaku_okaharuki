@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Post;//use宣言
 use App\User;
+use App\Application;
 use Illuminate\Support\Facades\Auth;//Authを使うときはこれを書く
 
 class DisplayController extends Controller
@@ -16,14 +17,13 @@ class DisplayController extends Controller
         $Post = new Post;//Postを使えるようにする
         $User = new User;
 
-        $allPost = $Post->all()->toArray();//Postモデルから全レコードを取得、配列化
-        $pre_allPost_allUser = $Post -> with('user')->get();//$Postにusersテーブルのデータを結合させて$pre_allPost_allUserとする
-        $allPost_allUser = $pre_allPost_allUser ->toArray();
+        //postテーブル内のstatusが3でないレコードに絞って、userテーブルと結合させて取得、配列化
+        $allPost_allUser = Post::where('status', '!=', 3)-> with('user')->get()->toArray();
         //dd($allPost_allUser);
 
         //top.blade.phpに情報を渡す
         return view('top',[
-            'posts' => $allPost,
+            //'posts' => $allPost,
             //'users' => $allUser,
             'posts_users' =>$allPost_allUser,
         ]);
@@ -45,16 +45,24 @@ class DisplayController extends Controller
     //6.マイページへ
     public function mypage(){
 
+        //memo：$allPost_allUser = Post::where('status', '!=', 3)-> with('user')->get()->toArray();
+
         //▼自分の投稿履歴を表示させるための記述
-        //ログイン中のユーザーが登録した、Postテーブルのデータを取得して配列化したものを$loginPostDataとする
-        $loginPostData = Auth::user()->post()->get()->toArray();
+        //ログイン中のユーザーが登録した、Postテーブルのデータでstatusが3でないものに絞って取得して配列化したものを$loginPostDataとする
+        $loginPostData = Auth::user()->post()->where('status', '!=', 3)->get()->toArray();
+        //dd($loginPostData);
+
+
 
         //▼依頼した履歴一覧を表示させるための記述
-        //ログイン中のユーザーが登録したapplicationテーブルとpostテーブルの情報を結合(postテーブルの中のtitleをmypageで表示させるため)
-        $application_with_post = Auth::user()->application()->with('post')->get();
-        //↑を配列化
-        $makeRequestData = $application_with_post ->toArray();
+        //$makeRequestData = Application::where('user_id', \Auth::user()->id)->with('post')->where('status', '!=', 3)->get()->toArray();
+        
+        //（ログイン中ユーザーによる(←これできてる？)）依頼にpostテーブルのデータを結合させて、postテーブル内のstatusが3でないものに絞って取得、配列化
+        $makeRequestData = Application::whereHas('post', function ($query) {
+                                    $query->where('status', '!=', 3);
+                                    })->with('post')->get()->toArray();
         //dd($makeRequestData);
+        
 
         //▼依頼された履歴一覧を表示させるための記述
         //ログイン中のユーザーによる投稿の中で、statusが１(依頼中)のものを取得、配列化
