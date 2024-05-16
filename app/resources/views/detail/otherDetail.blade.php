@@ -1,13 +1,13 @@
 @extends('headerFooter')
 
 @section('content')
-    <div><img src="{{ asset('img/' . $otherId . '/' . $Post_with_User['image']) }}"></div><!--【画像表示】-->
+    <div><img src="{{ asset('img/' . $otherId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="700" height="700"></div><!--【画像表示】-->
     <div>
         <div>
             <!--↓【アイコン表示】-->
             @if($Post_with_User['user']['icon'])
             <div>
-                <img src="{{ asset('img/mypage/' . $Post_with_User['user']['id'] . '/' . $Post_with_User['user']['icon']) }}">
+                <img src="{{ asset('img/mypage/' . $Post_with_User['user']['id'] . '/' . $Post_with_User['user']['icon']) }}" class="img-fluid" alt="" width="50" height="50">
             </div>
             @else
             @endif

@@ -5,7 +5,7 @@
     
     <div>
         <div>
-            <div>タイトル</div>
+            <div>依頼した投稿のタイトル</div>
             <div>{{ $makeRequestData['post']['title'] }}</div><!--タイトル表示-->
         </div>
         <div>
@@ -24,10 +24,7 @@
             <div>期日</div>
             <div>{{ $makeRequestData['limit'] }}</div><!--期日表示-->
         </div>
-        <div>
-            <div>ステータス</div>
-            <div>{{ $status }}</div><!--ステータス表示　未-->
-        </div>
+        
     </div>
 
     <a href="{{ route('iraiModification', ['id' => $makeRequestId])}}" class="ml-5">
@@ -39,3 +36,5 @@
     </div>
 
 @endsection
+
+

@@ -23,10 +23,7 @@
             <div>期日</div>
             <div>{{ $receiveRequestData['limit'] }}</div><!--期日表示-->
         </div>
-        <div>
-            <div>ステータス</div>
-            <div>{{ $status }}</div>
-        </div>
+        
     </div>
 
     <a href="{{ route('requestComplete', ['id' => $receiveRequestId])}}" class="ml-5">
@@ -38,3 +35,15 @@
     </div>
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+

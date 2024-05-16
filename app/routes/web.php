@@ -58,6 +58,11 @@ Route::get('/postStopComplete/{id}',[AdminController::class,'postStopComplete'])
 //(at 24.ユーザー停止画面)このユーザーを停止させますかで「はい」を押したとき【ユーザー停止処理】                        
 Route::delete('/userStopComplete/{id}', [AdminController::class,'userStopComplete'])->name('userStopComplete');//->middleware('verified')削除済（メール認証していないとアクセス不可という意味
 
+//【いいね機能】
+Route::get('/ajax/like/user_list', 'LikeController@user_list'); //  ユーザー情報を取得（Ajax通信用）
+Route::post('/ajax/like', 'LikeController@like'); // いいね！データを追加（Ajax通信用）
+
+
 
 //→ログイン中ならページを表示、そうでなければログイン画面を表示(←Authの中身が)
 Route::group(['middleware' => 'auth'], function(){
@@ -138,3 +143,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/administer',[RegistrationController::class,'administer'])->name('administer');
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,7 +21,7 @@
                     <th><!--↓【アイコン表示】-->
                         @if($post['user']['icon'])
                             <div>
-                                <img src="{{ asset('img/mypage/' . $post['user']['id'] . '/' . $post['user']['icon']) }}">
+                                <img src="{{ asset('img/mypage/' . $post['user']['id'] . '/' . $post['user']['icon']) }}" class="img-fluid" alt="" width="50" height="50">
                             </div>
                         @else
                         @endif

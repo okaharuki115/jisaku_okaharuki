@@ -320,20 +320,20 @@ class RegistrationController extends Controller
             //↑を配列化
             //$makeRequestData = $application_with_post ->toArray();
             //dd($makeRequestData['post']['status']);
-            if($makeRequestData['post']['status'] == 0){
-                $status = '投稿中';
-            }elseif($makeRequestData['post']['status'] == 1){
-                $status = '依頼中';
-            }elseif($makeRequestData['post']['status'] == 2){
-                $status = '完了';
-            }elseif($makeRequestData['post']['status'] == 3){
-                $status = '停止中';
-            }
+            // if($makeRequestData['post']['status'] == 0){
+            //     $status = '投稿中';
+            // }elseif($makeRequestData['post']['status'] == 1){
+            //     $status = '依頼中';
+            // }elseif($makeRequestData['post']['status'] == 2){
+            //     $status = '完了';
+            // }elseif($makeRequestData['post']['status'] == 3){
+            //     $status = '停止中';
+            // }
             
             return view('requestViolation/makeRequest',[
                'makeRequestId' => $makeRequestId,
                'makeRequestData' => $makeRequestData,
-               'status' => $status,
+               //'status' => $status,
             ]);
         }
 
@@ -369,32 +369,26 @@ class RegistrationController extends Controller
 
         //6.マイページ→19.依頼（された）詳細画面へ（（at 6.マイページ）依頼された履歴の「詳細」を押したとき） 
         public function receiveRequestDetail(int $receiveRequestId){
-
+            
             $post = new Post;
             $application = new Application;
 
-            //$postにapplicationテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
-            // $receiveRequestData = $post->with('application')->find($receiveRequestId)->toArray();
-            // dd($receiveRequestData);
-
             //$applicationにpostテーブルの情報を結合させて、特定のIDのレコードを取得、配列化(「$postにapplicationテーブルの情報を結合」みたいに逆にしたらエラー出るみたい)
-            $receiveRequestData = $application->with('post')->find($receiveRequestId)->toArray();
-            dd($receiveRequestData);
-
-            if($receiveRequestData['post']['status'] == 0){
-                $status = '投稿中';
-            }elseif($receiveRequestData['post']['status'] == 1){
-                $status = '依頼中';
-            }elseif($receiveRequestData['post']['status'] == 2){
-                $status = '完了';
-            }elseif($receiveRequestData['post']['status'] == 3){
-                $status = '停止中';
-            }
+            //$receiveRequestData = $application->where('post_id', '=', $receiveRequestId)->with('post')->get()->toArray();
+            //$receiveRequestData = $post->find($receiveRequestId)->with('application')->get();
             
+            //dd($receiveRequestData);
+            
+            $irai_specific = $application->where('post_id', '=', $receiveRequestId)->first();//単一のモデルインスタンスを取得したい場合は、firstメソッドを使用
+            $irai_id = $irai_specific->id;
+            //dd($irai_id);
+            $receiveRequestData = $application->with('post')->find($irai_id)->toArray();
+            //dd($receiveRequestData);
+
             return view('requestViolation/receiveRequest',[
                'receiveRequestId' => $receiveRequestId,
                'receiveRequestData' => $receiveRequestData,
-               'status' => $status,
+               //'status' => $status,
             ]);
         }
 

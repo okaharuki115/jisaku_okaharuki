@@ -24,7 +24,7 @@
 
         <nav>
             <div><!--ロゴ(クリックしたらtop.phpに飛ぶ)-->
-                <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" class="img-fluid" alt=""></a>
+                <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" class="img-fluid" alt="" width="50" height="50"></a>
             </div>
             
             <div>

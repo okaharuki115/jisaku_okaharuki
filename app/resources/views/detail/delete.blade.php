@@ -10,7 +10,7 @@
                         <div> 
                             <div>
                                 <label for='content' class='mt-2'>画像</label>
-                                <div><img src="{{ asset('img/' . $postDeleteId . '/' . $deletePost['image']) }}"></div><!--【画像表示】-->
+                                <div><img src="{{ asset('img/' . $postDeleteId . '/' . $deletePost['image']) }}" class="img-fluid" alt="" width="700" height="700"></div><!--【画像表示】-->
                             </div>
                             
                             <div>
