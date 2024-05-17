@@ -35,13 +35,13 @@ class RegistrationController extends Controller
             $amount2 = $request->input('amount2');
             $content = $request->input('content');
 
-            //$query = new Post;
             //postデータとuserデータ(username表示させるため)を呼び出す
             $post = new Post;
             $user = new User;
 
-            //$postにuserテーブルの情報を結合させて、$queryとする
-            $query = $post->with('user');
+            //$postにuserテーブルの情報を結合させて、$queryとする + where文でstatusが3でないものに絞る
+            $query = $post->where('status','!=',3)->with('user');
+
 
             //$keywordで何かしらの値を受け取った場合は、if文の中で取得するデータを絞りこむ
             if(!empty($title)) {
