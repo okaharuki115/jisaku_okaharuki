@@ -43,71 +43,7 @@
         <button class='btn btn-primary w-10 mt-3'>削除</button><!--buttonの後ろの「type='submit'」削除した-->
     <a>
 
-    <!--↓【いいね機能】-->
-    <button type="button" class='btn btn-primary w-10 mt-3' 
-            :disabled="hasMyLike(u.likes)" @click="addLike(u.id)">いいね！</button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
-    <script>
-
-    new Vue({
-        el: '#app',
-        data: {
-            users: [],
-            ip: '{{ $ip }}'
-        },
-        methods: {
-            addLike(userId) { // いいね！を追加 ・・・ ①
-
-                const url = '/ajax/like';
-                const params = { user_id: userId };
-                axios.post(url, params)
-                    .then(response => {
-
-                        if(response.data.result === true) { // 追加に成功したらデータを更新
-
-                            this.users = response.data.users;
-
-                        }
-
-                    });
-
-            },
-            hasMyLike(likes) { // 自分のIPが含まれているかチェック ・・・ ②
-
-                if(likes.length) {
-
-                    for(let like of likes) {
-
-                        if(like.ip === this.ip) {
-
-                            return true;
-
-                        }
-
-                    }
-
-                }
-
-                return false;
-
-            }
-        },
-        mounted() {
-
-            axios.get('/ajax/like/user_list')
-                .then(response => {
-
-                    this.users = response.data;
-
-                });
-
-        }
-    });
-
-    </script>
-    <!--↑【いいね機能】-->
+    
 
 
 @endsection

@@ -35,6 +35,9 @@ Route::get('/',[DisplayController::class,'index'])->name('move.top');
 //7.(他ユーザーの)詳細画面へ
 Route::get('/other/{id}/detail',[DisplayController::class,'otherDetail'])->name('other.detail');
 
+//【いいね機能】「ajaxlike.jsファイルのurl:'ルーティング'」に書くものと合わせる。
+Route::post('ajaxlike', 'DisplayController@ajaxlike')->name('posts.ajaxlike');
+
 //【管理者画面】
 //下記を追記
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
@@ -58,9 +61,7 @@ Route::get('/postStopComplete/{id}',[AdminController::class,'postStopComplete'])
 //(at 24.ユーザー停止画面)このユーザーを停止させますかで「はい」を押したとき【ユーザー停止処理】                        
 Route::delete('/userStopComplete/{id}', [AdminController::class,'userStopComplete'])->name('userStopComplete');//->middleware('verified')削除済（メール認証していないとアクセス不可という意味
 
-//【いいね機能】
-Route::get('/ajax/like/user_list', 'LikeController@user_list'); //  ユーザー情報を取得（Ajax通信用）
-Route::post('/ajax/like', 'LikeController@like'); // いいね！データを追加（Ajax通信用）
+
 
 
 
