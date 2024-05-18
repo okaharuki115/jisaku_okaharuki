@@ -4,7 +4,7 @@
     <div>【自分の投稿詳細画面】</div>
 
     @if($Post_with_User['image'])
-    <div><img src="{{ asset('img/' . $myId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="700" height="700"></div><!--画像入れる-->
+    <div><img src="{{ asset('img/' . $myId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="500" height="500"></div><!--画像入れる-->
     @else
     @endif
     <div>

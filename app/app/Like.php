@@ -19,8 +19,10 @@ class Like extends Model
         return $this->belongsTo('App\Post','post_id','id');
     }
 
-    //いいねされたときに、Likeテーブル内に、絞り込んだデータがあるかチェック
+    //【いいね機能】いいねされてるかどうかの確認
+    //                        　   ↓otherDetail.phpから渡されたAuth:user()->idと$otherIdを受け取ってる
     public function like_exist($user_id, $post_id) {        
+        //Likeテーブル内に、絞り込んだデータがあるかチェックする
         return Like::where('user_id', $user_id)->where('post_id', $post_id)->exists();       
     }
 }

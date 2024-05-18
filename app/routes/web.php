@@ -21,7 +21,7 @@ use App\Http\Controllers\AdminController;
 //     return view('welcome');
 // });
 
-//Auth内で定義されているルーティングを呼び出す/ログイン機能がないと使えないようにする？
+//Auth内で定義されているルーティングを呼び出す
 Auth::routes();
 
 //6-4 P8 Route::groupによってルーティングをグループ化し、そこにミドルウェアを適用(Route::groupに中に入れるものには共通の設定を作る)

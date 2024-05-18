@@ -430,7 +430,7 @@ class RegistrationController extends Controller
             $statusChangePost->status = 1;//statusを1にする
             $statusChangePost->save();
 
-            return redirect('/');
+            return redirect('/mypage');
         }
 
         //7.（他ユーザーの）投稿詳細→21.違反登録画面に飛ぶ

@@ -78,7 +78,7 @@ class DisplayController extends Controller
     }
 
     
-    //7.(他ユーザーの)投稿詳細画面へ     //↓ルートモデルバインディング適用する？「int $otherId」じゃなくて「Post $post」？
+    //7.(他ユーザーの)投稿詳細画面へ     
     public function otherDetail(int $otherId){
         
         $Post = new Post;
@@ -86,12 +86,10 @@ class DisplayController extends Controller
 
         //$Postにusersテーブルの情報を結合させて、特定のIDのレコードを取得、配列化
         $Post_with_User = $Post->with('user')->find($otherId)->toArray();
-        //dd($Post_with_User);
 
         //【いいね機能】
-        $like_model = new Like;
-        $post_like = Post::withCount('like')->find($otherId);
-        //dd($post_like);
+        $like_model = new Like;//Likeモデルのデータ取得
+        $post_like = Post::withCount('likes')->find($otherId);//？？？Postテーブル内の、idが$otherIdのレコードに絞る？
 
         return view('detail/otherDetail',[
             'Post_with_User' => $Post_with_User,
@@ -102,31 +100,33 @@ class DisplayController extends Controller
     }
 
     //【いいね機能】
+    //web.phpのルーティングによってajaxlikeメソッドが実行される（？）
     public function ajaxlike(Request $request)
     {
+        //dd($request);
         $id = Auth::user()->id;
         $post_id = $request->post_id;
         $like = new Like;
         $post = Post::findOrFail($post_id);
 
-        // 空でない（既にいいねしている）なら
-        //Like.phpのlike_existの処理を実行
+        // 空でない/いいね済(Likeテーブル内にlike_exist($id, $post_id)が存在する場合（？）)なら
         if ($like->like_exist($id, $post_id)) {
-            //likesテーブルのレコードを削除(既にあるから削除)
+            //likesテーブルのレコードを削除(既にあるから削除)(いいね済→いいね未にする)
             $like = Like::where('post_id', $post_id)->where('user_id', $id)->delete();
+        //空/いいね未なら
         } else {
-            //空（まだ「いいね」していない）ならlikesテーブルに新しいレコードを作成する
+            //likesテーブルに新しいレコードを作成する(いいね未→いいね済にする)
             $like = new Like;
             $like->post_id = $request->post_id;
             $like->user_id = Auth::user()->id;
             $like->save();
         }
-
-        //loadCountとすればリレーションの数を○○_countという形で取得できる（今回の場合はいいねの総数）
+        
+        //postーlike間のリレーション数をカウントして、それをいいね数($postLikesCount)として取得
+        //(loadCountとすればリレーションの数を○○_countという形で取得できる（今回の場合いいねの総数）)
         $postLikesCount = $post->loadCount('likes')->likes_count;
 
-        //一つの変数にajaxに渡す値をまとめる
-        //今回ぐらい少ない時は別にまとめなくてもいいけど一応。笑
+        //一つの変数にajaxに渡す値をまとめる(今回ぐらい少ない時は別にまとめんくてもいい)
         $json = [
             'postLikesCount' => $postLikesCount,
         ];

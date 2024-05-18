@@ -26,7 +26,7 @@ class Post extends Model
     }
 
     //モデルとの関連性を記述(Postモデルと各データの紐づけを行う）(6-4P10参照)
-    public function like(){
+    public function likes(){
         return $this->hasMany('App\Like');
     }
 

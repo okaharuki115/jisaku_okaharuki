@@ -21,7 +21,6 @@
         <div>
             <a href="{{ route('editMypage')}}">編集</a><!--,['id' => $mypageId] を書いてたけど消した-->
             <a href="{{ route('withdraw')}}">退会</a>
-            <a href="{{ route('administer')}}">管理者画面</a>
         </div>
     </div>
 
