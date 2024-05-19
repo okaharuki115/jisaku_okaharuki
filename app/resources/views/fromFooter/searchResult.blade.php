@@ -1,8 +1,8 @@
 @extends('headerFooter')
 @section('content')
-        <div>【検索結果】</div>
-        <div>
-            <table>
+        <div class="text-center">【検索結果】</div>
+        <div class="mx-auto w-50">
+            <table class="table table-borderless" width="600px">
                 <thead>
                     <tr>
                         <th></th><!--「詳細」の上部分-->
@@ -36,8 +36,8 @@
             </table>
         </div>  
         
-        <div>
-            <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3'>戻る</button>
+        <div class="row justify-content-center">
+            <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3 text-center'>戻る</button>
         </div>
 @endsection
 

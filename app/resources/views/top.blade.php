@@ -1,7 +1,7 @@
 @extends('headerFooter')
 @section('content')
         <div class="text-center">全ユーザーの投稿一覧</div>
-        <div>
+        <div class="mx-auto w-50">
             <table class="table table-borderless" width="600px">
                 <thead>
                     <tr>

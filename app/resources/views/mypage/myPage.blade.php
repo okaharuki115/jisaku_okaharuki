@@ -1,28 +1,32 @@
 @extends('headerFooter')
 
 @section('content')
-    <div><!--上半分-->
-        <div>
+    <!--上半分-->
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
             <!--↓【アイコン表示】（「もしアイコン画像の情報があれば表示させる」とするのでifで囲む）-->
+            <div class="px-4 me-sm-3">
             @if(Auth::user()->icon)
-            <div>
-                <img src="{{ asset('img/mypage/' . Auth::user()->id . '/' . Auth::user()->icon) }}" class="img-fluid" alt="" width="50" height="50" >
-            </div>
+                <img src="{{ asset('img/mypage/' . Auth::user()->id . '/' . Auth::user()->icon) }}" class="img-fluid" alt="" width="60" height="60" >
             @else
             @endif
+            </div>
             <!--↑【アイコン表示】-->
 
-            <div>
+            <div class="px-4">
                 <div>{{ Auth::user()->name }}</div><!--ユーザー名表示-->
                 <div>{{ Auth::user()->email }}</div><!--メールアドレス表示-->
             </div>
         </div>
         
-        <div>
-            <a href="{{ route('editMypage')}}">編集</a><!--,['id' => $mypageId] を書いてたけど消した-->
-            <a href="{{ route('withdraw')}}">退会</a>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-end">
+            <div class="px-4">
+                <a href="{{ route('editMypage')}}">編集</a><!--,['id' => $mypageId] を書いてたけど消した-->
+            </div>  
+            <div class="px-4">
+                <a href="{{ route('withdraw')}}">退会</a>
+            </div> 
         </div>
-    </div>
+    
 
     <div class="mx-auto w-75"><!--下半分-->
         <div class="row gx-4 gx-lg-5 row-cols-4 row-cols-md-4 row-cols-xl-4 justify-content-center">

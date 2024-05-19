@@ -7,15 +7,21 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                        <div>
-                            <div>タイトル</div>
-                            <div>{{ $Post_with_User['title'] }}</div><!--タイトル表示-->
-                        </div>
-                    
-                        <div>
-                            <div>内容</div>
-                            <div>{{ $Post_with_User['content'] }}</div><!--内容表示-->
-                        </div>
+                    <div class="mx-auto w-50">
+                        <table class="table table-borderless" width="600px">
+                            <tbody>
+                                <tr>
+                                    <td class="p-2">タイトル</td>
+                                    <td class="p-2">{{ $Post_with_User['title'] }}</td><!--タイトル表示-->
+                                </tr>
+                            
+                                <tr>
+                                    <td class="p-2">内容</td>
+                                    <td class="p-2">{{ $Post_with_User['content'] }}</td><!--内容表示-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                         <!--↓バリデーション(6-5P8参照)-->
                         <div class ='panel-body'>
@@ -46,7 +52,7 @@
                         </form>
                         
                         <div>
-                            <button type="button" onClick="history.back()">戻る</button>
+                            <button type="button" class='btn btn-primary w-10 mt-3' onClick="history.back()">戻る</button>
                         </div>
 
                     

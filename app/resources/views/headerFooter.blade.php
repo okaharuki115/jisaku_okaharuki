@@ -26,17 +26,20 @@
 <body>
     <div>
 
-        <nav>
-            <div><!--ロゴ(クリックしたらtop.phpに飛ぶ)-->
+        <nav class="navbar navbar-expand-lg text-uppercase" id="mainNav">
+        <div class="container">
+            <div class="col-md center-block"><!--ロゴ(クリックしたらtop.phpに飛ぶ)-->
                 <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" class="img-fluid" alt="" width="50" height="50"></a>
             </div>
             
-            <div>
+            <div class="row">
                 <!--ログイン中の場合-->
                 @if(Auth::check())
+                <div class="col">
                     <span>{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
-                    
+                </div>    
                     <!--ログアウト機能-->
+                <div class="col">
                     <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: note;">
                          @csrf
@@ -47,17 +50,22 @@
                         document.getElementById('logout-form').submit();
                         });
                     </script>
+                </div>
                     <!--ログアウト機能-->
 
                 <!--ログイン中でない場合-->
                 @else
+                <div class="col">
                     <a href="{{ route('login') }}">ログイン</a><!--Auth内の「login」というルートを通す-->
+                </div>  
+                <div class="col"> 
                     <a href="{{ route('register') }}">新規登録</a><!--Auth内の「register」というルートを通す-->
+                </div> 
                 @endif
             </div>
-
+        </div>
             <!--↓いらんくなったら消す-->
-            <div>--------------------------------------------------------------------</div>
+            <!-- -------------------------------------------------------------------- -->
             
         </nav>
 
@@ -67,15 +75,19 @@
     @yield('content')<!--←この中に,他ファイルに書いてある(アット)sencion~(アット)endsectionまでの部分が入る-->
 
     <!--↓いらんくなったら消す-->
-    <div>--------------------------------------------------------------------</div>
+    <!-- -------------------------------------------------------------------- -->
 
-    <footer>
-        <!--ログイン中の場合（ログイン中でない場合はfooter表示しないので、elseは記述しない？）-->
+    <footer >
+        
+        <!--ログイン中の場合-->
         @if(Auth::check())
-            <a href="{{ route('searchPost') }}">投稿検索</a>
-            <a href="{{ route('newPost') }}">新規投稿</a>
-            <a href="{{ route('login') }}">マイページへ</a>
+        <div class="row justify-content-center">
+            <a href="{{ route('searchPost') }}" class="col-md text-center">投稿検索</a>
+            <a href="{{ route('newPost') }}" class="col-md text-center">新規投稿</a>
+            <a href="{{ route('login') }}" class="col-md text-center">マイページへ</a>
+        </div>
         @endif
+        
 
         
     </footer>

@@ -7,68 +7,74 @@
         color: red !important;
         }
     </style>
-    <div><img src="{{ asset('img/' . $otherId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="500" height="500"></div><!--【画像表示】-->
-    <div>
-        <div>
-            <!--↓【アイコン表示】-->
-            @if($Post_with_User['user']['icon'])
-            <div>
-                <img src="{{ asset('img/mypage/' . $Post_with_User['user']['id'] . '/' . $Post_with_User['user']['icon']) }}" class="img-fluid" alt="" width="50" height="50">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img src="{{ asset('img/' . $otherId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="500" height="500"></div><!--【画像表示】-->
+            <div class="col-md-6">
+                <div>
+                    <div><!--↓【アイコン表示】-->
+                        @if($Post_with_User['user']['icon'])
+                        <div>
+                            <img src="{{ asset('img/mypage/' . $Post_with_User['user']['id'] . '/' . $Post_with_User['user']['icon']) }}" class="img-fluid" alt="" width="50" height="50">
+                        </div>
+                        @else
+                        @endif
+                    </div><!--↑【アイコン表示】-->
+                    <div>{{ $Post_with_User['user']['name'] }}</div><!--ユーザー名表示-->
+                </div>
+                <div>
+                    <div>タイトル</div>
+                    <div>{{ $Post_with_User['title'] }}</div><!--タイトル表示-->
+                </div>
+                <div>
+                    <div>内容</div>
+                    <div>{{ $Post_with_User['content'] }}</div><!--内容表示-->
+                </div>
+                <div>
+                    <div>金額</div>
+                    <div>{{ $Post_with_User['amount'] }}</div><!--金額表示-->
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        @if(Auth::user())
+        <div>
+            <!--いいねされてるとき-->
+            <!--いいねされてるかどうかを、like_existメソッド(Like.php内に記述)で確認-->
+            <!-- 　　　　　　　　　　　　　　like_existに ↓この２つのidを渡す -->
+            @if($like_model->like_exist(Auth::user()->id,$otherId))
+                <p class="favorite-marke">
+                <!--「data-postid」はaタグ内に格納するpostid、「$otherId」はotherDetail.phpを表示させるためのotherDetailメソッド(at D‥Controller)から渡されたid情報-->
+                <a class="js-like-toggle loved" href="" data-postid="{{ $otherId }}"><i class="fas fa-heart"></i></a>
+                <span class="likesCount">{{$post_like->likes_count}}</span><!--$post_likeはotherDetailメソッド(at D‥Controller)から渡された-->
+                </p>
+            <!--いいねされてないとき-->
             @else
-            @endif
-            <!--↑【アイコン表示】-->
-            <div>{{ $Post_with_User['user']['name'] }}</div><!--ユーザー名表示-->
+                <p class="favorite-marke">
+                <a class="js-like-toggle" href="" data-postid="{{ $otherId }}"><i class="fas fa-heart"></i></a>
+                <span class="likesCount">{{$post_like->likes_count}}</span>
+                </p>
+            @endif​
         </div>
-        <div>
-            <div>タイトル</div>
-            <div>{{ $Post_with_User['title'] }}</div><!--タイトル表示-->
-        </div>
-        <div>
-            <div>内容</div>
-            <div>{{ $Post_with_User['content'] }}</div><!--内容表示-->
-        </div>
-        <div>
-            <div>金額</div>
-            <div>{{ $Post_with_User['amount'] }}</div><!--金額表示-->
-        </div>
-    </div>
-
-    @if(Auth::user())
-    <div>
-        <!--いいねされてるとき-->
-        <!--いいねされてるかどうかを、like_existメソッド(Like.php内に記述)で確認-->
-        <!-- 　　　　　　　　　　　　　　like_existに ↓この２つのidを渡す -->
-        @if($like_model->like_exist(Auth::user()->id,$otherId))
-            <p class="favorite-marke">
-            <!--「data-postid」はaタグ内に格納するpostid、「$otherId」はotherDetail.phpを表示させるためのotherDetailメソッド(at D‥Controller)から渡されたid情報-->
-            <a class="js-like-toggle loved" href="" data-postid="{{ $otherId }}"><i class="fas fa-heart"></i></a>
-            <span class="likesCount">{{$post_like->likes_count}}</span><!--$post_likeはotherDetailメソッド(at D‥Controller)から渡された-->
-            </p>
-        <!--いいねされてないとき-->
         @else
-            <p class="favorite-marke">
-            <a class="js-like-toggle" href="" data-postid="{{ $otherId }}"><i class="fas fa-heart"></i></a>
-            <span class="likesCount">{{$post_like->likes_count}}</span>
-            </p>
-        @endif​
+        <div>
+            <a href="{{ route('login') }}">ログイン</a>後お気に入り登録可能です
+        </div>
+        @endif
     </div>
-    @else
-    <div>
-        <a href="{{ route('login') }}">ログイン</a>後お気に入り登録可能です
-    </div>
-    @endif
 
-    <div>
-        <a href="{{ route('irai', ['id' => $otherId])}}" class="ml-5">
+    <div class="row justify-content-center">
+        <a href="{{ route('irai', ['id' => $otherId])}}" class="ml-5 text-center">
             <button class='btn btn-primary w-10 mt-3'>依頼</button><!--buttonの後ろの「type='submit'」削除した-->
         <a>
 
-        <a href="{{ route('ihan', ['id' => $otherId])}}" class="ml-5">
+        <a href="{{ route('ihan', ['id' => $otherId])}}" class="ml-5 text-center">
             <button class='btn btn-primary w-10 mt-3'>違反報告</button><!--buttonの後ろの「type='submit'」削除した-->
         <a>
         
-        <div>
+        <div class="ml-5 text-center">
             <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3'>戻る</button>
         </div>
     </div>

@@ -17,27 +17,30 @@
                             </div> 
 
                             <!--金額（プルダウン形式）-->
-                            <div>
-                                <label for='amount' class='mt-2'>金額</label>
-                                <select name='amount1' class='form-control'>
-                                    <option value="">選択してください</option>
-                                    <option value="10000">10000</option>
-                                    <option value="1000">1000</option>
-                                    <option value="100">100</option>
-                                    <option value="0">0</option>
-                                </select>
-                            </div>
+                            <label for='amount' class='mt-2'>金額</label>
+                            <div class="row">
+                                <div class="col">
+                                    
+                                    <select name='amount1' class='form-control'>
+                                        <option value="">選択してください</option>
+                                        <option value="10000">10000</option>
+                                        <option value="1000">1000</option>
+                                        <option value="100">100</option>
+                                        <option value="0">0</option>
+                                    </select>
+                                </div>
 
-                            <div>~</div>
+                                <div class="col-md-1">~</div>
 
-                            <div>
-                                <select name='amount2' class='form-control'>
-                                    <option value="">選択してください</option>
-                                    <option value="10000">10000</option>
-                                    <option value="1000">1000</option>
-                                    <option value="100">100</option>
-                                    <option value="0">0</option>
-                                </select>
+                                <div class="col">
+                                    <select name='amount2' class='form-control'>
+                                        <option value="">選択してください</option>
+                                        <option value="10000">10000</option>
+                                        <option value="1000">1000</option>
+                                        <option value="100">100</option>
+                                        <option value="0">0</option>
+                                    </select>
+                                </div>
                             </div>
                                 
                             <!--内容-->

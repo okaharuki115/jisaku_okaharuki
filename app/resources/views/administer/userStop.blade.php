@@ -9,19 +9,21 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                            <div>名前</div>
+                            <div class="text-center">名前</div>
                             <div><!--ユーザー名のデータ引っ張ってきて記述--></div>
 
-                            <div>このユーザーを停止させますか</div>
+                            <div class="text-center">このユーザーを停止させますか</div>
 
-                            <div>
-                                <form method="post" action="{{ route('userStopComplete',['id'=>$userStopId]) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <input type="submit" value="はい">
-                                </form>
+                            <div class="row justify-content-center">
+                                <div class="col-md text-center">
+                                    <form method="post" action="{{ route('userStopComplete',['id'=>$userStopId]) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="submit" class='btn btn-primary w-10 mt-3' value="はい">
+                                    </form>
+                                </div>
     
-                                <div>
+                                <div class="col-md text-center">
                                     <div onClick="history.back()"class='btn btn-primary w-10 mt-3'>いいえ</div>
                                 </div>
                             </div>

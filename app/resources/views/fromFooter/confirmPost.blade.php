@@ -41,7 +41,7 @@
                         </div>
 
                         <div>
-                            <button type="button" onClick="history.back()">戻る</button>
+                            <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3'>戻る</button>
                         </div>
 
                     </form><!--←これはsumbitのボタンの下に書く-->
