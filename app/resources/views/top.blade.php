@@ -2,7 +2,7 @@
 @section('content')
         <div class="text-center">全ユーザーの投稿一覧</div>
         <div>
-            <table class="table" width="600px">
+            <table class="table table-borderless" width="600px">
                 <thead>
                     <tr>
                         <th></th><!--「詳細」の上部分-->

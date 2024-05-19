@@ -42,7 +42,7 @@
 
                             <div>
                                 <label for='limit' class='mt-2'>期日</label>
-                                <input type='date' class='form-control' name='limit' id='limit'value="{{ $iraiModificationData['limit']}}"/>
+                                <input type='date' class='form-control' name='limit' id='limit' value="{{ $iraiModificationData['limit']}}"/>
                             </div>
 
                             <div class='row justify-content-center'>

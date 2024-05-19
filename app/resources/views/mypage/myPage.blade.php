@@ -24,17 +24,18 @@
         </div>
     </div>
 
-    <div><!--下半分-->
-        <div>
+    <div class="mx-auto w-75"><!--下半分-->
+        <div class="row gx-4 gx-lg-5 row-cols-4 row-cols-md-4 row-cols-xl-4 justify-content-center">
             <div>（自分の）投稿履歴</div>
             <div>お気に入り投稿履歴</div>
             <div>依頼（した）履歴</div>
             <div>依頼（された）履歴</div>
         </div>
 
-        <div>
-            <div>↓（自分の投稿履歴）</div><!--後で消す-->
+        <div class="row gx-4 gx-lg-5 row-cols-4 row-cols-md-4 row-cols-xl-4 justify-content-center">
+            
             <div><!--自分の投稿履歴-->
+                
                 @foreach($loginPostData as $loginPost)
                 <div>
                     <div>{{ $loginPost['title'] }}</div><!--タイトルを表示-->
@@ -45,20 +46,21 @@
                 @endforeach
             </div>
 
-            <div>↓（お気に入り投稿履歴）</div><!--後で消す-->
             <div><!--お気に入り投稿履歴-->
-                <!--アットforeach記述-->
+                
+                @foreach($favoritePostData as $favoritePost)
                 <div>
-                    <div></div><!--タイトルを表示-->
+                    <div>{{ $favoritePost['post']['title'] }}</div><!--タイトルを表示-->
                     <div>
-                        <a>詳細</a><!--リンク先追加-->
+                        <a href="{{ route('other.detail',['id'=>$favoritePost['post']['id']])}}">詳細</a>
                     </div>
                 </div>
-                <!--エンドforeach記述-->
+                @endforeach
             </div>
 
-            <div>↓（依頼した履歴）</div><!--後で消す-->
+            
             <div><!--依頼した履歴-->
+            
             <div>
                 @foreach($makeRequestData as $makeRequest)
                 @if(!empty($makeRequest['post']))
@@ -71,11 +73,11 @@
                 @endif
                 @endforeach
             </div>
+            </div>
             
             
-
-            <div>↓（依頼された履歴）</div><!--後で消す-->
             <div><!--依頼（された）履歴-->
+                
                 @foreach($receiveRequestData as $receiveRequest)
                 <div>
                     <div>{{ $receiveRequest['title'] }}</div><!--タイトルを表示-->

@@ -4,12 +4,12 @@
 
     <div>
         <div>
-            <div>タイトル</div>
+            <div>依頼された投稿のタイトル</div>
             <div>{{ $receiveRequestData['post']['title'] }}</div><!--タイトル表示-->
         </div>
         <div>
             <div>内容</div>
-            <div>{{ $receiveRequestData['post']['content'] }}</div><!--内容表示-->
+            <div>{{ $receiveRequestData['content'] }}</div><!--内容表示-->
         </div>
         <div>
             <div>電話番号</div>

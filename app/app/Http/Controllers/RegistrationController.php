@@ -182,8 +182,6 @@ class RegistrationController extends Controller
 
                 $editData->icon =$newImageName;//【アイコン登録】
 
-            }else {
-                $editData->icon ='';//【アイコン削除】
             }
             //▲【アイコン登録の記述】
 
@@ -273,8 +271,6 @@ class RegistrationController extends Controller
 
                 $record->image =$newImageName;//【画像登録】
 
-            }else {
-                $record->image ='';//【画像削除】
             }
             
             Auth::user()->post()->save($record);
@@ -458,7 +454,8 @@ class RegistrationController extends Controller
 
             Auth::user()->violation()->save($violation);
 
-            return redirect('/');
+            //処理が終わったらotherDetail.phpに戻る
+            return redirect()->route('other.detail', ['id' => $ihanRegistrationId]);
         }
         
         //6.マイページ→22.管理者画面へ飛ぶ 

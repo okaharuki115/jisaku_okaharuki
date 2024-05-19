@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Violation');
     }
 
+    //モデルとの関連性を記述(Postモデルと各データの紐づけを行う）(6-4P10参照)
+    public function like(){
+        return $this->hasMany('App\Like');
+    }
+
     //【退会処理】
     //モデルが論理削除フラグを使えるようにする
     use SoftDeletes;

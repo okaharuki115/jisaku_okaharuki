@@ -17,10 +17,15 @@ class DisplayController extends Controller
 
         $Post = new Post;//Postを使えるようにする
         $User = new User;
-
-        //postテーブル内のstatusが3でないレコードに絞って、userテーブルと結合させて取得、配列化
-        $allPost_allUser = Post::where('status', '!=', 3)-> with('user')->get()->toArray();
-        //dd($allPost_allUser);
+        if(Auth::user()){
+            //postテーブル内の,statusが3でない+user_idがログイン中のidでないレコードに絞って、userテーブルと結合させて取得、配列化
+            $id = Auth::id();
+            $allPost_allUser = Post::where('status', '!=', 3)->where('user_id', '!=' ,$id)-> with('user')->get()->toArray();
+        }else{
+            //postテーブル内のstatusが3でないレコードに絞って、userテーブルと結合させて取得、配列化
+            $allPost_allUser = Post::where('status', '!=', 3)-> with('user')->get()->toArray();
+            //dd($allPost_allUser);
+        }
 
         //top.blade.phpに情報を渡す
         return view('top',[
@@ -46,20 +51,23 @@ class DisplayController extends Controller
     //6.マイページへ
     public function mypage(){
 
-        //memo：$allPost_allUser = Post::where('status', '!=', 3)-> with('user')->get()->toArray();
-
         //▼自分の投稿履歴を表示させるための記述
         //ログイン中のユーザーが登録した、Postテーブルのデータでstatusが3でないものに絞って取得して配列化したものを$loginPostDataとする
         $loginPostData = Auth::user()->post()->where('status', '!=', 3)->get()->toArray();
         //dd($loginPostData);
 
+        //▼お気に入り投稿履歴を表示させるための記述
+        $favoritePostData = Auth::user()->like()->whereHas('post', function ($query) {
+                                    $query->where('status', '!=', 3);
+                                    })->with('post')->get()->toArray();
+        //dd($favoritePostData);
 
 
         //▼依頼した履歴一覧を表示させるための記述
         //$makeRequestData = Application::where('user_id', \Auth::user()->id)->with('post')->where('status', '!=', 3)->get()->toArray();
         
         //（ログイン中ユーザーによる(←これできてる？)）依頼にpostテーブルのデータを結合させて、postテーブル内のstatusが3でないものに絞って取得、配列化
-        $makeRequestData = Application::whereHas('post', function ($query) {
+        $makeRequestData = Auth::user()->application()->whereHas('post', function ($query) {
                                     $query->where('status', '!=', 3);
                                     })->with('post')->get()->toArray();
         //dd($makeRequestData);
@@ -72,6 +80,7 @@ class DisplayController extends Controller
 
         return view('mypage/myPage',[
             'loginPostData' => $loginPostData,
+            'favoritePostData' => $favoritePostData,
             'makeRequestData' => $makeRequestData,
             'receiveRequestData' => $receiveRequestData,
         ]);

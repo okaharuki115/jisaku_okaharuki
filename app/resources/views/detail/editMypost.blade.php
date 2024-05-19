@@ -41,7 +41,7 @@
 
                             <div>
                                 <label for='image' class='mt-2'>画像</label>
-                                <input type="file" name="image"id='image'><!--←【画像選択欄】-->
+                                <input type="file" name="image" id='image'><!--←【画像選択欄】-->
                             </div>
 
                             <div class='row justify-content-center'>

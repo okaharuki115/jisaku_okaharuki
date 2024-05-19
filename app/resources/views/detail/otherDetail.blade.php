@@ -34,6 +34,7 @@
         </div>
     </div>
 
+    @if(Auth::user())
     <div>
         <!--いいねされてるとき-->
         <!--いいねされてるかどうかを、like_existメソッド(Like.php内に記述)で確認-->
@@ -52,6 +53,11 @@
             </p>
         @endif​
     </div>
+    @else
+    <div>
+        <a href="{{ route('login') }}">ログイン</a>後お気に入り登録可能です
+    </div>
+    @endif
 
     <div>
         <a href="{{ route('irai', ['id' => $otherId])}}" class="ml-5">
