@@ -38,7 +38,7 @@
                 <div class="col">
                     <span>{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
                 </div>    
-                    <!--ログアウト機能-->
+                <!--ログアウト機能-->
                 <div class="col">
                     <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: note;">
@@ -51,7 +51,7 @@
                         });
                     </script>
                 </div>
-                    <!--ログアウト機能-->
+                <!--ログアウト機能-->
 
                 <!--ログイン中でない場合-->
                 @else

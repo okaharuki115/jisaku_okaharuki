@@ -9,8 +9,8 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                            <div class="text-center">名前</div>
-                            <div><!--ユーザー名のデータ引っ張ってきて記述--></div>
+                            
+                            <div class="text-center">{{ $stopUser['name'] }}</div>
 
                             <div class="text-center">このユーザーを停止させますか</div>
 

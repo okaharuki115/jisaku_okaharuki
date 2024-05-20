@@ -40,20 +40,27 @@ class AdminController extends Controller
     //22.管理者画面→23.投稿表示停止画面へ　(at 22.管理者画面)投稿一覧の「停止」を押したとき
     public function postStop(int $postStopId){
 
-        //statusが３の場合は停止中ですっていう画面を表示させたい
         $post = new Post;
         $stopPost = $post->find($postStopId);
-        if($stopPost->status==3){
-            return view('administer/stopNow',[
-            ]);
-        }
-        //statusが３の場合は停止中ですっていう画面を表示させたい
+        //dd($stopPost);
 
-        else{
-            return view('administer/postDisplayStop',[
-                'postStopId' => $postStopId,
-            ]);
-        }
+        //statusが３の場合は停止中ですっていう画面を表示させたい
+        // $post = new Post;
+        // $stopPost = $post->find($postStopId);
+        // if($stopPost->status==3){
+        //     return view('administer/stopNow',[
+        //     ]);
+        // }
+        // else{
+        //     return view('administer/postDisplayStop',[
+        //         'postStopId' => $postStopId,
+        //     ]);
+        // }
+        //statusが３の場合は停止中ですっていう画面を表示させたい
+        return view('administer/postDisplayStop',[
+            'postStopId' => $postStopId,
+            'stopPost' => $stopPost,
+        ]);
     }
 
     //(at 23.投稿表示停止画面)この投稿を停止させますかで「はい」を押したときの処理
@@ -70,9 +77,14 @@ class AdminController extends Controller
     //22.管理者画面→24.ユーザー停止画面へ　(at 22.管理者画面)ユーザー一覧の「停止」を押したとき
     public function userStop(int $userStopId){
 
-            return view('administer/userStop',[
-                'userStopId' => $userStopId,
-            ]);
+        $user = new User;
+        $stopUser = $user->find($userStopId);
+        //dd($stopUser);
+
+        return view('administer/userStop',[
+            'userStopId' => $userStopId,
+            'stopUser' => $stopUser,
+        ]);
     }
 
     //(at 24.ユーザー停止画面)このユーザーを停止させますかで「はい」を押したとき【ユーザー停止処理】 

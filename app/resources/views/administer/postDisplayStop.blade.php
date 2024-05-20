@@ -9,8 +9,8 @@
                 <div class="card-body">
                     <div class="card-body">
 
-                            <div class="text-center">タイトル</div>
-                            <div><!--タイトルのデータ引っ張ってきて記述--></div>
+                            
+                            <div class="text-center">{{ $stopPost['title'] }}</div>
 
                             <div class="text-center">この投稿を停止させますか</div>
 
