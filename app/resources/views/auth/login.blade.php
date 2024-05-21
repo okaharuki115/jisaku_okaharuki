@@ -1,6 +1,14 @@
 @extends('headerFooter')
 
 @section('content')
+<style>
+        /* 背景色設定 */
+        .bg-color {
+            background-color: #EFE9D1;
+        }
+
+</style>
+<div class="bg-color">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -101,5 +109,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
