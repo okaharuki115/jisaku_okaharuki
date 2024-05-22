@@ -2,11 +2,20 @@
 
 @section('content')
 <style>
-        /* 背景色設定 */
-        .bg-color {
-            background-color: #EABB3A;
-            
+        /*↓背景色をbodyタグ全体に適用させる*/
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
+        body {
+            background-color: #EABB3A; /* 好きな背景色に変更 */
+        }
+        #app {
+            flex: 1;
+        }
+        /*↑背景色をbodyタグ全体に適用させる*/
+
         /* テキストの色を紺色に設定 */
         .textcolor-navy {
             color: #070868; 
@@ -16,8 +25,13 @@
             color: #070868; /* 文字色を紺色に設定 */
             padding:10px
         }
+        /*フォントを太くする*/
+        .custom-font-weight {
+            font-weight: 700; /* 400はnormal、700はbold */
+        }
 </style>
-<div class="bg-color full-height">
+<body>
+<div id="app">
     <div>
     <!--上半分-->
         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center p-3">
@@ -52,7 +66,7 @@
                 <span class="fa-stack fa-4x">
                     <img src="{{ asset('img/player/player1.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
                 </span>
-                <h4 class="my-3" class="text-white">posted</h6>
+                <h4 class="my-3 textcolor-navy custom-font-weight">posted</h6>
                 <div><!--自分の投稿履歴-->
                     @foreach($loginPostData as $loginPost)
                     <div class="container">
@@ -70,7 +84,7 @@
                 <span class="fa-stack fa-4x">
                     <img src="{{ asset('img/player/player2.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
                 </span>
-                <h4 class="my-3" class="text-white">favorite</h6>
+                <h4 class="my-3 textcolor-navy custom-font-weight">favorite</h6>
                 <div><!--お気に入り投稿履歴-->
                     @foreach($favoritePostData as $favoritePost)
                     <div class="container">
@@ -88,7 +102,7 @@
                 <span class="fa-stack fa-4x">
                     <img src="{{ asset('img/player/player3.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
                 </span>
-                <h4 class="my-3" class="text-white">made a request</h6>
+                <h4 class="my-3 textcolor-navy custom-font-weight">made a request</h6>
                 <div><!--依頼した履歴-->
                     @foreach($makeRequestData as $makeRequest)
                     @if(!empty($makeRequest['post']))
@@ -108,7 +122,7 @@
                 <span class="fa-stack fa-4x">
                     <img src="{{ asset('img/player/player4.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
                 </span>
-                <h4 class="my-3" class="text-white">requested</h6>
+                <h4 class="my-3 textcolor-navy custom-font-weight">requested</h6>
                 <div><!--依頼（された）履歴-->  
                     @foreach($receiveRequestData as $receiveRequest)
                     <div class="container">
@@ -127,7 +141,8 @@
 
 
     </div>   
-</div>   
+</div>  
+</body> 
         
 
 

@@ -1,21 +1,40 @@
 @extends('headerFooter')
 @section('content')
 <style>
-        /* 背景色設定 */
-        .bg-color {
-            background-color: #EABB3A;
+        /*↓背景色をbodyタグ全体に適用させる*/
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
+        body {
+            background-color: #EABB3A; /* 好きな背景色に変更 */
+        }
+        #app {
+            flex: 1;
+        }
+        /*↑背景色をbodyタグ全体に適用させる*/
+
+        /* 背景色設定 */
+        /* .bg-color {
+            background-color: #EABB3A;
+        } */
         /* テキストの色を紺色に設定
         .textcolor-navy {
             color: #070868; 
         } */
+        /*フォントを太くする*/
+        .custom-font-weight {
+            font-weight: 700; /* 400はnormal、700はbold */
+        }
         
 
 </style>
-<div class="bg-color">
+<body>
+<div id="app" class="bg-color">
     <div>
         
-        <h2 class="page-section-heading text-center text-white text-uppercase p-5">postlist</h2>
+        <h2 class="page-section-heading text-center text-white custom-font-weight text-uppercase p-5">postlist</h2>
             <div class="mx-auto w-50">
                 <table class="table table-borderless" width="600px">
                     <thead>
@@ -52,5 +71,6 @@
           
     </div>   
 </div>   
+</body>
 @endsection
 

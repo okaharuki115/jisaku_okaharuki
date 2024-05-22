@@ -40,7 +40,7 @@
         }
         /* フッターを画面の最下部に固定 */
         .footer {
-            position: absolute;
+            position: relative;
             bottom: 0;
             width: 100%;
             /* ↓？？？設定しようと思ったら辺になる（footerの上に線を引く） */
@@ -62,7 +62,7 @@
 
 </style>
 
-<body>
+
 <header class="header">
 <div>
     <div class="custom-bg">
@@ -96,7 +96,7 @@
                     <!--ログイン中でない場合-->
                     @else
                     <div class="col">
-                        <a href="{{ route('login') }}" class="ttext-white">ログイン</a><!--Auth内の「login」というルートを通す-->
+                        <a href="{{ route('login') }}" class="text-white">ログイン</a><!--Auth内の「login」というルートを通す-->
                     </div>  
                     <div class="col"> 
                         <a href="{{ route('register') }}" class="text-white">新規登録</a><!--Auth内の「register」というルートを通す-->
@@ -129,5 +129,5 @@
     </div>     
 </footer>
 
-</body>
+
 </html>

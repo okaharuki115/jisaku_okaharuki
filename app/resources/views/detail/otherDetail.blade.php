@@ -1,12 +1,26 @@
 @extends('headerFooter')
 
 @section('content')
-    <!--【いいね機能】いいねを押したときに追加するclassの内容を記述-->
-    <style>
-        .loved i {
-        color: red !important;
-        }
-    </style>
+<style>
+    /*【いいね機能】いいねを押したときに追加するclassの内容を記述*/
+    .loved i {
+    color: red !important;
+    }
+    /*↓背景色をbodyタグ全体に適用させる*/
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: #EABB3A; /* 好きな背景色に変更 */
+    }
+    #app {
+        flex: 1;
+    }
+</style>
+<body>
+<div id="app" class="bg-color">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6"><img src="{{ asset('img/' . $otherId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="500" height="500"></div><!--【画像表示】-->
@@ -15,7 +29,7 @@
                     <div><!--↓【アイコン表示】-->
                         @if($Post_with_User['user']['icon'])
                         <div>
-                            <img src="{{ asset('img/mypage/' . $Post_with_User['user']['id'] . '/' . $Post_with_User['user']['icon']) }}" class="img-fluid" alt="" width="50" height="50">
+                            <img src="{{ asset('img/mypage/' . $Post_with_User['user']['id'] . '/' . $Post_with_User['user']['icon']) }}" class="img-fluid rounded-circle" alt="" width="50" height="50">
                         </div>
                         @else
                         @endif
@@ -78,6 +92,8 @@
             <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3'>戻る</button>
         </div>
     </div>
+</div>
+</body>
 
 
     <!--【いいね機能】-->
