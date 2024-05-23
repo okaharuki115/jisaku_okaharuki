@@ -14,6 +14,28 @@
         #app {
             flex: 1;
         }
+        /* テキストの色をチャコールグレーに設定 */
+        .textcolor-darkgray {
+            color: #424242; 
+        }
+        /* ボタンの色を変更する */
+        .btn-custom {
+            background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 30px;
+        }
+        /*フォントを太くする*/
+        .custom-font-weight {
+            font-weight: 700; /* 400はnormal、700はbold */
+        }
+        /* ボタンの色を変更する */
+        .btn-custom {
+            background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 30px;
+        }
 
 </style>
 <body>
@@ -21,7 +43,7 @@
 
 <main class="py-4">
         <div class="col-md-5 mx-auto">
-            <div class="card">
+            
                 <div class="card-body">
                     <div class="card-body">
 
@@ -30,12 +52,12 @@
                         <div> 
                             <!--タイトル-->
                             <div>
-                                <label for='title' class='mt-2'>タイトル</label>
+                                <label for='title' class='mt-2 custom-font-weight textcolor-darkgray'>タイトル</label>
                                 <input type='text' class='form-control' name='title' id='title'/><!--value追加未-->
                             </div> 
 
                             <!--金額（プルダウン形式）-->
-                            <label for='amount' class='mt-2'>金額</label>
+                            <label for='amount' class='mt-2 custom-font-weight textcolor-darkgray'>金額</label>
                             <div class="row">
                                 <div class="col">
                                     
@@ -48,7 +70,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-1">~</div>
+                                <div class="col-md-1 custom-font-weight textcolor-darkgray">~</div>
 
                                 <div class="col">
                                     <select name='amount2' class='form-control'>
@@ -63,12 +85,12 @@
                                 
                             <!--内容-->
                             <div>
-                                <label for='content' class='mt-2'>内容</label>
+                                <label for='content' class='mt-2 custom-font-weight textcolor-darkgray'>内容</label>
                                 <input type='text' class='form-control' name='content' id='content'/><!--value追加未-->
                             </div> 
                                                   
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>検索</button>
+                                <button type='submit' class='btn-custom w-25 mt-3'>検索</button>
                             </div>
 
                         </div>
@@ -77,7 +99,7 @@
                     </div>
 
                 </div>
-            </div>
+            
         </div>
     </main>
 </div>

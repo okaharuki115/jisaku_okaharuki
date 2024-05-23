@@ -20,6 +20,18 @@
         .custom-font-weight {
             font-weight: 700; /* 400はnormal、700はbold */
         }
+        /* ボタンの色を変更する */
+        .btn-custom {
+            background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
+        /* 詳細ボタン aタグの文字色を変更*/
+        a.custom-link {
+            color: #FFFFFF; 
+            padding:10px
+        }
 
 </style>
 <body>
@@ -41,7 +53,9 @@
                 @foreach($posts as $post) 
                 <tr>
                     <th>
-                        <a href="{{ route('other.detail',['id'=>$post['id']])}}">詳細</a>
+                        <button type="button" class="btn-custom">
+                            <a href="{{ route('other.detail',['id'=>$post['id']])}}" class="custom-link">詳細</a>
+                        </button>
                     </th>
                     <th><!--↓【アイコン表示】-->
                         @if($post['user']['icon'])
@@ -62,7 +76,7 @@
         </div>  
         
         <div class="row justify-content-center">
-            <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3 text-center'>戻る</button>
+            <button type="button" onClick="history.back()" class='btn-custom p-2 mb-3 text-center'>戻る</button>
         </div>
 </div>
 </body>

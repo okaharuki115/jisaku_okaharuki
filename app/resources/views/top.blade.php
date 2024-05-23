@@ -19,13 +19,26 @@
         /* .bg-color {
             background-color: #EABB3A;
         } */
-        /* テキストの色を紺色に設定
-        .textcolor-navy {
-            color: #070868; 
-        } */
+
+        /* テキストの色をチャコールグレーに設定 */
+        .textcolor-darkgray {
+            color: #424242; 
+        }
         /*フォントを太くする*/
         .custom-font-weight {
             font-weight: 700; /* 400はnormal、700はbold */
+        }
+        /* 詳細ボタン aタグの文字色を変更*/
+        a.custom-link {
+            color: #FFFFFF; 
+            padding:10px
+        }
+        /* ボタンの色を変更する */
+        .btn-custom {
+            background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 30px;
         }
         
 
@@ -34,7 +47,7 @@
 <div id="app" class="bg-color">
     <div>
         
-        <h2 class="page-section-heading text-center text-white custom-font-weight text-uppercase p-5">postlist</h2>
+        <h2 class="page-section-heading text-center textcolor-darkgray custom-font-weight text-uppercase p-5">postlist</h2>
             <div class="mx-auto w-50">
                 <table class="table table-borderless" width="600px">
                     <thead>
@@ -50,7 +63,9 @@
                         @foreach($posts_users as $post_user) 
                         <tr>
                             <th>
-                                <a href="{{ route('other.detail',['id'=>$post_user['id']])}}">詳細</a>
+                                <button type="button" class="btn-custom">
+                                    <a href="{{ route('other.detail',['id'=>$post_user['id']])}}" class="custom-link">詳細</a>
+                                </button>
                             </th>
                             <th><!--↓【アイコン表示】-->
                                 @if($post_user['user']['icon'])

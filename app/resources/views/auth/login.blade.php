@@ -14,6 +14,28 @@
     #app {
         flex: 1;
     }
+    /* ボタンの色を変更する */
+    .btn-custom {
+        background-color: #424242;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+    }
+    /* テキストの色をチャコールグレーに設定 */
+    .textcolor-darkgray {
+        /* color: #070868;  */
+        color: #424242;
+    }
+    /*フォントを太くする*/
+    .custom-font-weight {
+        font-weight: 700; /* 400はnormal、700はbold */
+    }
+    /* 詳細ボタン aタグの文字色を変更*/
+    a.custom-link {
+        color: #E58F04; 
+        padding:10px
+    }
 </style>
 <body>
 <div id="app" class="bg-color">
@@ -103,11 +125,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn-custom">
                                     {{ __('Login') }}
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link custom-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             </div>

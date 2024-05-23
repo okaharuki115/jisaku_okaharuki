@@ -14,6 +14,30 @@
     #app {
         flex: 1;
     }
+    /* テキストの色をチャコールグレーに設定 */
+    .textcolor-darkgray {
+            color: #424242; 
+        }
+    /* ボタンの色を変更する */
+    .btn-custom {
+            background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 2px;
+        }
+    /* サブボタンの色を変更する */
+    .sub-btn-custom {
+            background-color: #FFFFFF;
+            color: #424242;
+            border: 2px solid #424242;
+            border-radius: 10px;
+            padding: 2px;
+        }
+    /*フォントを太くする*/
+    .custom-font-weight {
+        font-weight: 700; /* 400はnormal、700はbold */
+    }
 </style>
 <body>
     <div id="app" class="bg-color">
@@ -31,33 +55,33 @@
                                     <input type="hidden" class='form-control' name="image" value="{{ $newImageName }}"><!--←【画像版記述】-->
 
                                     <div>                            
-                                    <div>
-                                        <label for='title'>タイトル</label>
-                                        <div>{{ $newData['title']}}</div><!--タイトルデータ引っ張ってきて記述-->
+                                    <div class="row custom-font-weight textcolor-darkgray">
+                                        <label for='title' class="mr-5 ml-3">タイトル</label>
+                                        <div class="ml-1">{{ $newData['title']}}</div><!--タイトルデータ引っ張ってきて記述-->
                                     </div>
                                     
-                                    <div>
-                                        <label for='amount' class='mt-2'>金額</label>
-                                        <div>{{ $newData['amount']}}</div>
+                                    <div class="row custom-font-weight textcolor-darkgray">
+                                        <label for='amount' class='mr-5 ml-3'>金額</label>
+                                        <div class="ml-4">{{ $newData['amount']}}</div>
                                     </div>
 
-                                    <div>
-                                        <label for='content' class='mt-2'>内容</label>
-                                        <div>{{ $newData['content']}}</div>
+                                    <div class="row custom-font-weight textcolor-darkgray">
+                                        <label for='content' class='mr-5 ml-3'>内容</label>
+                                        <div class="ml-4">{{ $newData['content']}}</div>
                                     </div>
 
-                                    <div>
-                                        <label for='content' class='mt-2'>画像</label>
-                                        <div><img src="{{ $image }}" class="img-fluid" alt="" width="700" height="700"></div><!--【画像表示】-->
+                                    <div class="custom-font-weight textcolor-darkgray">
+                                        <label for='content' class='mt-2 mr-5'>画像</label>
+                                        <div  class="justify-content-center"><img src="{{ $image }}" class="img-fluid" alt="" width="700" height="700"></div><!--【画像表示】-->
                                     </div>
 
                                     <div class='row justify-content-center'>
-                                        <button type='submit' class='btn btn-primary w-25 mt-3'>投稿</button>
+                                        <button type='submit' class='btn-custom w-25 mt-3'>投稿</button>
                                     </div> 
                                 </div>
 
                                 <div>
-                                    <button type="button" onClick="history.back()" class='btn btn-primary w-10 mt-3'>戻る</button>
+                                    <button type="button" onClick="history.back()" class='sub-btn-custom w-25 mt-3'>戻る</button>
                                 </div>
 
                             </form><!--←これはsumbitのボタンの下に書く-->

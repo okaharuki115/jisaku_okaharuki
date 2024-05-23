@@ -14,6 +14,35 @@
     #app {
         flex: 1;
     }
+    /* テキストの色をチャコールグレーに設定 */
+    .textcolor-darkgray {
+        /* color: #070868;  */
+        color: #424242;
+    }
+    /* 詳細ボタン aタグの文字色を変更*/
+    a.custom-link {
+        color: #FFFFFF; 
+        padding:10px
+    }
+    /* ボタンの色を変更する */
+    .btn-custom {
+        background-color: #424242;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+    }/* サブボタンの色を変更する */
+    .sub-btn-custom {
+            background-color: #FFFFFF;
+            color: #424242;
+            border: 2px solid #424242;
+            border-radius: 10px;
+            padding: 2px;
+        }
+    /*フォントを太くする*/
+    .custom-font-weight {
+        font-weight: 700; /* 400はnormal、700はbold */
+    }
 </style>
 <body>
 <div id="app" class="bg-color">
@@ -41,27 +70,27 @@
                         @csrf
                         <div>                            
                             <div>
-                                <label for='name' class='mt-2'>ユーザー名</label>
+                                <label for='name' class='mt-2 textcolor-darkgray custom-font-weight'>ユーザー名</label>
                                 <input type='text' class='form-control' name='name' id='name' value="{{ $editData['name']}}"/>
                             </div>
                             
                             <div>
-                                <label for='email' class='mt-2'>メールアドレス</label>
+                                <label for='email' class='mt-2 textcolor-darkgray custom-font-weight'>メールアドレス</label>
                                 <input type='text' class='form-control' name='email' id='email' value="{{ $editData['email']}}"/>
                             </div>
 
                             <div>
-                                <label for="icon">アイコン</label>
+                                <label for="icon" class='textcolor-darkgray custom-font-weight'>アイコン</label>
                                 <input type="file" name="icon" id='icon'><!--←【アイコン画像選択欄】-->
                             </div>
 
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>変更</button>
+                                <button type='submit' class='btn-custom w-25 mt-3'>変更</button>
                             </div> 
                         </div>
 
                         <div>
-                            <button type="button" class='btn btn-primary w-10 mt-3' onClick="history.back()">戻る</button>
+                            <button type="button" class='sub-btn-custom w-25 mt-3' onClick="history.back()">戻る</button>
                         </div>
 
                     </form>
