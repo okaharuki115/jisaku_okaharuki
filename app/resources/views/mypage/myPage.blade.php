@@ -54,8 +54,8 @@
                 </div>
                 <!--↑【アイコン表示】-->
 
-                <div class="px-4">
-                    <div class="textcolor-darkgray custom-font-weight mt-1">{{ Auth::user()->name }}</div><!--ユーザー名表示-->
+                <div class="ml-3">
+                    <div class="textcolor-darkgray custom-font-weight mt-2">{{ Auth::user()->name }}</div><!--ユーザー名表示-->
                     <div class="textcolor-darkgray custom-font-weight mt-1">{{ Auth::user()->email }}</div><!--メールアドレス表示-->
                 </div>
             </div>

@@ -25,7 +25,15 @@
             background-color: #424242;
             color: white;
             border: none;
+            border-radius: 30px;
+        }
+        /* サブボタンの色を変更する */
+        .sub-btn-custom {
+            background-color: #FFFFFF;
+            color: #424242;
+            border: 2px solid #424242;
             border-radius: 10px;
+            padding: 8px 16px;
         }
         /* 詳細ボタン aタグの文字色を変更*/
         a.custom-link {
@@ -76,7 +84,7 @@
         </div>  
         
         <div class="row justify-content-center">
-            <button type="button" onClick="history.back()" class='btn-custom p-2 mb-3 text-center'>戻る</button>
+            <button type="button" onClick="history.back()" class='sub-btn-custom custom-font-weight mb-3 text-center'>戻る</button>
         </div>
 </div>
 </body>

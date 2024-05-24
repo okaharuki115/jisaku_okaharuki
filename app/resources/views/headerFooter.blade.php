@@ -43,22 +43,12 @@
             position: relative;
             bottom: 0;
             width: 100%;
-            /* ↓？？？設定しようと思ったら辺になる（footerの上に線を引く） */
-            /* border-top: 1px solid #FFFFFF; */
         }
         /* フォント変更 */
         body {
             /* font-family: 'Roboto', sans-serif; */
             font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
-        /* テキストの色を紺色に設定 */
-        /* .textcolor-navy {
-            color: #070868; 
-        } */
-        /* nav下に下線を引く */
-        /* .navbar-custom {
-        border-bottom: 1px solid #FFFFFF; 
-        } */
 
 </style>
 

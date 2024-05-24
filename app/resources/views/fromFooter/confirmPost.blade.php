@@ -24,7 +24,7 @@
             color: white;
             border: none;
             border-radius: 10px;
-            padding: 2px;
+            padding: 10px 20px;
         }
     /* サブボタンの色を変更する */
     .sub-btn-custom {
@@ -32,7 +32,7 @@
             color: #424242;
             border: 2px solid #424242;
             border-radius: 10px;
-            padding: 2px;
+            padding: 8px 16px;
         }
     /*フォントを太くする*/
     .custom-font-weight {
@@ -72,7 +72,7 @@
 
                                     <div class="custom-font-weight textcolor-darkgray">
                                         <label for='content' class='mt-2 mr-5'>画像</label>
-                                        <div  class="justify-content-center"><img src="{{ $image }}" class="img-fluid" alt="" width="700" height="700"></div><!--【画像表示】-->
+                                        <div  class="justify-content-center"><img src="{{ $image }}" class="img-fluid" alt="" width="500" height="500"></div><!--【画像表示】-->
                                     </div>
 
                                     <div class='row justify-content-center'>
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div>
-                                    <button type="button" onClick="history.back()" class='sub-btn-custom w-25 mt-3'>戻る</button>
+                                    <button type="button" onClick="history.back()" class='sub-btn-custom mt-3'>戻る</button>
                                 </div>
 
                             </form><!--←これはsumbitのボタンの下に書く-->

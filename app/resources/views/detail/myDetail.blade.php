@@ -45,7 +45,7 @@
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
                     @if($Post_with_User['image'])
-                    <div><img src="{{ asset('img/' . $myId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="500" height="500"></div><!--画像入れる-->
+                    <div><img src="{{ asset('img/' . $myId . '/' . $Post_with_User['image']) }}" class="img-fluid" alt="" width="400" height="400"></div><!--画像入れる-->
                     @else
                     @endif
                 </div>

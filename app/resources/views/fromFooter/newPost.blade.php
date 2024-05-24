@@ -25,6 +25,14 @@
             border: none;
             border-radius: 30px;
         }
+        /* サブボタンの色を変更する */
+        .sub-btn-custom {
+            background-color: #FFFFFF;
+            color: #424242;
+            border: 2px solid #424242;
+            border-radius: 10px;
+            padding: 8px 16px;
+        }
         /*フォントを太くする*/
         .custom-font-weight {
             font-weight: 700; /* 400はnormal、700はbold */
@@ -81,9 +89,7 @@
                             </div> 
                         </form>
 
-                        <div>
-                            <a href="{{ route('login') }}" class="text-white">マイページへ</a>
-                        </div>
+                        
                     </div>
                 </div>
             
