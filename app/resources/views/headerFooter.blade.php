@@ -39,11 +39,11 @@
             color: white;
         }
         /* フッターを画面の最下部に固定 */
-        .footer {
+        /* .footer {
             position: relative;
             bottom: 0;
             width: 100%;
-        }
+        } */
         /* フォント変更 */
         body {
             /* font-family: 'Roboto', sans-serif; */
@@ -58,18 +58,32 @@
     <div class="custom-bg">
         <nav class="navbar navbar-expand-lg w-100 text-uppercase navbar-custom" id="mainNav">
             <div class="container">
-                <div class="col-md center-block"><!--ロゴ(クリックしたらtop.phpに飛ぶ)-->
+            <div class="row">
+                <div class="col-md-2"><!--ロゴ(クリックしたらtop.phpに飛ぶ)--><!--center-block-->
                     <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" class="img-fluid" alt="" width="50" height="50"></a>
                 </div>
                 
+                <div class="col-md-10">
                 <div class="row">
-                    <!--ログイン中の場合-->
+                <!--↓ログイン後-->
                     @if(Auth::check())
+                    <div class="col">
+                        <a href="{{ route('searchPost') }}" class="text-white">投稿検索</a>
+                    </div> 
+
+                    <div class="col">
+                        <a href="{{ route('newPost') }}" class="text-white">新規投稿</a>
+                    </div> 
+
+                    <div class="col">
+                        <a href="{{ route('login') }}" class="text-white">マイページへ</a>
+                    </div> 
+
                     <div class="col">
                         <span class="text-white">{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
                     </div>    
-                    <!--ログアウト機能-->
-                    <div class="col">
+                    
+                    <div><!--ログアウト機能-->
                         <a href="#" id="logout" class="my-navbar-item text-white">ログアウト</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: note;">
                             @csrf
@@ -81,9 +95,10 @@
                             });
                         </script>
                     </div>
-                    <!--ログアウト機能-->
+                    
+                <!--↑ログイン後-->
 
-                    <!--ログイン中でない場合-->
+                <!--↓ログイン前-->
                     @else
                     <div class="col">
                         <a href="{{ route('login') }}" class="text-white">ログイン</a><!--Auth内の「login」というルートを通す-->
@@ -92,7 +107,10 @@
                         <a href="{{ route('register') }}" class="text-white">新規登録</a><!--Auth内の「register」というルートを通す-->
                     </div> 
                     @endif
+                <!--↑ログイン前-->
                 </div>
+                </div>
+            </div>
             </div>
         </nav>    
     </div>
@@ -100,24 +118,9 @@
 </header>
 @yield('content')<!--←この中に,他ファイルに書いてある(アット)sencion~(アット)endsectionまでの部分が入る-->
 
-    <!--↓いらんくなったら消す-->
-    <!-- -------------------------------------------------------------------- -->
 
-<footer class="footer">
-    <div>
-        <div class="custom-bg">
-            <!--ログイン中の場合-->
-            @if(Auth::check())
-            <div class="row justify-content-center">
-                <a href="{{ route('searchPost') }}" class="col-md text-center text-white">投稿検索</a>
-                <a href="{{ route('newPost') }}" class="col-md text-center text-white">新規投稿</a>
-                <a href="{{ route('login') }}" class="col-md text-center text-white">マイページへ</a>
-            </div>
-            
-            @endif
-        </div>
-    </div>     
-</footer>
+
+
 
 
 </html>
