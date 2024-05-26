@@ -56,59 +56,64 @@
 <header class="header">
 <div>
     <div class="custom-bg">
-        <nav class="navbar navbar-expand-lg w-100 text-uppercase navbar-custom" id="mainNav">
-            <div class="container">
-            <div class="row">
-                <div class="col-md-2"><!--ロゴ(クリックしたらtop.phpに飛ぶ)--><!--center-block-->
+        <nav class="navbar navbar-expand-lg text-uppercase navbar-custom" id="mainNav">
+            <div class="container-fluid">
+            <div class="d-flex justify-content-between w-100">
+                <div class="col-md-4"><!--ロゴ(クリックしたらtop.phpに飛ぶ)--><!--center-block-->
                     <a href="{{ route('move.top')}}"><img src="{{ asset('img/logo/logo2.png') }}" class="img-fluid" alt="" width="50" height="50"></a>
                 </div>
                 
-                <div class="col-md-10">
-                <div class="row">
-                <!--↓ログイン後-->
+                <div class="col-md-8">
+                    <!--↓ログイン後-->
                     @if(Auth::check())
-                    <div class="col">
-                        <a href="{{ route('searchPost') }}" class="text-white">投稿検索</a>
-                    </div> 
+                    <div class="d-flex flex-row justify-content-between"> 
 
-                    <div class="col">
-                        <a href="{{ route('newPost') }}" class="text-white">新規投稿</a>
-                    </div> 
+                        <div class="col mt-3">
+                            <a href="{{ route('searchPost') }}" class="text-white">投稿検索</a>
+                        </div> 
 
-                    <div class="col">
-                        <a href="{{ route('login') }}" class="text-white">マイページへ</a>
-                    </div> 
+                        <div class="col mt-3">
+                            <a href="{{ route('newPost') }}" class="text-white">新規投稿</a>
+                        </div> 
 
-                    <div class="col">
-                        <span class="text-white">{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
+                        <div class="col mt-3">
+                            <a href="{{ route('login') }}" class="text-white">マイページへ</a>
+                        </div>   
+
+                        <div class="col mt-3">
+                            <span class="text-white">【ユーザー】{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
+                        </div> 
+                        
+                        <div class="mt-3"><!--ログアウト機能-->
+                            <a href="#" id="logout" class="my-navbar-item text-white">ログアウト</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: note;">
+                                @csrf
+                            </form>
+                            <script>
+                                document.getElementById('logout').addEventListener('click', function(event){
+                                event.preventDefault();
+                                document.getElementById('logout-form').submit();
+                                });
+                            </script>
+                        </div>
+
                     </div>    
-                    
-                    <div><!--ログアウト機能-->
-                        <a href="#" id="logout" class="my-navbar-item text-white">ログアウト</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: note;">
-                            @csrf
-                        </form>
-                        <script>
-                            document.getElementById('logout').addEventListener('click', function(event){
-                            event.preventDefault();
-                            document.getElementById('logout-form').submit();
-                            });
-                        </script>
-                    </div>
-                    
-                <!--↑ログイン後-->
+                    <!--↑ログイン後-->
 
-                <!--↓ログイン前-->
-                    @else
-                    <div class="col">
-                        <a href="{{ route('login') }}" class="text-white">ログイン</a><!--Auth内の「login」というルートを通す-->
-                    </div>  
-                    <div class="col"> 
-                        <a href="{{ route('register') }}" class="text-white">新規登録</a><!--Auth内の「register」というルートを通す-->
-                    </div> 
-                    @endif
-                <!--↑ログイン前-->
-                </div>
+                        <!--↓ログイン前-->
+                        @else
+                        <div class="row">
+                            <div class="col mt-3">
+                                <a href="{{ route('login') }}" class="text-white">ログイン</a><!--Auth内の「login」というルートを通す-->
+                            </div>  
+                            <div class="col mt-3"> 
+                                <a href="{{ route('register') }}" class="text-white">新規登録</a><!--Auth内の「register」というルートを通す-->
+                            </div> 
+                        </div>
+                        
+                        @endif
+                        <!--↑ログイン前-->
+                    
                 </div>
             </div>
             </div>
