@@ -65,6 +65,7 @@
                                         <div class="ml-4">{{ $newData['amount']}}</div>
                                     </div>
 
+                                    
                                     <div class="row custom-font-weight textcolor-darkgray">
                                         <label for='content' class='mr-5 ml-3'>内容</label>
                                         <div class="ml-4">{{ $newData['content']}}</div>
