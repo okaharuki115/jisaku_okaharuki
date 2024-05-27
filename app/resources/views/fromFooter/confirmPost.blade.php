@@ -57,7 +57,7 @@
                                     <div>                            
                                     <div class="row custom-font-weight textcolor-darkgray">
                                         <label for='title' class="mr-5 ml-3">タイトル</label>
-                                        <div class="ml-1">{{ $newData['title']}}</div><!--タイトルデータ引っ張ってきて記述-->
+                                        <div>{{ $newData['title']}}</div><!--タイトルデータ引っ張ってきて記述-->
                                     </div>
                                     
                                     <div class="row custom-font-weight textcolor-darkgray">
