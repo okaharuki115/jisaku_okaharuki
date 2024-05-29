@@ -31,10 +31,15 @@
         }
         /* ボタンの色を変更する */
         .btn-custom {
-            background-color: #424242;
+            /* background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 30px; */
+            background: linear-gradient(45deg, #00B2B2, #f79200);/*f79200*/
             color: white;
             border: none;
             border-radius: 30px;
+            padding: 10px 20px;
         }
 
 </style>
@@ -42,10 +47,9 @@
 <div id="app" class="bg-color">
 
 <main class="py-4">
-        <div class="col-md-5 mx-auto">
+        <div class="col-md-5 mx-auto m-5">
             
-                <div class="card-body">
-                    <div class="card-body">
+                    <h2 class="page-section-heading text-center textcolor-darkgray custom-font-weight text-uppercase p-3">postsearch</h2>
 
                     <form action="{{ route('postSearch') }}" method="POST">
                         @csrf
@@ -90,15 +94,13 @@
                             </div> 
                                                   
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn-custom w-25 mt-3'>検索</button>
+                                <button type='submit' class='btn-custom custom-font-weight w-25 mt-3'>検索</button>
                             </div>
 
                         </div>
 
                     </form>
-                    </div>
-
-                </div>
+                 
             
         </div>
     </main>

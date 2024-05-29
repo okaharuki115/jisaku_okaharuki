@@ -39,6 +39,11 @@
         /* color: #070868;  */
         color: #424242;
     }
+    /* テキストの色を茶色に設定 */
+    .textcolor-brown {
+            /* color: #FF6D05; */
+            color: #B28500;
+    }
     /*フォントを太くする*/
     .custom-font-weight {
         font-weight: 700; /* 400はnormal、700はbold */
@@ -70,16 +75,16 @@
                 </div>
                 <table class="ml-5">
                     <tr>
-                        <th class="p-4">タイトル</th>
-                        <th class="p-4">{{ $Post_with_User['title'] }}</th><!--タイトル表示-->
+                        <th class="p-2 textcolor-brown">タイトル</th>
+                        <th class="p-4 text-white">{{ $Post_with_User['title'] }}</th><!--タイトル表示-->
                     </tr>
                     <tr>
-                        <th class="p-4">内容</th>
-                        <th class="p-4">{{ $Post_with_User['content'] }}</th><!--内容表示-->
+                        <th class="p-4 textcolor-brown">内容</th>
+                        <th class="p-4 text-white">{{ $Post_with_User['content'] }}</th><!--内容表示-->
                     </tr>
                     <tr>
-                        <th class="p-4">金額</th>
-                        <th class="p-4">{{ $Post_with_User['amount'] }}</th><!--金額表示-->
+                        <th class="p-4 textcolor-brown">金額</th>
+                        <th class="p-4 text-white">{{ $Post_with_User['amount'] }}</th><!--金額表示-->
                     </tr>
                 </table>
             </div>
@@ -96,13 +101,13 @@
                 <p class="favorite-marke">
                 <!--「data-postid」はaタグ内に格納するpostid、「$otherId」はotherDetail.phpを表示させるためのotherDetailメソッド(at D‥Controller)から渡されたid情報-->
                 <a class="js-like-toggle loved" href="" data-postid="{{ $otherId }}"><i class="fas fa-heart fa-2x"></i></a>
-                <span class="likesCount">{{$post_like->likes_count}}</span><!--$post_likeはotherDetailメソッド(at D‥Controller)から渡された-->
+                <span class="likesCount custom-font-weight text-white">{{$post_like->likes_count}}</span><!--$post_likeはotherDetailメソッド(at D‥Controller)から渡された-->
                 </p>
             <!--いいねされてないとき-->
             @else
                 <p class="favorite-marke">
                 <a class="js-like-toggle" href="" data-postid="{{ $otherId }}"><i class="fas fa-heart fa-2x"></i></a>
-                <span class="likesCount">{{$post_like->likes_count}}</span>
+                <span class="likesCount custom-font-weight text-white">{{$post_like->likes_count}}</span>
                 </p>
             @endif
         </div>

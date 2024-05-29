@@ -22,10 +22,24 @@
         }
         /* ボタンの色を変更する */
         .btn-custom {
-            background-color: #424242;
+            /* background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 30px; */
+            background: linear-gradient(45deg, #00B2B2, #f79200);/*f79200*/
             color: white;
             border: none;
             border-radius: 30px;
+        }
+        /* テキストの色をチャコールグレーに設定 */
+        .textcolor-darkgray {
+            /* color: #070868;  */
+            color: #424242;
+        }
+        /* テキストの色を茶色に設定 */
+        .textcolor-brown {
+            /* color: #FF6D05; */
+            color: #B28500;
         }
         /* サブボタンの色を変更する */
         .sub-btn-custom {
@@ -45,16 +59,16 @@
 <body>
 <div id="app" class="bg-color d-flex flex-column min-vh-100">
 
-    <h2 class="page-section-heading text-center text-white custom-font-weight text-uppercase p-4">search results</h2>
+    <h2 class="page-section-heading text-center textcolor-darkgray custom-font-weight text-uppercase p-4">search results</h2>
         <div class="mx-auto w-50">
             <table class="table table-borderless" width="600px">
                 <thead>
                     <tr>
                         <th></th><!--「詳細」の上部分-->
                         <th></th><!--「アイコン」の上部分-->
-                        <th scope='col' class="text-white">ユーザー名</th><!--col は、そのth要素が列方向に対する見出しであることを示す-->
-                        <th scope='col' class="text-white">タイトル</th>
-                        <th scope='col' class="text-white">金額</th>
+                        <th scope='col' class="textcolor-brown">ユーザー名</th><!--col は、そのth要素が列方向に対する見出しであることを示す-->
+                        <th scope='col' class="textcolor-brown">タイトル</th>
+                        <th scope='col' class="textcolor-brown">金額</th>
                     </tr>
                 </thead>
             <tbody>

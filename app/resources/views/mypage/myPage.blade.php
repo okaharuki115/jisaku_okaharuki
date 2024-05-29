@@ -21,15 +21,21 @@
             /* color: #070868;  */
             color: #424242;
         }
+        /* テキストの色を茶色に設定 */
+        .textcolor-brown {
+            /* color: #FF6D05; */
+            color: #B28500;
+        }
         /* 詳細ボタン aタグの文字色を変更*/
         a.custom-link {
-            color: #FFFFFF; 
-            padding:10px
+            color: #424242; 
+            padding:10px;
+            font-weight:bold;
         }
         /* ボタンの色を変更する */
         .btn-custom {
-            background-color: #424242;
-            color: white;
+            background-color: #FFFFFF;
+            color: #424242;
             border: none;
             border-radius: 30px;
         }
@@ -37,13 +43,21 @@
         .custom-font-weight {
             font-weight: 700; /* 400はnormal、700はbold */
         }
+        /* テキストをグラデーションにする */
+        .text-gradient {
+            background: linear-gradient(45deg, #00B2B2, #f79200);
+            -webkit-background-clip: text;
+            color: transparent;
+            /* background-clip: text; */
+        }
 </style>
 <body>
 <div id="app">
     <div>
     <!--上半分-->
-        <div class="row">
-            <div class="col-md-1"><!--d-grid gap-3 d-sm-flex justify-content-sm-center p-3--><!--col-md-1-->
+
+        <div class="row d-flex justify-content-center  mt-3">
+            
                 <!--↓【アイコン表示】（「もしアイコン画像の情報があれば表示させる」とするのでifで囲む）-->
 
                 <div class="mt-3 ml-3"><!--me-sm-3-->
@@ -54,19 +68,37 @@
                 </div>
                 <!--↑【アイコン表示】-->
 
-                <div class="ml-3">
-                    <div class="textcolor-darkgray custom-font-weight mt-2">{{ Auth::user()->name }}</div><!--ユーザー名表示-->
-                    <div class="textcolor-darkgray custom-font-weight mt-1">{{ Auth::user()->email }}</div><!--メールアドレス表示-->
-                </div>
-            </div>
+                
+                    <div class="text-white custom-font-weight mt-3 p-2">{{ Auth::user()->name }}</div><!--ユーザー名表示-->
+                    <div class="text-white custom-font-weight mt-3 p-2">{{ Auth::user()->email }}</div><!--メールアドレス表示-->
+                
+            
+
+            
+                 
+                    <div>
+                        <button type="button" class="btn-custom mt-3  p-2">
+                            <a href="{{ route('editMypage')}}" class="custom-link">編集</a><!--,['id' => $mypageId] を書いてたけど消した-->
+                        </button>
+                    </div>  
+                    <div>
+                        <button type="button" class="btn-custom mt-3 ml-2 p-2">
+                            <a href="{{ route('withdraw')}}" class="custom-link">退会</a>
+                        </button>
+                    </div> 
+                 
+            
+        </div>
+
+        <div class="row d-flex justify-content-center">
 
             <div class="col-md-10">
-                <div class="row text-center w-75 mx-auto">
+                <div class="row text-center w-78 mx-auto m-4">
                     <div class="col-md-3">
                         <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/player/player1.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
+                            <img src="{{ asset('img/blueIcon/posted.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
                         </span>
-                        <h4 class="my-3 textcolor-darkgray custom-font-weight">posted</h6>
+                        <h1 class="my-3 text-gradient custom-font-weight">posted</h1>
                         <div><!--自分の投稿履歴-->
                             @foreach($loginPostData as $loginPost)
                             <div class="container">
@@ -82,9 +114,9 @@
                     </div>
                     <div class="col-md-3">
                         <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/player/player2.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
+                            <img src="{{ asset('img/blueIcon/favorite.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
                         </span>
-                        <h4 class="my-3 textcolor-darkgray custom-font-weight">favorite</h6>
+                        <h1 class="my-3 text-gradient custom-font-weight">favorite</h1>
                         <div><!--お気に入り投稿履歴-->
                             @foreach($favoritePostData as $favoritePost)
                             <div class="container">
@@ -100,9 +132,9 @@
                     </div>
                     <div class="col-md-3">
                         <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/player/player3.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
+                            <img src="{{ asset('img/blueIcon/makerequest.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
                         </span>
-                        <h4 class="my-3 textcolor-darkgray custom-font-weight">made a request</h6>
+                        <h1 class="my-3 text-gradient custom-font-weight">made a request</h1>
                         <div><!--依頼した履歴-->
                             @foreach($makeRequestData as $makeRequest)
                             @if(!empty($makeRequest['post']))
@@ -120,9 +152,9 @@
                     </div>
                     <div class="col-md-3">
                         <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/player/player4.jpg') }}" class="img-fluid rounded-circle" alt="" width="80" height="80">
+                            <img src="{{ asset('img/blueIcon/requested.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
                         </span>
-                        <h4 class="my-3 textcolor-darkgray custom-font-weight">requested</h6>
+                        <h1 class="my-3 text-gradient custom-font-weight">requested</h1>
                         <div><!--依頼（された）履歴-->  
                             @foreach($receiveRequestData as $receiveRequest)
                             <div class="container">
@@ -139,20 +171,7 @@
                 </div>
             </div>
 
-            <div class="col-md-1"><!--d-grid gap-3 d-sm-flex justify-content-sm-end-->
-                <div class="row">   
-                    <div>
-                        <button type="button" class="btn-custom mt-3 mr-2 p-2">
-                            <a href="{{ route('editMypage')}}" class="custom-link">編集</a><!--,['id' => $mypageId] を書いてたけど消した-->
-                        </button>
-                    </div>  
-                    <div>
-                        <button type="button" class="btn-custom mt-2 mr-2 p-2">
-                            <a href="{{ route('withdraw')}}" class="custom-link">退会</a>
-                        </button>
-                    </div> 
-                </div> 
-            </div>
+            
         </div>
         <!--  -->
 

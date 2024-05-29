@@ -44,6 +44,14 @@
             bottom: 0;
             width: 100%;
         } */
+        /*フォントを太くする*/
+        .custom-font-weight {
+            font-weight: 700; /* 400はnormal、700はbold */
+        }
+        /* テキストの色をオレンジに設定 */
+        .textcolor-orange {
+            color: #FF6D05;
+        }
         /* フォント変更 */
         body {
             /* font-family: 'Roboto', sans-serif; */
@@ -66,26 +74,28 @@
                 <div class="col-md-8">
                     <!--↓ログイン後-->
                     @if(Auth::check())
-                    <div class="d-flex flex-row justify-content-between"> 
-
+                    <div class="d-flex flex-row justify-content-between">
+                        
                         <div class="col mt-3">
-                            <a href="{{ route('searchPost') }}" class="text-white">投稿検索</a>
+                            <span class="textcolor-orange custom-font-weight">{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
                         </div> 
 
                         <div class="col mt-3">
-                            <a href="{{ route('newPost') }}" class="text-white">新規投稿</a>
+                            <a href="{{ route('searchPost') }}" class="text-white custom-font-weight">投稿検索</a>
                         </div> 
 
                         <div class="col mt-3">
-                            <a href="{{ route('login') }}" class="text-white">マイページへ</a>
+                            <a href="{{ route('newPost') }}" class="text-white custom-font-weight">新規投稿</a>
+                        </div> 
+
+                        <div class="col mt-3">
+                            <a href="{{ route('login') }}" class="text-white custom-font-weight">マイページへ</a>
                         </div>   
 
-                        <div class="col mt-3">
-                            <span class="text-white">【ユーザー】{{ Auth::user()->name }}</span><!--ユーザーの名前を表示-->
-                        </div> 
+                        
                         
                         <div class="mt-3"><!--ログアウト機能-->
-                            <a href="#" id="logout" class="my-navbar-item text-white">ログアウト</a>
+                            <a href="#" id="logout" class="my-navbar-item text-white custom-font-weight">ログアウト</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: note;">
                                 @csrf
                             </form>
@@ -104,10 +114,10 @@
                         @else
                         <div class="row">
                             <div class="col mt-3">
-                                <a href="{{ route('login') }}" class="text-white">ログイン</a><!--Auth内の「login」というルートを通す-->
+                                <a href="{{ route('login') }}" class="text-white custom-font-weight">ログイン</a><!--Auth内の「login」というルートを通す-->
                             </div>  
                             <div class="col mt-3"> 
-                                <a href="{{ route('register') }}" class="text-white">新規登録</a><!--Auth内の「register」というルートを通す-->
+                                <a href="{{ route('register') }}" class="text-white custom-font-weight">新規登録</a><!--Auth内の「register」というルートを通す-->
                             </div> 
                         </div>
                         

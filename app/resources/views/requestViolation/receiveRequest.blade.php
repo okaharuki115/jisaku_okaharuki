@@ -35,6 +35,11 @@
         /* color: #070868;  */
         color: #424242;
     }
+    /* テキストの色を茶色に設定 */
+    .textcolor-brown {
+            /* color: #FF6D05; */
+            color: #B28500;
+        }
     /*フォントを太くする*/
     .custom-font-weight {
         font-weight: 700; /* 400はnormal、700はbold */
@@ -54,23 +59,23 @@
                         <tbody>
                             <tr>
                                 <td class="p-3 textcolor-darkgray custom-font-weight">依頼された投稿のタイトル</td>
-                                <td class="p-3 textcolor-darkgray custom-font-weight">{{ $receiveRequestData['post']['title'] }}</td><!--タイトル表示-->
+                                <td class="p-3 text-white custom-font-weight">{{ $receiveRequestData['post']['title'] }}</td><!--タイトル表示-->
                             </tr>
                             <tr>
                                 <td class="p-3 textcolor-darkgray custom-font-weight">内容</td>
-                                <td class="p-3 textcolor-darkgray custom-font-weight">{{ $receiveRequestData['content'] }}</td><!--内容表示-->
+                                <td class="p-3 text-white custom-font-weight">{{ $receiveRequestData['content'] }}</td><!--内容表示-->
                             </tr>
                             <tr>
                                 <td class="p-3 textcolor-darkgray custom-font-weight">電話番号</td>
-                                <td class="p-3 textcolor-darkgray custom-font-weight">{{ $receiveRequestData['tel'] }}</td><!--電話番号表示-->
+                                <td class="p-3 text-white custom-font-weight">{{ $receiveRequestData['tel'] }}</td><!--電話番号表示-->
                             </tr>
                             <tr>
                                 <td class="p-3 textcolor-darkgray custom-font-weight">メールアドレス</td>
-                                <td class="p-3 textcolor-darkgray custom-font-weight">{{ $receiveRequestData['email'] }}</td><!--メールアドレス表示-->
+                                <td class="p-3 text-white custom-font-weight">{{ $receiveRequestData['email'] }}</td><!--メールアドレス表示-->
                             </tr>
                             <tr>
                                 <td class="p-3 textcolor-darkgray custom-font-weight">期日</td>
-                                <td class="p-3 textcolor-darkgray custom-font-weight">{{ $receiveRequestData['limit'] }}</td><!--期日表示-->
+                                <td class="p-3 text-white custom-font-weight">{{ $receiveRequestData['limit'] }}</td><!--期日表示-->
                             </tr>
                         </tbody>
                     </table>

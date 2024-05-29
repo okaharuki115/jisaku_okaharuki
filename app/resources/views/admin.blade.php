@@ -23,7 +23,8 @@
         }
     /* ボタンの色を変更する */
     .btn-custom {
-            background-color: #424242;
+            /* background-color: #424242; (チャコールグレー)*/
+            background: linear-gradient(45deg, #00B2B2, #f79200);
             color: white;
             border: none;
             border-radius: 30px;
@@ -47,6 +48,11 @@
         /* color: #070868;  */
         color: #424242;
     }
+    /* テキストの色を茶色に設定 */
+    .textcolor-brown {
+        /* color: #FF6D05; */
+        color: #B28500;
+    }
     /* テキストの色をオレンジに設定 */
     .textcolor-orange {
         color: #FF6D05;
@@ -63,14 +69,14 @@
     <div class="row justify-content-center">
         <div class="col-md-5 d-flex justify-content-center">
             <div><!--ユーザー一覧-->
-                <h2 class="text-center text-white custom-font-weight text-uppercase">user list</h2>
+                <h2 class="text-center textcolor-darkgray custom-font-weight text-uppercase">user list</h2>
                 <table>
                     <thead>
                     </thead>
                 <tbody>
                     <tr>
-                        <th scope='col' class="p-2 textcolor-orange">ユーザー名</th>
-                        <th scope='col' class="p-2 textcolor-orange">表示停止投稿</th>
+                        <th scope='col' class="p-2 textcolor-brown">ユーザー名</th>
+                        <th scope='col' class="p-2 textcolor-brown">表示停止投稿</th>
                         <th scope='col'></th>
                     </tr>
                     @foreach($userlists as $userlist) 
@@ -91,15 +97,15 @@
     
         <div class="col-md-7 d-flex justify-content-center">
             <div><!--投稿一覧-->
-            <h2 class="text-center text-white custom-font-weight text-uppercase">post list</h2>
+            <h2 class="text-center textcolor-darkgray custom-font-weight text-uppercase">post list</h2>
                 <table>
                     <thead>
                     </thead>
                 <tbody>
                     <tr>
-                        <th scope='col' class="p-2 textcolor-orange">タイトル</th>
-                        <th scope='col' class="p-2 textcolor-orange">違反報告</th>
-                        <th scope='col' class="p-2 textcolor-orange">ユーザー名</th>
+                        <th scope='col' class="p-2 textcolor-brown">タイトル</th>
+                        <th scope='col' class="p-2 textcolor-brown">違反報告</th>
+                        <th scope='col' class="p-2 textcolor-brown">ユーザー名</th>
                         <th scope='col'></th>
                     </tr>
                     @foreach($postlists as $postlist) 

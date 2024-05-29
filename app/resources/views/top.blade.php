@@ -24,6 +24,11 @@
         .textcolor-darkgray {
             color: #424242; 
         }
+        /* テキストの色を茶色に設定 */
+        .textcolor-brown {
+            /* color: #FF6D05; */
+            color: #B28500;
+        }
         /*フォントを太くする*/
         .custom-font-weight {
             font-weight: 700; /* 400はnormal、700はbold */
@@ -35,7 +40,8 @@
         }
         /* ボタンの色を変更する */
         .btn-custom {
-            background-color: #424242;
+            /* background-color: #424242; */
+            background: linear-gradient(45deg, #00B2B2, #f79200);/*f79200*/
             color: white;
             border: none;
             border-radius: 30px;
@@ -54,9 +60,9 @@
                         <tr>
                             <th></th><!--「詳細」の上部分-->
                             <th></th><!--「アイコン」の上部分-->
-                            <th scope='col' class="text-white">ユーザー名</th><!--col は、そのth要素が列方向に対する見出しであることを示す-->
-                            <th scope='col' class="text-white">タイトル</th>
-                            <th scope='col' class="text-white">金額</th>
+                            <th scope='col' class="textcolor-brown">ユーザー名</th><!--col は、そのth要素が列方向に対する見出しであることを示す-->
+                            <th scope='col' class="textcolor-brown">タイトル</th>
+                            <th scope='col' class="textcolor-brown">金額</th>
                         </tr>
                     </thead>
                     <tbody>
