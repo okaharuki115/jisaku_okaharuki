@@ -20,10 +20,15 @@
         }
         /* ボタンの色を変更する */
         .btn-custom {
-            background-color: #424242;
+            /* background-color: #424242;
+            color: white;
+            border: none;
+            border-radius: 30px; */
+            background: linear-gradient(45deg, #00B2B2, #f79200);/*f79200*/
             color: white;
             border: none;
             border-radius: 30px;
+            padding: 8px 16px;
         }
         /* サブボタンの色を変更する */
         .sub-btn-custom {
@@ -85,7 +90,7 @@
                             </div>
 
                             <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-custom w-25 mt-3'>投稿</button>
+                                <button type='submit' class='btn btn-custom custom-font-weight w-25 mt-3'>投稿</button>
                             </div> 
                         </form>
 

@@ -26,9 +26,15 @@
             /* color: #FF6D05; */
             color: #B28500;
         }
-        /* 詳細ボタン aタグの文字色を変更*/
+        /*  aタグの文字色を変更*/
         a.custom-link {
             color: #424242; 
+            padding:10px;
+            font-weight:bold;
+        }
+        /* 詳細ボタンのaタグの文字色を変更*/
+        a.custom-sub-link {
+            color: #FFFFFF; 
             padding:10px;
             font-weight:bold;
         }
@@ -39,13 +45,20 @@
             border: none;
             border-radius: 30px;
         }
+        /* 詳細ボタンの色を変更する */
+        .sub-btn-custom {
+            background-color: #FF9400;
+            color: white;
+            border: none;
+            border-radius: 30px;
+        }
         /*フォントを太くする*/
         .custom-font-weight {
             font-weight: 700; /* 400はnormal、700はbold */
         }
         /* テキストをグラデーションにする */
         .text-gradient {
-            background: linear-gradient(45deg, #00B2B2, #f79200);
+            background: linear-gradient(45deg, #00B2B2, #ff7a11);
             -webkit-background-clip: text;
             color: transparent;
             /* background-clip: text; */
@@ -55,6 +68,8 @@
 <div id="app">
     <div>
     <!--上半分-->
+
+        <h2 class="page-section-heading text-center textcolor-darkgray custom-font-weight text-uppercase mt-5">my page</h2>
 
         <div class="row d-flex justify-content-center  mt-3">
             
@@ -69,8 +84,8 @@
                 <!--↑【アイコン表示】-->
 
                 
-                    <div class="text-white custom-font-weight mt-3 p-2">{{ Auth::user()->name }}</div><!--ユーザー名表示-->
-                    <div class="text-white custom-font-weight mt-3 p-2">{{ Auth::user()->email }}</div><!--メールアドレス表示-->
+                    <div class="textcolor-darkgray custom-font-weight mt-3 p-2">{{ Auth::user()->name }}</div><!--ユーザー名表示-->
+                    <div class="textcolor-darkgray custom-font-weight mt-3 p-2">{{ Auth::user()->email }}</div><!--メールアドレス表示-->
                 
             
 
@@ -95,45 +110,39 @@
             <div class="col-md-10">
                 <div class="row text-center w-78 mx-auto m-4">
                     <div class="col-md-3">
-                        <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/blueIcon/posted.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
-                        </span>
+                        <!-- image削除済 -->
                         <h1 class="my-3 text-gradient custom-font-weight">posted</h1>
                         <div><!--自分の投稿履歴-->
                             @foreach($loginPostData as $loginPost)
                             <div class="container">
                                 <div class="row justify-content-center mt-2 mb-2">
                                     <div class="text-white custom-font-weight">{{ $loginPost['title'] }}</div><!--タイトルを表示-->
-                                    <div>
-                                        <a href="{{ route('myDetail',['id'=>$loginPost['id']])}}" class="custom-link">詳細</a>
-                                    </div>
+                                    <button type="button" class="sub-btn-custom ml-2">
+                                        <a href="{{ route('myDetail',['id'=>$loginPost['id']])}}" class="custom-sub-link">詳細</a>
+                                    </button>
                                 </div>
                             </div>
                             @endforeach
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/blueIcon/favorite.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
-                        </span>
+                        <!-- image削除済 -->
                         <h1 class="my-3 text-gradient custom-font-weight">favorite</h1>
                         <div><!--お気に入り投稿履歴-->
                             @foreach($favoritePostData as $favoritePost)
                             <div class="container">
                                 <div class="row justify-content-center mt-2 mb-2">
                                     <div class="text-white custom-font-weight">{{ $favoritePost['post']['title'] }}</div><!--タイトルを表示-->
-                                    <div>
-                                        <a href="{{ route('other.detail',['id'=>$favoritePost['post']['id']])}}"  class="custom-link">詳細</a>
-                                    </div>
+                                    <button type="button" class="sub-btn-custom ml-2">
+                                        <a href="{{ route('other.detail',['id'=>$favoritePost['post']['id']])}}"  class="custom-sub-link">詳細</a>
+                                    </button>
                                 </div>
                             </div>
                             @endforeach
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/blueIcon/makerequest.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
-                        </span>
+                        <!-- image削除済 -->
                         <h1 class="my-3 text-gradient custom-font-weight">made a request</h1>
                         <div><!--依頼した履歴-->
                             @foreach($makeRequestData as $makeRequest)
@@ -141,9 +150,9 @@
                             <div class="container">
                                 <div class="row justify-content-center mt-2 mb-2">
                                     <div class="text-white custom-font-weight">{{ $makeRequest['post']['title'] }}</div><!--タイトルを表示-->
-                                    <div>
-                                        <a href="{{ route('makeRequestDetail',['id'=>$makeRequest['id']])}}"  class="custom-link">詳細</a>
-                                    </div>
+                                    <button type="button" class="sub-btn-custom ml-2">
+                                        <a href="{{ route('makeRequestDetail',['id'=>$makeRequest['id']])}}"  class="custom-sub-link">詳細</a>
+                                    </button>
                                 </div>
                             </div>
                             @endif
@@ -151,18 +160,16 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="fa-stack fa-4x">
-                            <img src="{{ asset('img/blueIcon/requested.jpg') }}" class="img-fluid rounded-circle" alt="" width="120" height="120">
-                        </span>
+                        <!-- image削除済 -->
                         <h1 class="my-3 text-gradient custom-font-weight">requested</h1>
                         <div><!--依頼（された）履歴-->  
                             @foreach($receiveRequestData as $receiveRequest)
                             <div class="container">
                                 <div class="row justify-content-center mt-2 mb-2">
                                     <div class="text-white custom-font-weight">{{ $receiveRequest['title'] }}</div><!--タイトルを表示-->
-                                    <div>
-                                        <a href="{{ route('receiveRequestDetail',['id'=>$receiveRequest['id']])}}"  class="custom-link">詳細</a>
-                                    </div>
+                                    <button type="button" class="sub-btn-custom ml-2">
+                                        <a href="{{ route('receiveRequestDetail',['id'=>$receiveRequest['id']])}}"  class="custom-sub-link">詳細</a>
+                                    </button>
                                 </div>
                             </div>
                             @endforeach
